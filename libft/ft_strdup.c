@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 16:19:44 by aalfahal         ###   ########.fr       */
+/*   Created: 2022/08/21 17:13:07 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/03/25 03:51:53 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include"libft.h"
 
-# include<stdlib.h>
-# include<unistd.h>
-# include <stdint.h>
+char	*ft_strdup(const char *s1)
+{
+	char	*dup;
+	int		i;
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-size_t	ft_strlen(const char *s);
-int		ft_strncmp(const char *s1, const char *s2, int n);
-char	*ft_strdup(const char *s1);
-
-#endif
+	i = 0;
+	if (!s1)
+		return (NULL);
+	dup = (char *) malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (dup == NULL)
+		return (0);
+	while (s1[i])
+	{
+		dup[i] = s1[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 13:00:51 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:32:19 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void	clean_exit(t_map *map, int msg, int ex)
 		write(2, "bye\n", 4);
 	else if (msg == 3)
 		write(2, "Error\nOne of the '.xpms' is missing\n", 37);
+	else if (msg == 4)
+		write(2, "Error\nWrong components\n", 24);
 	free_2d_array(map->map);
+	free_2d_array(map->text_names);
 	free(map);
 	exit(ex);
 }

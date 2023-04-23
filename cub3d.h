@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 12:53:54 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:41:09 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct img
 typedef struct s_map
 {
 	char	**map;
+	char	**text_names;
 	char	*no_text;
 	char	*so_text;
 	char	*we_text;
@@ -64,6 +65,7 @@ typedef struct s_cub3d
 /******************************Pars_utils********************************/
 
 void	reading_map(char *s, t_cub3d *c);
+int		check_in_tmp2d(char *tmp, char **texture, int i);
 
 /******************************Free_utils********************************/
 
