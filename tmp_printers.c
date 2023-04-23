@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   tmp_printers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 02:08:52 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 12:44:21 by aalfahal         ###   ########.fr       */
+/*   Created: 2023/04/23 12:40:22 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/04/23 12:47:19 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char **av)
+void	print_2d_array(char **d)
 {
-	t_cub3d	c;
+	int	i;
 
-	if (ac == 2)
-	{
-		reading_map(av[1], c.map);
-		print_2d_array(c.map->map);
-		free_2d_array(c.map->map);
-	}
-	else
-	{
-		ft_printf("Wrong arguments\n");
-		return (1);
-	}
-	return (0);
+	i = 0;
+	while (d[i])
+		ft_printf("%s	\n", d[i++]);
 }

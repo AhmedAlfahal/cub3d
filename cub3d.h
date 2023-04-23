@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 12:03:42 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 12:41:18 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include"ft_printf/ft_printf.h"
 # include"get_next_line/get_next_line.h"
 # include"mlx/mlx.h"
+
+# include<fcntl.h>
 
 typedef enum color_type
 {
@@ -49,12 +51,29 @@ typedef struct s_map
 	char	*ea_text;
 	int		*f_rgb;
 	int		*c_rgb;
+	int		i;
+	int		j;
 }			t_map;
 
 typedef struct s_cub3d
 {
-	struct mlx		*mlx;
-	struct img		*img;
-	struct map		*map;
+	struct s_mlx		*mlx;
+	struct s_img		*img;
+	struct s_map		*map;
 }			t_cub3d;
+
+/******************************Pars_utils********************************/
+
+void	reading_map(char *s, t_map *m);
+
+/******************************Free_utils********************************/
+
+void	clean_exit(t_map *map, int msg, int ex);
+void	closing_and_freeing(int fd, char *line, int ext);
+void	free_2d_array(char **map);
+
+/******************************Tmp_printers******************************/
+
+void	print_2d_array(char **d);
+
 #endif

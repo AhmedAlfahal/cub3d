@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/20 05:53:06 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/23 12:47:53 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,10 @@ MLX		=	-framework OpenGL -framework AppKit
 
 LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a mlx/libmlx.a
 
-SRC		=	cub3d.c
+SRC		=	cub3d.c					\
+			tmp_printers.c			\
+			parsing/map_parsing.c	\
+			parsing/free_utils.c
 
 SRCS	=	$(SRC:%.c=%.o)
 
