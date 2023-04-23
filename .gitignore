@@ -1,0 +1,9 @@
+.vs/
+*.o
+*.out
+.vscode/
+.DS_Store
+*.a
+*.o
+*.so
+42curses/cube3d/cub3d
