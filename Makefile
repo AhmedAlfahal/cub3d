@@ -6,19 +6,17 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/23 12:47:53 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/23 12:51:23 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		=	CC
+CC		=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror  -g3 #-fsanitize=address
 
 NAME	=	cub3d
 
-MLX		=	-framework OpenGL -framework AppKit
-
-LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a mlx/libmlx.a
+LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a
 
 SRC		=	cub3d.c					\
 			tmp_printers.c			\
@@ -33,13 +31,11 @@ $(NAME) : $(SRCS)
 	@make all -C ./ft_printf
 	@make all -C ./libft
 	@make all -C ./get_next_line
-	@make -C ./mlx
-	$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBS) -o $(NAME)  
+	$(CC) $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)  
 clean:
 	@make clean -C ./ft_printf
 	@make clean -C ./libft
 	@make clean -C ./get_next_line
-	@make clean -C ./mlx
 	rm -fr $(SRCS)
 
 fclean: clean
