@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 11:08:59 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 12:03:42 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,22 @@ typedef enum color_type
 	b,
 }	t_color_type;
 
-typedef struct s_cub3d
+typedef struct mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*player;
+}			t_mlx;
+
+typedef struct img
+{
+	void	*no;
+	void	*so;
+	void	*we;
+	void	*ea;
+}			t_img;
+
+typedef struct s_map
 {
 	char	**map;
 	char	*no_text;
@@ -34,6 +49,12 @@ typedef struct s_cub3d
 	char	*ea_text;
 	int		*f_rgb;
 	int		*c_rgb;
-}			t_cub3d;
+}			t_map;
 
+typedef struct s_cub3d
+{
+	struct mlx		*mlx;
+	struct img		*img;
+	struct map		*map;
+}			t_cub3d;
 #endif
