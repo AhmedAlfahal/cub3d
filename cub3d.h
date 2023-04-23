@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 12:41:18 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 12:53:54 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include"libft/libft.h"
 # include"ft_printf/ft_printf.h"
 # include"get_next_line/get_next_line.h"
-# include"mlx/mlx.h"
 
 # include<fcntl.h>
 
@@ -64,7 +63,7 @@ typedef struct s_cub3d
 
 /******************************Pars_utils********************************/
 
-void	reading_map(char *s, t_map *m);
+void	reading_map(char *s, t_cub3d *c);
 
 /******************************Free_utils********************************/
 
