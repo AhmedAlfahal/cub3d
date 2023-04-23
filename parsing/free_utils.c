@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 02:08:52 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 12:05:15 by aalfahal         ###   ########.fr       */
+/*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/04/23 12:05:20 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int ac, char **av)
+void	free_2d_array(char **map)
 {
-	t_cub3d	c;
+	int	i;
 
-	if (ac == 2)
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map[i]);
+	free(map);
+}
+
+void	closing_and_freeing(int fd, char *line, int ext)
+{
+	close(fd);
+	free(line);
+	if (ext == 1)
 	{
-		c.map = reading_map(av[1]);
+		write(2, "Error\n", 7);
+		exit(1);
 	}
-	return (0);
 }
