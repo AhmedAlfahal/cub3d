@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:00 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 16:41:17 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/24 11:14:23 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	check_errors(t_map *m)
 			j++;
 		i++;
 	}
+	ft_printf("[%d]\n", j);
 	if (j > 6)
 		clean_exit(m, 4, 1);
 }
