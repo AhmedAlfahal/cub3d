@@ -6,13 +6,13 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/24 11:12:16 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/25 13:11:49 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror  -g3 #-fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror  -g3 -fsanitize=address
 
 NAME	=	cub3d
 

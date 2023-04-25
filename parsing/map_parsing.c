@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:00 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/24 11:14:23 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:13:52 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,45 +24,49 @@ static void	creating_tmp_2d(t_map *m)
 	m->text_names[6] = NULL;
 }
 
-static void	check_errors(t_map *m)
+static void	check_errors(t_cub3d *c)
 {
 	int	i;
 	int	j;
+	int	index;
 
 	i = 0;
 	j = 0;
-	while (m->map[i])
+	index = 0;
+	while (c->map->map[i])
 	{
-		if (check_in_tmp2d(m->map[i], m->text_names, 0) == 1)
+		index = check_in_tmp2d(c, c->map->map[i], &c->map->text_names);
+		if (index > 0)
 			j++;
 		i++;
 	}
 	ft_printf("[%d]\n", j);
-	if (j > 6)
-		clean_exit(m, 4, 1);
+	check_text_error(c);
+	if (c->counter->error > 0)
+		clean_exit(c, 4, 1);
 }
 
-static void	reading_to2d(char *s, int number_of_lines, t_map *m)
+static void	reading_to2d(t_cub3d *c, char *s, int number_of_lines)
 {
 	int		fd;
 	int		i;
 	char	*line;
 
-	m->map = malloc(sizeof(char *) * (number_of_lines + 1));
-	if (!m->map)
+	c->map->map = malloc(sizeof(char *) * (number_of_lines + 1));
+	if (!c->map->map)
 		return ;
 	fd = open(s, O_RDONLY);
 	i = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		m->map[i++] = line;
+		c->map->map[i++] = line;
 		line = get_next_line(fd);
 	}
-	m->map[i] = 0;
+	c->map->map[i] = 0;
 	close(fd);
 	if (number_of_lines == 0)
-		clean_exit(m, 1, 1);
+		clean_exit(c, 1, 1);
 }
 
 void	reading_map(char *s, t_cub3d *c)
@@ -73,6 +77,8 @@ void	reading_map(char *s, t_cub3d *c)
 
 	number_of_lines = 0;
 	c->map = malloc(sizeof(t_map) * 1);
+	c->counter = malloc(sizeof(t_counters) * 1);
+	ft_bzero(&c->counter, sizeof(t_counters) * 1);
 	fd = open(s, O_RDONLY);
 	if (ft_strncmp(s, ".cub", ft_strlen(s) - 4) == 1)
 		closing_and_freeing(fd, NULL, 1);
@@ -86,7 +92,7 @@ void	reading_map(char *s, t_cub3d *c)
 		line = get_next_line(fd);
 	}
 	closing_and_freeing(fd, line, 0);
-	reading_to2d(s, number_of_lines, c->map);
+	reading_to2d(c, s, number_of_lines);
 	creating_tmp_2d(c->map);
-	check_errors(c->map);
+	check_errors(c);
 }

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 16:41:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:07:17 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,25 @@ typedef enum color_type
 	b,
 }	t_color_type;
 
-typedef struct mlx
+typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
 	void	*player;
 }			t_mlx;
 
-typedef struct img
+typedef struct s_counters
+{
+	int	no;
+	int	so;
+	int	we;
+	int	ea;
+	int	f;
+	int	c;
+	int	error;
+}	t_counters;
+
+typedef struct s_img
 {
 	void	*no;
 	void	*so;
@@ -60,16 +71,24 @@ typedef struct s_cub3d
 	struct s_mlx		*mlx;
 	struct s_img		*img;
 	struct s_map		*map;
+	struct s_counters	*counter;
 }			t_cub3d;
+
+/******************************Free_utils********************************/
+
+int		next_space(char *s);
+void	check_text_error(t_cub3d *c);
+char	*skip_space(char *s);
 
 /******************************Pars_utils********************************/
 
 void	reading_map(char *s, t_cub3d *c);
-int		check_in_tmp2d(char *tmp, char **texture, int i);
+int		check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture);
+void	cutting_text(t_cub3d *c, char *tmp, int i);
 
 /******************************Free_utils********************************/
 
-void	clean_exit(t_map *map, int msg, int ex);
+void	clean_exit(t_cub3d *c, int msg, int ex);
 void	closing_and_freeing(int fd, char *line, int ext);
 void	free_2d_array(char **map);
 
