@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/25 12:54:32 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/26 11:18:12 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	free_2d_array(char **map)
 void	free_all(t_cub3d *c)
 {
 	free_2d_array(c->map->map);
-	free_2d_array(c->map->text_names);
+	free_2d_array(c->map->tmp_text_names);
+	free_2d_array(c->map->textures);
+	free(c->map->counters);
+	free(c->map->f_c_rgb);
 	free(c->map);
-	free(c->counter);
 }
 
 void	closing_and_freeing(int fd, char *line, int ext)

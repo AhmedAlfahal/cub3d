@@ -6,13 +6,13 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 12:06:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/25 13:08:40 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/26 11:22:20 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	val(const char *va, int sgn, int n, t_cub3d *c)
+static int	val(t_cub3d *c, char **rgb, const char *va, int n)
 {
 	long	res;
 
@@ -24,12 +24,15 @@ static int	val(const char *va, int sgn, int n, t_cub3d *c)
 		res = (res * 10) + (va[n] - '0');
 			n++;
 		if (res > 255 || res < 0)
-			clean_exit(c, 1, 1);
+		{
+			free_2d_array(rgb);
+			clean_exit(c, 5, 1);
+		}
 	}
 	return (res);
 }
 
-static int	ft_ai(const char *str, t_cub3d *c)
+static int	ft_ai(t_cub3d *c, char **rgb, const char *str)
 {
 	int					i;
 	int					sgn;
@@ -49,27 +52,23 @@ static int	ft_ai(const char *str, t_cub3d *c)
 				sgn = -1;
 			i++;
 	}
-	res = val (str, sgn, i, c);
+	res = val (c, rgb, str, i);
 	return (res * sgn);
 }
 
-static void	assigning_rgb(t_cub3d *c, char *s, char **rgb, int c_f)
+static void	assigning_rgb(t_cub3d *c, char **rgb, int c_f)
 {
 	if (c_f == 0)
 	{
-		c->map->c_rgb = malloc(sizeof(int) * 4);
-		ft_bzero(&c->map->c_rgb, sizeof(int) * 4);
-		c->map->c_rgb[r] = rgb[r];
-		c->map->c_rgb[g] = rgb[g];
-		c->map->c_rgb[b] = rgb[b];
+		c->map->f_c_rgb[c_r] = ft_ai(c, rgb, rgb[0]);
+		c->map->f_c_rgb[c_g] = ft_ai(c, rgb, rgb[1]);
+		c->map->f_c_rgb[c_b] = ft_ai(c, rgb, rgb[2]);
 	}
 	else
 	{
-		c->map->f_rgb = malloc(sizeof(int) * 4);
-		ft_bzero(&c->map->f_rgb, sizeof(int) * 4);
-		c->map->f_rgb[r] = rgb[r];
-		c->map->f_rgb[g] = rgb[g];
-		c->map->f_rgb[b] = rgb[b];
+		c->map->f_c_rgb[f_r] = ft_ai(c, rgb, rgb[0]);
+		c->map->f_c_rgb[f_g] = ft_ai(c, rgb, rgb[1]);
+		c->map->f_c_rgb[f_b] = ft_ai(c, rgb, rgb[2]);
 	}
 }
 
@@ -93,24 +92,18 @@ static void	cut_rgbs(t_cub3d *c, char *tmp)
 		free_2d_array(rgb);
 		clean_exit(c, 5, 1);
 	}
-	assigning_rgb(c, s, rgb, c_f);
+	assigning_rgb(c, rgb, c_f);
 	free_2d_array(rgb);
 }
 
-void	cutting_text(t_cub3d *c, char *tmp, int i)
+void	cutting_text(t_cub3d *cc, char *tmp, int i)
 {
-	if (i == 0)
-		c->map->no_text = ft_substr(skip_space(tmp), \
-		0, next_space(skip_space(tmp)));
-	else if (i == 1)
-		c->map->so_text = ft_substr(skip_space(tmp), \
-		0, next_space(skip_space(tmp)));
-	else if (i == 2)
-		c->map->we_text = ft_substr(skip_space(tmp), \
-		0, next_space(skip_space(tmp)));
-	else if (i == 3)
-		c->map->ea_text = ft_substr(skip_space(tmp), \
-		0, next_space(skip_space(tmp)));
-	else if (i == 4 || i == 5)
-		cut_rgbs(c, tmp);
+	if (i >= no && i <= ea)
+	{
+		free(cc->map->textures[i]);
+		cc->map->textures[i] = ft_substr(skip_space(tmp), \
+		next_space(skip_space(tmp)) + 1, ft_strlen(tmp));
+	}
+	else if (i == f || i == c)
+		cut_rgbs(cc, tmp);
 }

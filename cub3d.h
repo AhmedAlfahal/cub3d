@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/25 12:07:17 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/26 10:44:46 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,23 @@
 
 typedef enum color_type
 {
-	r,
-	g,
-	b,
+	c_r,
+	c_g,
+	c_b,
+	f_r,
+	f_g,
+	f_b,
 }	t_color_type;
+
+typedef enum directions
+{
+	no,
+	so,
+	we,
+	ea,
+	f,
+	c,
+}	t_directions;
 
 typedef struct s_mlx
 {
@@ -32,17 +45,6 @@ typedef struct s_mlx
 	void	*win;
 	void	*player;
 }			t_mlx;
-
-typedef struct s_counters
-{
-	int	no;
-	int	so;
-	int	we;
-	int	ea;
-	int	f;
-	int	c;
-	int	error;
-}	t_counters;
 
 typedef struct s_img
 {
@@ -55,13 +57,11 @@ typedef struct s_img
 typedef struct s_map
 {
 	char	**map;
-	char	**text_names;
-	char	*no_text;
-	char	*so_text;
-	char	*we_text;
-	char	*ea_text;
-	int		*f_rgb;
-	int		*c_rgb;
+	char	**tmp_text_names;
+	char	**textures;
+	int		*f_c_rgb;
+	int		*counters;
+	int		error;
 	int		i;
 	int		j;
 }			t_map;
@@ -71,8 +71,7 @@ typedef struct s_cub3d
 	struct s_mlx		*mlx;
 	struct s_img		*img;
 	struct s_map		*map;
-	struct s_counters	*counter;
-}			t_cub3d;
+}						t_cub3d;
 
 /******************************Free_utils********************************/
 
@@ -83,7 +82,7 @@ char	*skip_space(char *s);
 /******************************Pars_utils********************************/
 
 void	reading_map(char *s, t_cub3d *c);
-int		check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture);
+void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture);
 void	cutting_text(t_cub3d *c, char *tmp, int i);
 
 /******************************Free_utils********************************/
@@ -95,5 +94,6 @@ void	free_2d_array(char **map);
 /******************************Tmp_printers******************************/
 
 void	print_2d_array(char **d);
+void	print_counters(t_cub3d *c);
 
 #endif
