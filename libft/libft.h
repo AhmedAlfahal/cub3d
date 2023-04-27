@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/25 13:05:23 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/27 09:35:31 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 size_t	ft_strlen(const char *s);
+int		ft_isdigit(char **s);
 void	ft_bzero(void *s, size_t n);
 int		ft_strlen_2d(char **s);
 char	**ft_split(char const *s, char c);

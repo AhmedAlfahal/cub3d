@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 12:06:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/26 11:22:20 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/27 09:40:37 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	val(t_cub3d *c, char **rgb, const char *va, int n)
 		if (res > 255 || res < 0)
 		{
 			free_2d_array(rgb);
+			free(c->map->s1);
 			clean_exit(c, 5, 1);
 		}
 	}
@@ -58,6 +59,12 @@ static int	ft_ai(t_cub3d *c, char **rgb, const char *str)
 
 static void	assigning_rgb(t_cub3d *c, char **rgb, int c_f)
 {
+	if (ft_isdigit(rgb) == 0)
+	{
+		free_2d_array(rgb);
+		free(c->map->s1);
+		clean_exit(c, 5, 1);
+	}
 	if (c_f == 0)
 	{
 		c->map->f_c_rgb[c_r] = ft_ai(c, rgb, rgb[0]);

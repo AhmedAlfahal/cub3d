@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:33:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/26 11:16:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/27 09:23:50 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,23 @@ int	next_space(char *s)
 void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture)
 {
 	static int	i;
-	char		*s1;
 	char		**text;
 
 	text = *texture;
-	s1 = ft_substr(skip_space(tmp), 0, next_space(skip_space(tmp)));
+	c->map->s1 = ft_substr(skip_space(tmp), 0, next_space(skip_space(tmp)));
 	if (text[i] == NULL)
 	{
 		i = 0;
-		return (free(s1), NULL);
+		return (free(c->map->s1), NULL);
 	}
-	if (ft_strncmp(s1, text[i], ft_strlen(text[i])) == 0 \
-	&& ft_strlen(s1) == ft_strlen(text[i]))
+	if (ft_strncmp(c->map->s1, text[i], ft_strlen(text[i])) == 0 \
+	&& ft_strlen(c->map->s1) == ft_strlen(text[i]))
 	{
 		c->map->counters[i]++;
 		cutting_text(c, tmp, i);
 		i = 0;
-		return (free(s1), NULL);
+		return (free(c->map->s1), NULL);
 	}
 	i++;
-	return (free(s1), check_in_tmp2d(c, tmp, &text));
+	return (free(c->map->s1), check_in_tmp2d(c, tmp, &text));
 }

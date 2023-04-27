@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/26 10:44:46 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/27 09:23:32 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_img
 
 typedef struct s_map
 {
+	char	*s1;
 	char	**map;
 	char	**tmp_text_names;
 	char	**textures;
