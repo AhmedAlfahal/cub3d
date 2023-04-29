@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:33:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/27 09:23:50 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/29 20:14:59 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_text_error(t_cub3d *c)
 	int	i;
 
 	i = 0;
-	while (i < 6)
+	while (i < 7)
 	{
 		if (c->map->counters[i] == 0 || c->map->counters[i] > 1)
 			c->map->error++;
@@ -63,6 +63,7 @@ void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture)
 	{
 		c->map->counters[i]++;
 		cutting_text(c, tmp, i);
+		ft_bzero(tmp, sizeof(char) * ft_strlen(tmp));
 		i = 0;
 		return (free(c->map->s1), NULL);
 	}

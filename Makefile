@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/26 10:53:58 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/29 20:50:48 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a
 
 SRC		=	cub3d.c					\
 			tmp_printers.c			\
-			parsing/map_parsing.c	\
+			parsing/file_parsing.c	\
+			parsing/check_map.c		\
 			parsing/parsing_utils.c	\
 			parsing/free_utils.c	\
 			parsing/errors.c

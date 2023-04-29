@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 12:06:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/27 09:40:37 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:59:36 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ static void	cut_rgbs(t_cub3d *c, char *tmp)
 	if (!s)
 		return ;
 	rgb = ft_split(s, ',');
-	if (ft_strlen_2d(rgb) != 3)
+	if (ft_strlen_2d(rgb) != 3 || ft_commalen(s) != 2)
 	{
 		free_2d_array(rgb);
+		free(c->map->s1);
 		clean_exit(c, 5, 1);
 	}
 	assigning_rgb(c, rgb, c_f);

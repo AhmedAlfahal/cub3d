@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/26 11:18:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/29 20:49:31 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ void	free_2d_array(char **map)
 
 void	free_all(t_cub3d *c)
 {
-	free_2d_array(c->map->map);
+	free_2d_array(c->map->file);
 	free_2d_array(c->map->tmp_text_names);
 	free_2d_array(c->map->textures);
 	free(c->map->counters);
 	free(c->map->f_c_rgb);
+	free_2d_array(c->map->map);
 	free(c->map);
 }
 
@@ -56,6 +57,8 @@ void	clean_exit(t_cub3d *c, int msg, int ex)
 		write(2, "Error\nWrong components\n", 24);
 	else if (msg == 5)
 		write(2, "Error\nWrong RGB color\n", 23);
+	else if (msg == 6)
+		write(2, "GG\n", 4);
 	free_all(c);
 	exit(ex);
 }
