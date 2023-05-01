@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/29 20:21:59 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/30 12:15:21 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_map
 	char	**map;
 	char	**tmp_text_names;
 	char	**textures;
+	size_t	max_len;
 	int		*f_c_rgb;
 	int		*counters;
 	int		error;
@@ -89,7 +90,8 @@ char	*skip_space(char *s);
 void	reading_map(char *s, t_cub3d *c);
 void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture);
 void	cutting_text(t_cub3d *c, char *tmp, int i);
-void	check_map_elements(t_cub3d *c);
+void	check_file_elements(t_cub3d *c);
+void	check_map_element(t_cub3d *c, char **map);
 
 /******************************Free_utils********************************/
 

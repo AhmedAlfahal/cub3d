@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 12:40:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/29 20:15:08 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:25:34 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	print_counters(t_cub3d *c)
 	while (i < 7)
 		ft_printf("[%d]	,", c->map->counters[i++]);
 	ft_printf("\n");
+	print_2d_array(c->map->map);
 }
