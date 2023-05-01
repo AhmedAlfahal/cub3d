@@ -6,21 +6,25 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/20 05:53:06 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/29 20:50:48 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		=	CC
+CC		=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror  -g3 #-fsanitize=address
 
 NAME	=	cub3d
 
-MLX		=	-framework OpenGL -framework AppKit
+LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a
 
-LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a mlx/libmlx.a
-
-SRC		=	cub3d.c
+SRC		=	cub3d.c					\
+			tmp_printers.c			\
+			parsing/file_parsing.c	\
+			parsing/check_map.c		\
+			parsing/parsing_utils.c	\
+			parsing/free_utils.c	\
+			parsing/errors.c
 
 SRCS	=	$(SRC:%.c=%.o)
 
@@ -30,13 +34,11 @@ $(NAME) : $(SRCS)
 	@make all -C ./ft_printf
 	@make all -C ./libft
 	@make all -C ./get_next_line
-	@make -C ./mlx
-	$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBS) -o $(NAME)  
+	$(CC) $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)  
 clean:
 	@make clean -C ./ft_printf
 	@make clean -C ./libft
 	@make clean -C ./get_next_line
-	@make clean -C ./mlx
 	rm -fr $(SRCS)
 
 fclean: clean

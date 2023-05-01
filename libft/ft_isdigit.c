@@ -1,59 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/08 15:55:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/28 11:09:08 by aalfahal         ###   ########.fr       */
+/*   Created: 2022/08/09 20:46:32 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/04/29 20:31:10 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
+#include<stdio.h>
 
-size_t	ft_strlen(const char *s)
+void	remove_space(char *s)
 {
-	int	i;
+	int		i;
+	int		j;
 
 	i = 0;
-	if (!s || *s == '\0')
-		return (0);
-	while (s[i] != '\0')
+	j = 0;
+	while (s[j])
 	{
-		i++;
+		while (s[j] == ' ' && s[j] != '\0')
+			j++;
+		if (s[j] == '\0')
+			continue ;
+		s[i++] = s[j++];
 	}
-	return (i);
+	s[i] = 0;
 }
 
-int	ft_strlen_2d(char **s)
-{
-	int	i;
-
-	i = 0;
-	if (!s || *s == 0)
-		return (0);
-	while (s[i] != NULL)
-	{
-		i++;
-	}
-	return (i);
-}
-
-int	ft_commalen(char *s)
+int	ft_isdigit(char **s)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	if (!s || *s == '\0')
+	if (!s || !*s)
 		return (0);
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		if (s[i] == ',')
-			j++;
+		while (s[i][j])
+		{
+			if (s[i][j] == '+' && j == 0)
+				j++;
+			else if ((s[i][j] >= '0' && s[i][j] <= '9') || s[i][j] == ' ')
+				j++;
+			else
+				return (0);
+		}
+		remove_space(s[i]);
 		i++;
+		j = 0;
 	}
-	return (j);
+	return (1);
 }

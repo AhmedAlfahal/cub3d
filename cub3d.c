@@ -6,14 +6,26 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:52 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/20 05:53:30 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/29 20:47:26 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	printf("Nothing\n");
-	return (69);
+	t_cub3d	c;
+
+	if (ac == 2)
+	{
+		reading_map(av[1], &c);
+		print_2d_array(c.map->file);
+		clean_exit(&c, 0, 0);
+	}
+	else
+	{
+		ft_printf("Wrong arguments\n");
+		return (1);
+	}
+	return (0);
 }

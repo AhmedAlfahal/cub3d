@@ -1,59 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/08 15:55:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/28 11:09:08 by aalfahal         ###   ########.fr       */
+/*   Created: 2022/08/21 17:13:07 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/03/25 03:51:53 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strdup(const char *s1)
 {
-	int	i;
+	char	*dup;
+	int		i;
 
 	i = 0;
-	if (!s || *s == '\0')
+	if (!s1)
+		return (NULL);
+	dup = (char *) malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (dup == NULL)
 		return (0);
-	while (s[i] != '\0')
+	while (s1[i])
 	{
+		dup[i] = s1[i];
 		i++;
 	}
-	return (i);
-}
-
-int	ft_strlen_2d(char **s)
-{
-	int	i;
-
-	i = 0;
-	if (!s || *s == 0)
-		return (0);
-	while (s[i] != NULL)
-	{
-		i++;
-	}
-	return (i);
-}
-
-int	ft_commalen(char *s)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (!s || *s == '\0')
-		return (0);
-	while (s[i] != '\0')
-	{
-		if (s[i] == ',')
-			j++;
-		i++;
-	}
-	return (j);
+	dup[i] = '\0';
+	return (dup);
 }
