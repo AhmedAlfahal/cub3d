@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/30 12:15:21 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:40:25 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture);
 void	cutting_text(t_cub3d *c, char *tmp, int i);
 void	check_file_elements(t_cub3d *c);
 void	check_map_element(t_cub3d *c, char **map);
+void	align_elements(t_cub3d *c, char *tmp);
 
 /******************************Free_utils********************************/
 
