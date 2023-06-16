@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:00 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/05/01 17:39:03 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:54:00 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	check_errors(t_cub3d *c)
 	if (c->map->error > 0)
 		clean_exit(c, 4, 1);
 	check_map_element(c, c->map->map);
-	// align_elements(c);
+	align_elements(c);
 }
 
 static void	reading_to2d(t_cub3d *c, char *s, int number_of_lines)

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/05/01 17:12:19 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:56:12 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_tmp
 }	t_tmp;
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-size_t	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 int		ft_strlen_2d(char **s);
 int		ft_commalen(char *s);
 int		ft_isdigit(char *s);

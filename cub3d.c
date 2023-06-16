@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:52 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/05/01 15:25:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:59:37 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 	{
 		reading_map(av[1], &c);
 		print_counters(&c);
+		print_2d_array(c.map->map);
 		clean_exit(&c, 0, 0);
 	}
 	else

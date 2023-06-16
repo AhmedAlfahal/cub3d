@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/05/01 17:39:11 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/16 19:17:46 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	check_map_element(t_cub3d *c, char **map)
 		check_line_element(c->map, map[i], 1);
 		if (c->map->error > 0)
 			clean_exit(c, 4, 1);
+		if (ft_strlen(map[i]) > c->map->max_len)
+			c->map->max_len = ft_strlen(map[i]);
 	}
 	else
 	{
@@ -102,29 +104,12 @@ void	check_map_element(t_cub3d *c, char **map)
 	return (check_map_element(c, map));
 }
 
-// void	align_elements(t_cub3d *c, char *tmp)
-// {
-// 	static int	i;
-// 	static int	j;
-// 	char		*tmp;
-
-// 	if (c->map->map[i] == NULL || ft_strlen(c->map->map) == c->map->map)
-// 		return ;
-// 	if (j == 0)
-// 	{
-// 		tmp = malloc(sizeof(char) * (c->map->max_len + 1));
-// 		if (!tmp)
-// 			return ;
-// 		ft_bzero(tmp, sizeof(char) * (c->map->max_len + 1));
-// 	}
-// 	else if (j == c->map->max_len)
-// 	{
-// 		free(c->map->map[i]);
-// 		c->map->map[i++] = tmp;
-// 	}
-// 	if (j < c->map->max_len)
-// 		tmp[j] = c->map->map[i][j++];
-// 	else if (j >= c->map->max_len)
-// 		tmp[j++] = '1';
-// 	return (align_elements(c, tmp));
-// }
+void	align_elements(t_cub3d *c)
+{
+	static int i;
+	if (c->map->map[i] == NULL)
+		return ;
+	mallocing_new(c, i);
+	i++;
+	return (align_elements(c));
+}
