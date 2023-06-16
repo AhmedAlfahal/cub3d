@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:33:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/29 20:14:59 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/16 19:21:04 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,28 @@ void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture)
 	}
 	i++;
 	return (free(c->map->s1), check_in_tmp2d(c, tmp, &text));
+}
+
+void	mallocing_new(t_cub3d *c, int i)
+{
+	char	*tmp;
+	int		j;
+
+	if (c->map->map[i] == NULL || ft_strlen(c->map->map[i]) == c->map->max_len)
+		return ;
+	j = 0;
+	tmp = malloc(sizeof(char) * c->map->max_len + 1);
+	if (!tmp)
+		return ;
+	ft_printf("%d\n", c->map->max_len);
+	ft_bzero(tmp, sizeof(char) * c->map->max_len + 1);
+	while (c->map->map[i][j])
+	{
+		tmp[j] = c->map->map[i][j];
+		j++;
+	}
+	while (j < c->map->max_len)
+		tmp[j++] = '1';
+	free(c->map->map[i]);
+	c->map->map[i] = tmp;
 }
