@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 12:06:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/05/01 17:18:46 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/16 21:49:01 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ void	cutting_text(t_cub3d *cc, char *tmp, int i)
 	if (i >= no && i <= ea)
 	{
 		free(cc->map->textures[i]);
-		cc->map->textures[i] = ft_substr(skip_space(tmp), \
-		next_space(skip_space(tmp)) + 1, ft_strlen(tmp));
+		// cc->map->textures[i] = ft_substr(skip_space(tmp), 
+		// next_space(skip_space(tmp)) + 1, ft_strlen(tmp));
 	}
 	else if (i == f || i == c)
 		cut_rgbs(cc, tmp);
