@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/16 19:17:46 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/16 19:54:47 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ void	check_map_element(t_cub3d *c, char **map)
 
 void	align_elements(t_cub3d *c)
 {
-	static int i;
+	static int	i;
+
 	if (c->map->map[i] == NULL)
 		return ;
 	mallocing_new(c, i);
