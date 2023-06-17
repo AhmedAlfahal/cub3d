@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/17 20:47:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/17 22:19:22 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_map
 	int		map_width;
 	int		map_height;
 	int		error;
+	int		angel;
 	int		i;
 	int		j;
 	int		p_x;
@@ -103,7 +104,10 @@ void	mallocing_new(t_cub3d *c, int i);
 
 /******************************Render_utils******************************/
 
+int		rgb_to_int(int red, int green, int blue);
 void	render(t_cub3d *c);
+void	draw_object(t_cub3d *c, int pix_y, int color);
+void	draw_map(t_cub3d *c);
 
 /******************************Free_utils********************************/
 

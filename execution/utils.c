@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 02:08:52 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/17 22:32:20 by aalfahal         ###   ########.fr       */
+/*   Created: 2023/06/17 21:37:16 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/06/17 22:13:49 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int ac, char **av)
+int	rgb_to_int(int red, int green, int blue)
 {
-	t_cub3d	c;
+	int	color;
 
-	if (ac == 2)
-	{
-		reading_map(av[1], &c);
-		// print_2d_array(c.map->map);
-		render(&c);
-		print_counters(&c);
-		clean_exit(&c, 0, 0);
-	}
-	else
-	{
-		ft_printf("Wrong arguments\n");
-		return (1);
-	}
-	return (0);
+	color = 0;
+	color |= (int)(red) << 16;
+	color |= (int)(green) << 8;
+	color |= (int)(blue);
+	return (color);
 }
