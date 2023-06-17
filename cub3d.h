@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/16 18:56:33 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/16 20:48:28 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include"libft/libft.h"
 # include"ft_printf/ft_printf.h"
 # include"get_next_line/get_next_line.h"
-
+# include"mlx/mlx.h"
 # include<fcntl.h>
 
 typedef enum color_type

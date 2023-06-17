@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/05/01 15:26:55 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/06/16 20:50:19 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ CFLAGS	=	-Wall -Wextra -Werror  -g3 #-fsanitize=address
 NAME	=	cub3d
 
 LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a
+
+MLX		=	-framework OpenGL -framework AppKit
 
 SRC		=	cub3d.c					\
 			tmp_printers.c			\
@@ -34,6 +36,7 @@ $(NAME) : $(SRCS)
 	@make all -C ./ft_printf
 	@make all -C ./libft
 	@make all -C ./get_next_line
+#	@make all -C ./mlx
 	$(CC) $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)  
 clean:
 	@make clean -C ./ft_printf
