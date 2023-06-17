@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:33:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/16 19:54:58 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:55:53 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,23 +74,28 @@ void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture)
 void	mallocing_new(t_cub3d *c, int i)
 {
 	char	*tmp;
-	int		j;
 
-	if (c->map->map[i] == NULL || ft_strlen(c->map->map[i]) == c->map->max_len)
+	if (c->map->map[i] == NULL \
+	|| ft_strlen(c->map->map[i]) == c->map->map_width)
 		return ;
-	j = 0;
-	tmp = malloc(sizeof(char) * c->map->max_len + 1);
+	tmp = malloc(sizeof(char) * c->map->map_width + 1);
 	if (!tmp)
 		return ;
-	ft_printf("%d\n", c->map->max_len);
-	ft_bzero(tmp, sizeof(char) * c->map->max_len + 1);
-	while (c->map->map[i][j])
+	while (c->map->map[i][c->map->j])
 	{
-		tmp[j] = c->map->map[i][j];
-		j++;
+		tmp[c->map->j] = c->map->map[i][c->map->j];
+		if (c->map->map[i][c->map->j] == 'N' \
+		|| c->map->map[i][c->map->j] == 'E' \
+		|| c->map->map[i][c->map->j] == 'W' || c->map->map[i][c->map->j] == 'S')
+		{
+			c->map->p_x = c->map->j;
+			c->map->p_y = i;
+		}
+		c->map->j++;
 	}
-	while (j < c->map->max_len)
-		tmp[j++] = '1';
+	while (c->map->j < c->map->map_width)
+		tmp[c->map->j++] = '1';
+	tmp[c->map->j] = 0;
 	free(c->map->map[i]);
 	c->map->map[i] = tmp;
 }
