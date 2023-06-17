@@ -6,28 +6,41 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/29 20:49:31 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:15:21 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+// static void	free_2d_array_s(char **map, int s)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	if (!map)
+// 		return ;
+// 	while (i < s)
+// 		free(map[i++]);
+// 	free(map);
+// }
 
 void	free_2d_array(char **map)
 {
 	int	i;
 
 	i = 0;
+	if (!map)
+		return ;
 	while (map[i])
 		free(map[i++]);
-	free(map[i]);
 	free(map);
 }
 
 void	free_all(t_cub3d *c)
 {
+	free_2d_array(c->map->textures);
 	free_2d_array(c->map->file);
 	free_2d_array(c->map->tmp_text_names);
-	free_2d_array(c->map->textures);
 	free(c->map->counters);
 	free(c->map->f_c_rgb);
 	free_2d_array(c->map->map);
