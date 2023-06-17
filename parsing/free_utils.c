@@ -6,11 +6,23 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/16 21:49:19 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:15:21 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+// static void	free_2d_array_s(char **map, int s)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	if (!map)
+// 		return ;
+// 	while (i < s)
+// 		free(map[i++]);
+// 	free(map);
+// }
 
 void	free_2d_array(char **map)
 {

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:00 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/16 21:49:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:18:58 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ static void	malloc_all(t_map *m)
 	m->tmp_text_names = malloc(sizeof(char *) * 7);
 	m->f_c_rgb = malloc(sizeof(int) * 7);
 	m->counters = malloc(sizeof(int) * 8);
-	m->textures = malloc(sizeof(char *) * 5);
+	m->textures = malloc(sizeof(char *) * 6);
 	m->map = malloc(sizeof(char *) * 2);
 	if (!m->tmp_text_names || !m->f_c_rgb \
 	|| !m->counters || !m->textures || !m->map)
 		return ;
 	m->map[0] = ft_strdup("anything");
 	m->map[1] = NULL;
-	ft_bzero(m->textures, sizeof(char *) * 5);
-	while (m->textures[i])
-		m->textures[i++] = ft_strdup("");
+	ft_bzero(m->textures, sizeof(char *) * 6);
+	while (i < 5)
+		m->textures[i++] = ft_strdup("Test");
 	ft_bzero(m->tmp_text_names, sizeof(char *) * 7);
 	ft_bzero(m->f_c_rgb, sizeof(int) * 7);
 	ft_bzero(m->counters, sizeof(int) * 8);
