@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/16 20:48:28 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/17 20:47:09 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ typedef struct s_img
 	void	*so;
 	void	*we;
 	void	*ea;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }			t_img;
 
 typedef struct s_map
@@ -64,7 +69,8 @@ typedef struct s_map
 	char	**textures;
 	int		*f_c_rgb;
 	int		*counters;
-	int		max_len;
+	int		map_width;
+	int		map_height;
 	int		error;
 	int		i;
 	int		j;
@@ -94,6 +100,10 @@ void	check_file_elements(t_cub3d *c);
 void	check_map_element(t_cub3d *c, char **map);
 void	align_elements(t_cub3d *c);
 void	mallocing_new(t_cub3d *c, int i);
+
+/******************************Render_utils******************************/
+
+void	render(t_cub3d *c);
 
 /******************************Free_utils********************************/
 
