@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:33:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/17 22:52:59 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/18 15:48:24 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture)
 
 static void	player_condition(t_cub3d *c, int i)
 {
-	c->map->p_x = c->map->j;
-	c->map->p_y = i;
+	c->map->p_x = c->map->j * 64;
+	c->map->p_y = i * 64;
 	if (c->map->map[i][c->map->j] == 'N')
 		c->map->angel = 90;
 	else if (c->map->map[i][c->map->j] == 'E')
