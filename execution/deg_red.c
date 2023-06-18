@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   deg_red.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 02:08:52 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/17 22:32:20 by aalfahal         ###   ########.fr       */
+/*   Created: 2023/06/18 20:07:21 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/06/18 20:12:29 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int ac, char **av)
+double	deg_to_rad(double deg)
 {
-	t_cub3d	c;
+	return (deg * (0x3F / 180));
+}
 
-	if (ac == 2)
-	{
-		reading_map(av[1], &c);
-		// print_2d_array(c.map->map);
-		render(&c);
-		print_counters(&c);
-		clean_exit(&c, 0, 0);
-	}
-	else
-	{
-		ft_printf("Wrong arguments\n");
-		return (1);
-	}
-	return (0);
+double	rad_to_deg(double rad)
+{
+	return (rad * (180 / 0x3F));
 }

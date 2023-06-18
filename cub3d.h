@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/17 20:47:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/18 20:13:17 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include"ft_printf/ft_printf.h"
 # include"get_next_line/get_next_line.h"
 # include"mlx/mlx.h"
+# include<math.h>
 # include<fcntl.h>
 
 typedef enum color_type
@@ -72,10 +73,13 @@ typedef struct s_map
 	int		map_width;
 	int		map_height;
 	int		error;
+	int		angel;
 	int		i;
 	int		j;
 	int		p_x;
+	int		pp_x;
 	int		p_y;
+	int		pp_y;
 }			t_map;
 
 typedef struct s_cub3d
@@ -103,7 +107,12 @@ void	mallocing_new(t_cub3d *c, int i);
 
 /******************************Render_utils******************************/
 
+int		rgb_to_int(int red, int green, int blue);
 void	render(t_cub3d *c);
+void	draw_object(t_cub3d *c, int pix_y, int color);
+void	draw_map(t_cub3d *c);
+double	deg_to_rad(double deg);
+double	rad_to_deg(double rad);
 
 /******************************Free_utils********************************/
 
