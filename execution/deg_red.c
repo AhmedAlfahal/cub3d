@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 20:07:21 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/18 20:12:29 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/19 21:24:58 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 double	deg_to_rad(double deg)
 {
-	return (deg * (0x3F / 180));
+	return (deg * (M_PI / 180));
 }
 
 double	rad_to_deg(double rad)
 {
-	return (rad * (180 / 0x3F));
+	return (rad * (M_PI / 0x3F));
 }

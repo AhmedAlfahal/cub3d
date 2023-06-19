@@ -6,13 +6,13 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/06/18 20:14:14 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/06/19 17:55:34 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		=	gcc
+CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS	=	-g3 -Wall -Wextra -Werror -fsanitize=address
 
 NAME	=	cub3d
 
@@ -42,7 +42,7 @@ $(NAME) : $(SRCS)
 	@make all -C ./libft
 	@make all -C ./get_next_line
 	@make all -C ./mlx
-	$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBS) -o $(NAME) -lm
+	$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBS) -o $(NAME)
 clean:
 	@make clean -C ./ft_printf
 	@make clean -C ./libft

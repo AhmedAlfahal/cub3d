@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/18 20:13:17 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:11:15 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include"mlx/mlx.h"
 # include<math.h>
 # include<fcntl.h>
-
+# include<stdio.h>
 typedef enum color_type
 {
 	c_r,
@@ -63,23 +63,23 @@ typedef struct s_img
 
 typedef struct s_map
 {
-	char	*s1;
-	char	**file;
-	char	**map;
-	char	**tmp_text_names;
-	char	**textures;
-	int		*f_c_rgb;
-	int		*counters;
-	int		map_width;
-	int		map_height;
-	int		error;
-	int		angel;
-	int		i;
-	int		j;
-	int		p_x;
-	int		pp_x;
-	int		p_y;
-	int		pp_y;
+	char		*s1;
+	char		**file;
+	char		**map;
+	char		**tmp_text_names;
+	char		**textures;
+	int			*f_c_rgb;
+	int			*counters;
+	int			map_width;
+	int			map_height;
+	int			error;
+	int			angel;
+	int			i;
+	int			j;
+	double		p_x;
+	double		pp_x;
+	double		p_y;
+	double		pp_y;
 }			t_map;
 
 typedef struct s_cub3d
