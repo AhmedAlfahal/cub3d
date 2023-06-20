@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/20 12:20:51 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:39:04 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,14 @@ static int	key(int key_code, t_cub3d *c)
 void	render(t_cub3d *c)
 {
 	t_mlx	m;
+	t_img	img;
 
 	m.mlx = mlx_init();
 	m.win = mlx_new_window(m.mlx, \
 	c->map->map_width * 64, c->map->map_height * 64, "cub3d");
 	c->mlx = &m;
+	ft_bzero(&img, sizeof(t_img));
+	c->img = &img;
 	draw_img(c);
 	mlx_hook(c->mlx->win, 2, 0, key, c);
 	mlx_hook(c->mlx->win, 17, 0, destroy_window, c);
