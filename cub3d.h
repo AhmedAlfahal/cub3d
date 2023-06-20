@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/19 18:11:15 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:16:09 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include<math.h>
 # include<fcntl.h>
 # include<stdio.h>
+
 typedef enum color_type
 {
 	c_r,
@@ -108,8 +109,8 @@ void	mallocing_new(t_cub3d *c, int i);
 /******************************Render_utils******************************/
 
 int		rgb_to_int(int red, int green, int blue);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	render(t_cub3d *c);
-void	draw_object(t_cub3d *c, int pix_y, int color);
 void	draw_map(t_cub3d *c);
 double	deg_to_rad(double deg);
 double	rad_to_deg(double rad);
