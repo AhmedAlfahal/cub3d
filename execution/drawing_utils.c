@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:17:29 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/20 12:26:36 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:44:22 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	draw_object(t_cub3d *c, int pix_y, int color)
 static void	draw_line_cons(t_cub3d *c, int *angel, double *l_rx, double *l_ry)
 {
 	if (*angel == 0)
-		*angel = c->map->angel - 22;
+		*angel = c->map->angel - 45;
 	if (*l_rx == 0 && *l_ry == 0)
 	{
 		*l_rx = c->map->p_x;
@@ -52,7 +52,7 @@ static void	draw_line(t_cub3d *c, int line_color)
 	{
 		l_rx = 0;
 		l_ry = 0;
-		if (angel <= c->map->angel + 22)
+		if (angel <= c->map->angel + 45)
 		{
 			angel++;
 			if (angel == 0)
