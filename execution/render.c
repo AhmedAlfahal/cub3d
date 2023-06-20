@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/18 20:21:18 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:20:51 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,49 @@ static void	draw_img(t_cub3d *c)
 	mlx_put_image_to_window(c->mlx->mlx, c->mlx->win, c->img->img, 0, 0);
 }
 
+static void	player_movment(int key_code, t_cub3d *c)
+{
+	if (key_code == 13)
+	{
+		c->map->p_y -= sin(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_x += cos(deg_to_rad(c->map->angel)) * 8;
+	}
+	else if (key_code == 1)
+	{
+		c->map->p_y += sin(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_x -= cos(deg_to_rad(c->map->angel)) * 8;
+	}
+	else if (key_code == 0)
+	{
+		c->map->p_y -= cos(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_x -= sin(deg_to_rad(c->map->angel)) * 8;
+	}
+	else if (key_code == 2)
+	{
+		c->map->p_y += cos(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_x += sin(deg_to_rad(c->map->angel)) * 8;
+	}
+}
+
 static int	key(int key_code, t_cub3d *c)
 {
 	c->map->pp_x = c->map->p_x;
 	c->map->pp_y = c->map->p_y;
 	if (key_code == 53)
 		destroy_window(c);
-	else if (key_code == 13)
-		c->map->p_y -= 8;
-	else if (key_code == 1)
-		c->map->p_y += 8;
-	else if (key_code == 0)
-		c->map->p_x -= 8;
-	else if (key_code == 2)
-		c->map->p_x += cos(deg_to_rad(c->map->angel)) + 8;
-	else if (key_code == 124)
-		c->map->angel -= 90;
+	player_movment(key_code, c);
+	if (key_code == 124)
+		c->map->angel -= 7;
 	else if (key_code == 123)
-		c->map->angel += 90;
-	if (c->map->map[c->map->p_y / 64][c->map->p_x / 64] == '1')
+		c->map->angel += 7;
+	if (c->map->angel >= 360 || c->map->angel < 0)
+			c->map->angel = (c->map->angel + 360) % 360;
+	if (c->map->map[(int) c->map->p_y / 64][(int) c->map->p_x / 64] == '1')
 	{
 		c->map->p_x = c->map->pp_x;
 		c->map->p_y = c->map->pp_y;
 	}
 	draw_img(c);
-	ft_printf("[%d]\n", key_code);
 	return (0);
 }
 

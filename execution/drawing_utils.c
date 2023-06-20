@@ -6,21 +6,13 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:17:29 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/18 19:24:52 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:26:36 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	draw_object(t_cub3d *c, int pix_y, int color)
+static void	draw_object(t_cub3d *c, int pix_y, int color)
 {
 	static int	pix_x;
 
@@ -38,43 +30,51 @@ void	draw_object(t_cub3d *c, int pix_y, int color)
 	draw_object(c, pix_y, color);
 }
 
+static void	draw_line_cons(t_cub3d *c, int *angel, double *l_rx, double *l_ry)
+{
+	if (*angel == 0)
+		*angel = c->map->angel - 22;
+	if (*l_rx == 0 && *l_ry == 0)
+	{
+		*l_rx = c->map->p_x;
+		*l_ry = c->map->p_y;
+	}
+}
+
 static void	draw_line(t_cub3d *c, int line_color)
 {
-	static int	l_rx;
-	static int	l_ry;
+	static double	l_rx;
+	static double	l_ry;
+	static int		angel;
 
-	if (l_rx == 0 && l_ry == 0)
-	{
-		l_rx = c->map->p_x;
-		l_ry = c->map->p_y;
-	}
-	if (c->map->map[l_ry / 64][l_rx / 64] == '1')
+	draw_line_cons(c, &angel, &l_rx, &l_ry);
+	if (c->map->map[(int) l_ry / 64][(int) l_rx / 64] == '1')
 	{
 		l_rx = 0;
 		l_ry = 0;
+		if (angel <= c->map->angel + 22)
+		{
+			angel++;
+			if (angel == 0)
+				angel++;
+			return (draw_line(c, line_color));
+		}
+		angel = 0;
 		return ;
 	}
-	if (c->map->angel == 0)
-		my_mlx_pixel_put(c->img, l_rx++, l_ry, line_color);
-	else if (c->map->angel == 90)
-		my_mlx_pixel_put(c->img, l_rx, l_ry--, line_color);
-	else if (c->map->angel == 180)
-		my_mlx_pixel_put(c->img, l_rx--, l_ry, line_color);
-	else if (c->map->angel == 270)
-		my_mlx_pixel_put(c->img, l_rx, l_ry++, line_color);
-	else if (c->map->angel >= 360)
-		c->map->angel -= 360;
-	else if (c->map->angel < 0)
-		c->map->angel += 360;
+	l_ry -= sin(deg_to_rad(angel));
+	l_rx += cos(deg_to_rad(angel));
+	my_mlx_pixel_put(c->img, l_rx, l_ry, line_color);
 	draw_line(c, line_color);
 }
 
-void	draw_player(t_cub3d *c, int color, int line_color)
+static void	draw_player(t_cub3d *c, int color, int line_color)
 {
-	static int	p_rx;
-	static int	p_ry;
+	static double	p_rx;
+	static double	p_ry;
 
-	if (p_rx == c->map->p_x + 5 && p_ry == c->map->p_y + 5)
+	if ((int) p_rx == (int) c->map->p_x + 5 \
+	&& (int) p_ry == (int) c->map->p_y + 5)
 	{
 		p_rx = 0;
 		p_ry = 0;

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/18 20:13:17 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:16:09 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include"mlx/mlx.h"
 # include<math.h>
 # include<fcntl.h>
+# include<stdio.h>
 
 typedef enum color_type
 {
@@ -63,23 +64,23 @@ typedef struct s_img
 
 typedef struct s_map
 {
-	char	*s1;
-	char	**file;
-	char	**map;
-	char	**tmp_text_names;
-	char	**textures;
-	int		*f_c_rgb;
-	int		*counters;
-	int		map_width;
-	int		map_height;
-	int		error;
-	int		angel;
-	int		i;
-	int		j;
-	int		p_x;
-	int		pp_x;
-	int		p_y;
-	int		pp_y;
+	char		*s1;
+	char		**file;
+	char		**map;
+	char		**tmp_text_names;
+	char		**textures;
+	int			*f_c_rgb;
+	int			*counters;
+	int			map_width;
+	int			map_height;
+	int			error;
+	int			angel;
+	int			i;
+	int			j;
+	double		p_x;
+	double		pp_x;
+	double		p_y;
+	double		pp_y;
 }			t_map;
 
 typedef struct s_cub3d
@@ -108,8 +109,8 @@ void	mallocing_new(t_cub3d *c, int i);
 /******************************Render_utils******************************/
 
 int		rgb_to_int(int red, int green, int blue);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	render(t_cub3d *c);
-void	draw_object(t_cub3d *c, int pix_y, int color);
 void	draw_map(t_cub3d *c);
 double	deg_to_rad(double deg);
 double	rad_to_deg(double rad);
