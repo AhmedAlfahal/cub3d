@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/16 20:48:28 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:16:09 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include"ft_printf/ft_printf.h"
 # include"get_next_line/get_next_line.h"
 # include"mlx/mlx.h"
+# include<math.h>
 # include<fcntl.h>
+# include<stdio.h>
 
 typedef enum color_type
 {
@@ -53,23 +55,32 @@ typedef struct s_img
 	void	*so;
 	void	*we;
 	void	*ea;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }			t_img;
 
 typedef struct s_map
 {
-	char	*s1;
-	char	**file;
-	char	**map;
-	char	**tmp_text_names;
-	char	**textures;
-	int		*f_c_rgb;
-	int		*counters;
-	int		max_len;
-	int		error;
-	int		i;
-	int		j;
-	int		p_x;
-	int		p_y;
+	char		*s1;
+	char		**file;
+	char		**map;
+	char		**tmp_text_names;
+	char		**textures;
+	int			*f_c_rgb;
+	int			*counters;
+	int			map_width;
+	int			map_height;
+	int			error;
+	int			angel;
+	int			i;
+	int			j;
+	double		p_x;
+	double		pp_x;
+	double		p_y;
+	double		pp_y;
 }			t_map;
 
 typedef struct s_cub3d
@@ -94,6 +105,15 @@ void	check_file_elements(t_cub3d *c);
 void	check_map_element(t_cub3d *c, char **map);
 void	align_elements(t_cub3d *c);
 void	mallocing_new(t_cub3d *c, int i);
+
+/******************************Render_utils******************************/
+
+int		rgb_to_int(int red, int green, int blue);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void	render(t_cub3d *c);
+void	draw_map(t_cub3d *c);
+double	deg_to_rad(double deg);
+double	rad_to_deg(double rad);
 
 /******************************Free_utils********************************/
 

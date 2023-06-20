@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:33:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/16 19:54:58 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/18 15:48:24 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,6 @@ void	check_text_error(t_cub3d *c)
 			c->map->error++;
 		i++;
 	}
-}
-
-char	*skip_space(char *s)
-{
-	if (!s)
-		return (NULL);
-	while (*s == ' ' && *s != '\0')
-		s++;
-	return (s);
-}
-
-int	next_space(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != ' ' && s[i])
-		i++;
-	return (i);
 }
 
 void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture)
@@ -71,26 +50,44 @@ void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture)
 	return (free(c->map->s1), check_in_tmp2d(c, tmp, &text));
 }
 
+static void	player_condition(t_cub3d *c, int i)
+{
+	c->map->p_x = c->map->j * 64;
+	c->map->p_y = i * 64;
+	if (c->map->map[i][c->map->j] == 'N')
+		c->map->angel = 90;
+	else if (c->map->map[i][c->map->j] == 'E')
+		c->map->angel = 0;
+	else if (c->map->map[i][c->map->j] == 'W')
+		c->map->angel = 180;
+	else if (c->map->map[i][c->map->j] == 'S')
+		c->map->angel = 270;
+}
+
 void	mallocing_new(t_cub3d *c, int i)
 {
 	char	*tmp;
-	int		j;
 
-	if (c->map->map[i] == NULL || ft_strlen(c->map->map[i]) == c->map->max_len)
+	if (c->map->map[i] == NULL)
 		return ;
-	j = 0;
-	tmp = malloc(sizeof(char) * c->map->max_len + 1);
+	tmp = malloc(sizeof(char) * c->map->map_width + 1);
 	if (!tmp)
 		return ;
-	ft_printf("%d\n", c->map->max_len);
-	ft_bzero(tmp, sizeof(char) * c->map->max_len + 1);
-	while (c->map->map[i][j])
+	while (c->map->map[i][c->map->j])
 	{
-		tmp[j] = c->map->map[i][j];
-		j++;
+		tmp[c->map->j] = c->map->map[i][c->map->j];
+		if (c->map->map[i][c->map->j] == 'N' \
+		|| c->map->map[i][c->map->j] == 'E' \
+		|| c->map->map[i][c->map->j] == 'W' || c->map->map[i][c->map->j] == 'S')
+		{
+			player_condition(c, i);
+			tmp[c->map->j] = 'P';
+		}
+		c->map->j++;
 	}
-	while (j < c->map->max_len)
-		tmp[j++] = '1';
+	while (c->map->j < c->map->map_width)
+		tmp[c->map->j++] = '1';
+	tmp[c->map->j] = 0;
 	free(c->map->map[i]);
 	c->map->map[i] = tmp;
 }

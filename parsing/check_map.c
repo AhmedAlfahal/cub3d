@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/16 19:54:47 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/17 22:35:00 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,15 @@ void	check_map_element(t_cub3d *c, char **map)
 		check_line_element(c->map, map[i], 1);
 		if (c->map->error > 0)
 			clean_exit(c, 4, 1);
-		if (ft_strlen(map[i]) > c->map->max_len)
-			c->map->max_len = ft_strlen(map[i]);
+		if (ft_strlen(map[i]) > c->map->map_width)
+			c->map->map_width = ft_strlen(map[i]);
 	}
 	else
 	{
 		if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
 			clean_exit(c, 4, 1);
-		if (ft_strlen(map[i]) > c->map->max_len)
-			c->map->max_len = ft_strlen(map[i]);
+		if (ft_strlen(map[i]) > c->map->map_width)
+			c->map->map_width = ft_strlen(map[i]);
 	}
 	i++;
 	return (check_map_element(c, map));
@@ -110,6 +110,7 @@ void	align_elements(t_cub3d *c)
 
 	if (c->map->map[i] == NULL)
 		return ;
+	c->map->j = 0;
 	mallocing_new(c, i);
 	i++;
 	return (align_elements(c));
