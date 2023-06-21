@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:17:29 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/20 13:44:22 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/21 08:55:51 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ static void	draw_line(t_cub3d *c, int line_color)
 	{
 		l_rx = 0;
 		l_ry = 0;
+		if (angel == 360 && c->map->angel >= 0 && c->map->angel <= 45)
+			angel = 0;
 		if (angel <= c->map->angel + 45)
 		{
 			angel++;
 			if (angel == 0)
-				angel++;
+				angel = 360;
 			return (draw_line(c, line_color));
 		}
 		angel = 0;
