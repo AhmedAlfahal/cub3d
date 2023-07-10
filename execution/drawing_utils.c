@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:17:29 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/21 08:55:51 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:38:17 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,37 @@ static void	draw_object(t_cub3d *c, int pix_y, int color)
 	draw_object(c, pix_y, color);
 }
 
+static void drawline(t_cub3d *c, int x1, int y1, int line_color)
+{
+    int dx;
+	int dy;
+	int p;
+	int x;
+	int y;
+ 
+	dx = x1 - c->map->p_x;
+	dy = y1 - c->map->p_y;
+	x = c->map->p_x;
+	y = c->map->p_y;
+	p = 2 * dy - dx;
+	while(x < x1)
+	{
+		if (p>=0)
+		{
+			my_mlx_pixel_put(c->img, x, y, line_color);
+			putpixel(x,y,7);
+			y=y+1;
+			p=p+2*dy-2*dx;
+		}
+		else
+		{
+			my_mlx_pixel_put(c->img, x, y, line_color);
+			p=p+2*dy;
+		}
+		x=x+1;
+	}
+}
+
 static void	draw_line_cons(t_cub3d *c, int *angel, double *l_rx, double *l_ry)
 {
 	if (*angel == 0)
@@ -41,7 +72,7 @@ static void	draw_line_cons(t_cub3d *c, int *angel, double *l_rx, double *l_ry)
 	}
 }
 
-static void	draw_line(t_cub3d *c, int line_color)
+static void	draw_lines(t_cub3d *c, int line_color)
 {
 	static double	l_rx;
 	static double	l_ry;
@@ -70,6 +101,47 @@ static void	draw_line(t_cub3d *c, int line_color)
 	draw_line(c, line_color);
 }
 
+
+// static void	draw_line_cons(t_cub3d *c, int *angel, double *l_rx, double *l_ry)
+// {
+// 	if (*angel == 0)
+// 		*angel = c->map->angel - 45;
+// 	if (*l_rx == 0 && *l_ry == 0)
+// 	{
+// 		*l_rx = c->map->p_x;
+// 		*l_ry = c->map->p_y;
+// 	}
+// }
+
+// static void	draw_line(t_cub3d *c, int line_color)
+// {
+// 	static double	l_rx;
+// 	static double	l_ry;
+// 	static int		angel;
+
+// 	draw_line_cons(c, &angel, &l_rx, &l_ry);
+// 	if (c->map->map[(int) l_ry / 64][(int) l_rx / 64] == '1')
+// 	{
+// 		l_rx = 0;
+// 		l_ry = 0;
+// 		if (angel == 360 && c->map->angel >= 0 && c->map->angel <= 45)
+// 			angel = 0;
+// 		if (angel <= c->map->angel + 45)
+// 		{
+// 			angel++;
+// 			if (angel == 0)
+// 				angel = 360;
+// 			return (draw_line(c, line_color));
+// 		}
+// 		angel = 0;
+// 		return ;
+// 	}
+// 	l_ry -= sin(deg_to_rad(angel));
+// 	l_rx += cos(deg_to_rad(angel));
+// 	my_mlx_pixel_put(c->img, l_rx, l_ry, line_color);
+// 	draw_line(c, line_color);
+// }
+
 static void	draw_player(t_cub3d *c, int color, int line_color)
 {
 	static double	p_rx;
@@ -80,7 +152,7 @@ static void	draw_player(t_cub3d *c, int color, int line_color)
 	{
 		p_rx = 0;
 		p_ry = 0;
-		draw_line(c, line_color);
+		//draw_line(c, line_color);
 		return ;
 	}
 	if (p_rx == 0 && p_rx == 0)
