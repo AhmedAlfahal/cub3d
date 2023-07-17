@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/20 12:16:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:55:23 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,20 @@ typedef struct s_map
 	double		pp_y;
 }			t_map;
 
+typedef struct s_line
+{
+	int	x0;
+	int	y0;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+	int	x1;
+	int	y1;
+}			t_line;
+
 typedef struct s_cub3d
 {
 	struct s_mlx		*mlx;
@@ -114,6 +128,7 @@ void	render(t_cub3d *c);
 void	draw_map(t_cub3d *c);
 double	deg_to_rad(double deg);
 double	rad_to_deg(double rad);
+void	line_loop(t_cub3d *c, t_line *ln, int line_color);
 
 /******************************Free_utils********************************/
 
