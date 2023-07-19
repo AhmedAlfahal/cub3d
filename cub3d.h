@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/13 16:55:23 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/19 21:07:09 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,31 @@ typedef struct s_map
 	double		pp_x;
 	double		p_y;
 	double		pp_y;
+	double		h_x;
+	double		h_y;
+	double		v_x;
+	double		v_y;
+	double		r_angel;
 }			t_map;
 
 typedef struct s_line
 {
-	int	x0;
-	int	y0;
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2;
-	int	x1;
-	int	y1;
+	int		x0;
+	int		y0;
+	int		dx;
+	int		dy;
+	int		sx;
+	int		sy;
+	int		err;
+	int		e2;
+	int		x1;
+	int		y1;
+	int		dof;
+	double	atan;
+	double	ntan;
+	double	l_rdx;
+	double	l_rdy;
+
 }			t_line;
 
 typedef struct s_cub3d
@@ -129,6 +140,8 @@ void	draw_map(t_cub3d *c);
 double	deg_to_rad(double deg);
 double	rad_to_deg(double rad);
 void	line_loop(t_cub3d *c, t_line *ln, int line_color);
+double	hor_line(t_cub3d *c);
+double	ver_line(t_cub3d *c);
 
 /******************************Free_utils********************************/
 
