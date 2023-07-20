@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/20 13:39:04 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:06:57 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	key(int key_code, t_cub3d *c)
 	else if (key_code == 123)
 		c->map->angel += 7;
 	if (c->map->angel >= 360 || c->map->angel < 0)
-			c->map->angel = (c->map->angel + 360) % 360;
+		c->map->angel = (c->map->angel + 360) % 360;
 	if (c->map->map[(int) c->map->p_y / 64][(int) c->map->p_x / 64] == '1')
 	{
 		c->map->p_x = c->map->pp_x;

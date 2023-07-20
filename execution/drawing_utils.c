@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:17:29 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/21 08:55:51 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/19 21:07:49 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,45 +30,184 @@ static void	draw_object(t_cub3d *c, int pix_y, int color)
 	draw_object(c, pix_y, color);
 }
 
-static void	draw_line_cons(t_cub3d *c, int *angel, double *l_rx, double *l_ry)
+static void	drawline(t_cub3d *c, int x1, int y1, int line_color)
 {
-	if (*angel == 0)
-		*angel = c->map->angel - 45;
-	if (*l_rx == 0 && *l_ry == 0)
-	{
-		*l_rx = c->map->p_x;
-		*l_ry = c->map->p_y;
-	}
+	t_line	ln;
+
+	ln.x0 = c->map->p_x;
+	ln.y0 = c->map->p_y;
+	ln.dx = abs(x1 - ln.x0);
+	ln.dy = abs(y1 - ln.y0);
+	if (ln.x0 < x1)
+		ln.sx = 1;
+	else
+		ln.sx = -1;
+	if (ln.y0 < y1)
+		ln.sy = 1;
+	else
+		ln.sy = -1;
+	ln.err = ln.dx - ln.dy;
+	ln.x1 = x1;
+	ln.y1 = y1;
+	line_loop(c, &ln, line_color);
 }
 
-static void	draw_line(t_cub3d *c, int line_color)
+static void	draw_lines(t_cub3d *c, int line_color)
 {
-	static double	l_rx;
-	static double	l_ry;
-	static int		angel;
+	double	x;
+	double	y;
 
-	draw_line_cons(c, &angel, &l_rx, &l_ry);
-	if (c->map->map[(int) l_ry / 64][(int) l_rx / 64] == '1')
-	{
-		l_rx = 0;
-		l_ry = 0;
-		if (angel == 360 && c->map->angel >= 0 && c->map->angel <= 45)
-			angel = 0;
-		if (angel <= c->map->angel + 45)
-		{
-			angel++;
-			if (angel == 0)
-				angel = 360;
-			return (draw_line(c, line_color));
-		}
-		angel = 0;
-		return ;
-	}
-	l_ry -= sin(deg_to_rad(angel));
-	l_rx += cos(deg_to_rad(angel));
-	my_mlx_pixel_put(c->img, l_rx, l_ry, line_color);
-	draw_line(c, line_color);
+	c->map->r_angel = c->map->angel;
+	c->map->v_x = c->map->p_x;
+	c->map->v_y = c->map->p_y;
+	x = ver_line(c);
+	y = hor_line(c);
+	if (x < y)
+		drawline(c, c->map->v_x, c->map->v_y, line_color);
+	else
+		drawline(c, c->map->h_x, c->map->h_y, line_color);
 }
+
+// static void	draw_lines(t_cub3d *c, int line_color)
+// {
+// 	static double	l_rx;
+// 	static double	l_rdx;
+// 	static double	l_rdy;
+// 	static double	l_ry;
+// 	static int		angel;
+
+// 	l_rx = c->map->p_x;
+// 	l_ry = c->map->p_y;
+// 	int dof;
+// 	angel = c->map->angel;
+// 	// //Horizontal
+// 	// double aTan = 1/tan(deg_to_rad(angel));
+// 	// dof = 0;
+// 	// if (deg_to_rad(angel) < M_PI)
+// 	// {
+// 	// 	l_ry = (((int)c->map->p_y >> 6) << 6) - 0.0001;
+// 	// 	l_rx = (c->map->p_y - l_ry) * aTan + c->map->p_x;
+// 	// 	l_rdy = -64;
+// 	// 	l_rdx = -l_rdy * aTan;
+// 	// }
+// 	// if (deg_to_rad(angel) > M_PI)
+// 	// {
+// 	// 	l_ry = (((int)c->map->p_y >> 6) << 6) + 64;
+// 	// 	l_rx = (c->map->p_y - l_ry) * aTan + c->map->p_x;
+// 	// 	l_rdy = 64;
+// 	// 	l_rdx = -l_rdy * aTan;
+// 	// }
+// 	// if(deg_to_rad(angel) == 0 || deg_to_rad(angel) == M_PI)
+// 	// {
+// 	// 	l_rx = c->map->p_x;
+// 	// 	l_ry = c->map->p_y;
+// 	// 	dof = 8;
+// 	// }
+// 	// while (dof < 8)
+// 	// {
+// 	// 	// ft_putnbr(c->map->map_width * 64);
+// 	// 	// write(1, "\n", 1);
+// 	// 	// ft_putnbr(c->map->map_height * 64);
+// 	// 	if (l_rx < 0 || l_rx >= (c->map->map_width * 64)
+// 	// 		|| l_ry < 0 || l_ry >= (c->map->map_height * 64))
+// 	// 		break ;
+// 	// 	if (c->map->map[(int) l_ry / 64][(int) l_rx / 64] == '1')
+// 	// 		dof = 8;
+// 	// 	else
+// 	// 	{
+// 	// 		//write(1,"helooo\n",8);
+// 	// 		l_rx += l_rdx;
+// 	// 		l_ry += l_rdy;
+// 	// 		dof++;
+// 	// 	}
+// 	// }
+// 	// ft_putnbr(c->map->angel);
+// 	// write(1, "\n", 1);
+// 	// drawline(c , l_rx, l_ry, line_color);
+
+// 	//virtical
+// 	double nTan = tan(deg_to_rad(angel));
+// 	dof = 0;
+// 	if (deg_to_rad(angel) > M_PI/2 && deg_to_rad(angel) < 3 * M_PI/2)
+// 	{
+// 		l_rx = (((int)c->map->p_x >> 6) << 6) - 0.0001;
+// 		l_ry = (c->map->p_x - l_rx) * nTan + c->map->p_y;
+// 		l_rdx = -64;
+// 		l_rdy = -l_rdx * nTan;
+// 	}
+// 	if (deg_to_rad(angel) < M_PI/2 || deg_to_rad(angel) > 3 * M_PI/2)
+// 	{
+// 		l_rx = (((int)c->map->p_x >> 6) << 6) + 64;
+// 		l_ry = (c->map->p_x - l_rx) * nTan + c->map->p_y;
+// 		l_rdx = 64;
+// 		l_rdy = -l_rdx * nTan;
+// 	}
+// 	if(deg_to_rad(angel) == M_PI/2 || deg_to_rad(angel) == 3 * M_PI/2)
+// 	{
+// 		l_rx = c->map->p_x;
+// 		l_ry = c->map->p_y;
+// 		dof = 8;
+// 	}
+// 	while (dof < 8)
+// 	{
+// 		if (l_rx < 0 || l_rx >= (c->map->map_width * 64)
+// 			|| l_ry < 0 || l_ry >= (c->map->map_height * 64))
+// 			break ;
+// 		if (c->map->map[(int) l_ry / 64][(int) l_rx / 64] == '1')
+// 			dof = 8;
+// 		else
+// 		{
+// 			//write(1,"helooo\n",8);
+// 			l_rx += l_rdx;
+// 			l_ry += l_rdy;
+// 			dof++;
+// 		}
+// 	}
+// 	ft_putnbr(c->map->angel);
+// 	write(1, "\n", 1);
+// 	drawline(c , l_rx, l_ry, line_color);
+// }
+
+
+// static void	draw_line_cons(t_cub3d *c, int *angel, double *l_rx, double *l_ry)
+// {
+// 	if (*angel == 0)
+// 		*angel = c->map->angel - 45;
+// 	if (*l_rx == 0 && *l_ry == 0)
+// 	{
+// 		*l_rx = c->map->p_x;
+// 		*l_ry = c->map->p_y;
+// 	}
+// }
+
+// static void	draw_line(t_cub3d *c, int line_color)
+// {
+// 	static double	l_rx;
+// 	static double	l_ry;
+// 	static int		angel;
+
+// 	draw_line_cons(c, &angel, &l_rx, &l_ry);
+// 	if (c->map->map[(int) l_ry / 64][(int) l_rx / 64] == '1')
+// 	{
+// 		l_rx = 0;
+// 		l_ry = 0;
+// 		if (angel == 360 && c->map->angel >= 0 && c->map->angel <= 45)
+// 			angel = 0;
+// 		if (angel <= c->map->angel + 45)
+// 		{
+// 			angel++;
+// 			if (angel == 0)
+// 				angel = 360;
+// 			return (draw_line(c, line_color));
+// 		}
+// 		angel = 0;
+// 		return ;
+// 	}
+// 	l_ry -= sin(deg_to_rad(angel));
+// 	l_rx += cos(deg_to_rad(angel));
+// 	my_mlx_pixel_put(c->img, l_rx, l_ry, line_color);
+// 	draw_line(c, line_color);
+// }
 
 static void	draw_player(t_cub3d *c, int color, int line_color)
 {
@@ -80,7 +219,7 @@ static void	draw_player(t_cub3d *c, int color, int line_color)
 	{
 		p_rx = 0;
 		p_ry = 0;
-		draw_line(c, line_color);
+		draw_lines(c, line_color);
 		return ;
 	}
 	if (p_rx == 0 && p_rx == 0)
