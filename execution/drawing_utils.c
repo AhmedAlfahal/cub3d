@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:17:29 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/20 19:25:13 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:41:17 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,19 @@ static void	draw_lines(t_cub3d *c, int line_color)
 	double	y;
 	double	fov;
 
-	fov = c->map->angel + 30;
-	c->map->r_angel = c->map->angel - 30;
+	fov = deg_to_rad(c->map->angel + 30);
+	c->map->r_angel = deg_to_rad(c->map->angel - 30);
 	while (c->map->r_angel < fov)
 	{
-		if (c->map->r_angel >= 360)
+		if (c->map->r_angel > 2 * M_PI)
 		{
-			fov = fov - 360;
-			c->map->r_angel = c->map->r_angel - 360;
+			fov = fov - 2 * M_PI;
+			c->map->r_angel = c->map->r_angel - 2 * M_PI;
 		}
-		else if(c->map->r_angel <= 0)
+		else if (c->map->r_angel <= 0)
 		{
-			fov = fov + 360;
-			c->map->r_angel = c->map->r_angel + 360;
+			fov = fov + 2 * M_PI;
+			c->map->r_angel = c->map->r_angel + 2 * M_PI;
 		}
 		c->map->v_x = c->map->p_x;
 		c->map->v_y = c->map->p_y;
@@ -80,7 +80,7 @@ static void	draw_lines(t_cub3d *c, int line_color)
 			drawline(c, c->map->v_x, c->map->v_y, line_color);
 		else
 			drawline(c, c->map->h_x, c->map->h_y, 0xFF0000);
-		c->map->r_angel += 0.00973;
+		c->map->r_angel += 0.000173;
 	}
 }
 

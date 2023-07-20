@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:03:22 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/07/19 21:09:06 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:35:00 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	hor_extra(t_cub3d *c, t_line *hln)
 {
-	if (deg_to_rad(c->map->r_angel) == 0 || deg_to_rad(c->map->r_angel) == M_PI)
+	if (c->map->r_angel == 0 || c->map->r_angel == M_PI)
 	{
 		c->map->h_x = c->map->p_x;
 		c->map->h_y = c->map->p_y;
@@ -38,8 +38,8 @@ static void	hor_extra(t_cub3d *c, t_line *hln)
 
 static void	ver_extra(t_cub3d *c, t_line *vln)
 {
-	if (deg_to_rad(c->map->r_angel) == M_PI / 2
-		|| deg_to_rad(c->map->r_angel) == 3 * M_PI / 2)
+	if (c->map->r_angel == M_PI / 2
+		|| c->map->r_angel == 3 * M_PI / 2)
 	{
 		c->map->v_x = c->map->p_x;
 		c->map->v_y = c->map->p_y;
@@ -68,16 +68,16 @@ double	hor_line(t_cub3d *c)
 
 	c->map->h_x = c->map->p_x;
 	c->map->h_y = c->map->p_y;
-	hln.atan = 1 / tan(deg_to_rad(c->map->r_angel));
+	hln.atan = 1 / tan(c->map->r_angel);
 	hln.dof = 0;
-	if (deg_to_rad(c->map->r_angel) < M_PI)
+	if (c->map->r_angel < M_PI)
 	{
 		c->map->h_y = (((int)c->map->p_y >> 6) << 6) - 0.0001;
 		c->map->h_x = (c->map->p_y - c->map->h_y) * hln.atan + c->map->p_x;
 		hln.l_rdy = -64;
 		hln.l_rdx = -hln.l_rdy * hln.atan;
 	}
-	if (deg_to_rad(c->map->r_angel) > M_PI)
+	if (c->map->r_angel > M_PI)
 	{
 		c->map->h_y = (((int)c->map->p_y >> 6) << 6) + 64;
 		c->map->h_x = (c->map->p_y - c->map->h_y) * hln.atan + c->map->p_x;
@@ -95,18 +95,18 @@ double	ver_line(t_cub3d *c)
 	t_line	vln;
 	double	len;
 
-	vln.ntan = tan(deg_to_rad(c->map->r_angel));
+	vln.ntan = tan(c->map->r_angel);
 	vln.dof = 0;
-	if (deg_to_rad(c->map->r_angel) > M_PI / 2
-		&& deg_to_rad(c->map->r_angel) < 3 * M_PI / 2)
+	if (c->map->r_angel > M_PI / 2
+		&& c->map->r_angel < 3 * M_PI / 2)
 	{
 		c->map->v_x = (((int)c->map->p_x >> 6) << 6) - 0.0001;
 		c->map->v_y = (c->map->p_x - c->map->v_x) * vln.ntan + c->map->p_y;
 		vln.l_rdx = -64;
 		vln.l_rdy = -vln.l_rdx * vln.ntan;
 	}
-	if (deg_to_rad(c->map->r_angel) < M_PI / 2
-		|| deg_to_rad(c->map->r_angel) > 3 * M_PI / 2)
+	if (c->map->r_angel < M_PI / 2
+		|| c->map->r_angel > 3 * M_PI / 2)
 	{
 		c->map->v_x = (((int)c->map->p_x >> 6) << 6) + 64;
 		c->map->v_y = (c->map->p_x - c->map->v_x) * vln.ntan + c->map->p_y;
