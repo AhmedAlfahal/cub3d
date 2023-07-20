@@ -3,28 +3,36 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/29 20:50:48 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/07/19 20:04:24 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror  -g3 #-fsanitize=address
+CFLAGS	=	-g3 -Wall -Wextra -Werror -fsanitize=address
 
 NAME	=	cub3d
 
-LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a
+LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a mlx/libmlx.a
 
-SRC		=	cub3d.c					\
-			tmp_printers.c			\
-			parsing/file_parsing.c	\
-			parsing/check_map.c		\
-			parsing/parsing_utils.c	\
-			parsing/free_utils.c	\
-			parsing/errors.c
+MLX		=	-framework OpenGL -framework AppKit
+
+SRC		=	cub3d.c						\
+			tmp_printers.c				\
+			parsing/file_parsing.c		\
+			parsing/check_map.c			\
+			parsing/parsing_utils.c		\
+			parsing/free_utils.c		\
+			parsing/errors.c			\
+			parsing/rgb_utils.c			\
+			execution/render.c			\
+			execution/drawing_utils.c	\
+			execution/deg_red.c			\
+			execution/lines.c			\
+			execution/utils.c
 
 SRCS	=	$(SRC:%.c=%.o)
 
@@ -34,7 +42,8 @@ $(NAME) : $(SRCS)
 	@make all -C ./ft_printf
 	@make all -C ./libft
 	@make all -C ./get_next_line
-	$(CC) $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)  
+	@make all -C ./mlx
+	$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBS) -o $(NAME)
 clean:
 	@make clean -C ./ft_printf
 	@make clean -C ./libft

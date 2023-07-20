@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:00 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/29 20:57:59 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/06/17 19:02:33 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@ static void	malloc_all(t_map *m)
 	m->tmp_text_names = malloc(sizeof(char *) * 7);
 	m->f_c_rgb = malloc(sizeof(int) * 7);
 	m->counters = malloc(sizeof(int) * 8);
-	m->textures = malloc(sizeof(char *) * 5);
-	ft_bzero(m->textures, sizeof(char *) * 5);
+	m->textures = malloc(sizeof(char *) * 6);
 	m->map = malloc(sizeof(char *) * 2);
+	if (!m->tmp_text_names || !m->f_c_rgb \
+	|| !m->counters || !m->textures || !m->map)
+		return ;
 	m->map[0] = ft_strdup("anything");
 	m->map[1] = NULL;
-	while (m->textures[i])
-		m->textures[i++] = ft_strdup("");
+	ft_bzero(m->textures, sizeof(char *) * 6);
+	while (i < 5)
+		m->textures[i++] = ft_strdup("Test");
 	ft_bzero(m->tmp_text_names, sizeof(char *) * 7);
 	ft_bzero(m->f_c_rgb, sizeof(int) * 7);
 	ft_bzero(m->counters, sizeof(int) * 8);
@@ -36,7 +39,6 @@ static void	malloc_all(t_map *m)
 	m->tmp_text_names[ea] = ft_strdup("EA");
 	m->tmp_text_names[f] = ft_strdup("F");
 	m->tmp_text_names[c] = ft_strdup("C");
-	m->error = 0;
 }
 
 static void	check_errors(t_cub3d *c)
@@ -47,10 +49,13 @@ static void	check_errors(t_cub3d *c)
 	malloc_all(c->map);
 	while (c->map->file[i])
 		check_in_tmp2d(c, c->map->file[i++], &c->map->tmp_text_names);
-	check_map_elements(c);
+	check_file_elements(c);
 	check_text_error(c);
 	if (c->map->error > 0)
 		clean_exit(c, 4, 1);
+	check_map_element(c, c->map->map);
+	c->map->map_height = ft_strlen_2d(c->map->map);
+	align_elements(c);
 }
 
 static void	reading_to2d(t_cub3d *c, char *s, int number_of_lines)
@@ -87,6 +92,7 @@ void	reading_map(char *s, t_cub3d *c)
 
 	number_of_lines = 0;
 	c->map = malloc(sizeof(t_map) * 1);
+	ft_bzero(c->map, sizeof(t_map) * 1);
 	fd = open(s, O_RDONLY);
 	if (ft_strncmp(s, ".cub", ft_strlen(s) - 4) == 1)
 		closing_and_freeing(fd, NULL, 1);

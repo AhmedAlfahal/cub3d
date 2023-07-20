@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   deg_red.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 02:08:52 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/20 12:13:39 by aalfahal         ###   ########.fr       */
+/*   Created: 2023/06/18 20:07:21 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/06/20 12:20:55 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int ac, char **av)
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
-	t_cub3d	c;
+	char	*dst;
 
-	if (ac == 2)
-	{
-		reading_map(av[1], &c);
-		render(&c);
-		print_counters(&c);
-		clean_exit(&c, 0, 0);
-	}
-	else
-	{
-		ft_printf("Wrong arguments\n");
-		return (1);
-	}
-	return (0);
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+double	deg_to_rad(double deg)
+{
+	return (deg * (M_PI / 180));
+}
+
+double	rad_to_deg(double rad)
+{
+	return (rad * (M_PI / 0x3F));
 }
