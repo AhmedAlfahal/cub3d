@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:17:29 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/19 21:07:49 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:25:13 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,32 @@ static void	draw_lines(t_cub3d *c, int line_color)
 {
 	double	x;
 	double	y;
+	double	fov;
 
-	c->map->r_angel = c->map->angel;
-	c->map->v_x = c->map->p_x;
-	c->map->v_y = c->map->p_y;
-	x = ver_line(c);
-	y = hor_line(c);
-	if (x < y)
-		drawline(c, c->map->v_x, c->map->v_y, line_color);
-	else
-		drawline(c, c->map->h_x, c->map->h_y, line_color);
+	fov = c->map->angel + 30;
+	c->map->r_angel = c->map->angel - 30;
+	while (c->map->r_angel < fov)
+	{
+		if (c->map->r_angel >= 360)
+		{
+			fov = fov - 360;
+			c->map->r_angel = c->map->r_angel - 360;
+		}
+		else if(c->map->r_angel <= 0)
+		{
+			fov = fov + 360;
+			c->map->r_angel = c->map->r_angel + 360;
+		}
+		c->map->v_x = c->map->p_x;
+		c->map->v_y = c->map->p_y;
+		x = ver_line(c);
+		y = hor_line(c);
+		if (x < y)
+			drawline(c, c->map->v_x, c->map->v_y, line_color);
+		else
+			drawline(c, c->map->h_x, c->map->h_y, 0xFF0000);
+		c->map->r_angel += 0.00973;
+	}
 }
 
 // static void	draw_lines(t_cub3d *c, int line_color)
@@ -74,98 +90,117 @@ static void	draw_lines(t_cub3d *c, int line_color)
 // 	static double	l_rdx;
 // 	static double	l_rdy;
 // 	static double	l_ry;
-// 	static int		angel;
+// 	static double		angel;
+// 	double 		fov;
+// 	double 		f;
 
+// 	f = 0;
 // 	l_rx = c->map->p_x;
 // 	l_ry = c->map->p_y;
 // 	int dof;
-// 	angel = c->map->angel;
-// 	// //Horizontal
-// 	// double aTan = 1/tan(deg_to_rad(angel));
-// 	// dof = 0;
-// 	// if (deg_to_rad(angel) < M_PI)
-// 	// {
-// 	// 	l_ry = (((int)c->map->p_y >> 6) << 6) - 0.0001;
-// 	// 	l_rx = (c->map->p_y - l_ry) * aTan + c->map->p_x;
-// 	// 	l_rdy = -64;
-// 	// 	l_rdx = -l_rdy * aTan;
-// 	// }
-// 	// if (deg_to_rad(angel) > M_PI)
-// 	// {
-// 	// 	l_ry = (((int)c->map->p_y >> 6) << 6) + 64;
-// 	// 	l_rx = (c->map->p_y - l_ry) * aTan + c->map->p_x;
-// 	// 	l_rdy = 64;
-// 	// 	l_rdx = -l_rdy * aTan;
-// 	// }
-// 	// if(deg_to_rad(angel) == 0 || deg_to_rad(angel) == M_PI)
-// 	// {
-// 	// 	l_rx = c->map->p_x;
-// 	// 	l_ry = c->map->p_y;
-// 	// 	dof = 8;
-// 	// }
-// 	// while (dof < 8)
-// 	// {
-// 	// 	// ft_putnbr(c->map->map_width * 64);
-// 	// 	// write(1, "\n", 1);
-// 	// 	// ft_putnbr(c->map->map_height * 64);
-// 	// 	if (l_rx < 0 || l_rx >= (c->map->map_width * 64)
-// 	// 		|| l_ry < 0 || l_ry >= (c->map->map_height * 64))
-// 	// 		break ;
-// 	// 	if (c->map->map[(int) l_ry / 64][(int) l_rx / 64] == '1')
-// 	// 		dof = 8;
-// 	// 	else
-// 	// 	{
-// 	// 		//write(1,"helooo\n",8);
-// 	// 		l_rx += l_rdx;
-// 	// 		l_ry += l_rdy;
-// 	// 		dof++;
-// 	// 	}
-// 	// }
+// 	angel = deg_to_rad(c->map->angel - 30);
+// 	fov = deg_to_rad(c->map->angel + 30);
+// 	//Horizontal
+	
+// 	while (f < M_PI / 2)
+// 	{
+// 		if(angel >= 2 * M_PI)
+// 		{
+// 			angel = angel - 2 * M_PI;
+// 		}
+// 		else if(angel < 0)
+// 		{
+// 			angel = angel + 2 * M_PI;
+// 		}
+// 		double aTan = 1/tan(angel);
+// 		dof = 0;
+// 		if (angel < M_PI)
+// 		{
+// 			l_ry = (((int)c->map->p_y >> 6) << 6) - 0.0001;
+// 			l_rx = (c->map->p_y - l_ry) * aTan + c->map->p_x;
+// 			l_rdy = -64;
+// 			l_rdx = -l_rdy * aTan;
+// 		}
+// 		if (angel > M_PI)
+// 		{
+// 			l_ry = (((int)c->map->p_y >> 6) << 6) + 64;
+// 			l_rx = (c->map->p_y - l_ry) * aTan + c->map->p_x;
+// 			l_rdy = 64;
+// 			l_rdx = -l_rdy * aTan;
+// 		}
+// 		if(angel == 0 || angel == M_PI)
+// 		{
+// 			l_rx = c->map->p_x;
+// 			l_ry = c->map->p_y;
+// 			dof = 8;
+// 		}
+// 		while (dof < 8)
+// 		{
+// 			// ft_putnbr(c->map->map_width * 64);
+// 			// write(1, "\n", 1);
+// 			// ft_putnbr(c->map->map_height * 64);
+// 			if (l_rx < 0 || l_rx >= (c->map->map_width * 64)
+// 				|| l_ry < 0 || l_ry >= (c->map->map_height * 64))
+// 				break ;
+// 			if (c->map->map[(int) l_ry / 64][(int) l_rx / 64] == '1')
+// 				dof = 8;
+// 			else
+// 			{
+// 				//write(1,"helooo\n",8);
+// 				l_rx += l_rdx;
+// 				l_ry += l_rdy;
+// 				dof++;
+// 			}
+// 		}
+// 		ft_putnbr(c->map->angel);
+// 		write(1, "\n", 1);
+// 		drawline(c , l_rx, l_ry, line_color);
+		
+// 		angel += 0.000579;
+// 		f += 0.000579; 
+// 	}
+
+// // 	//virtical
+// // 	double nTan = tan(deg_to_rad(angel));
+// // 	dof = 0;
+// // 	if (deg_to_rad(angel) > M_PI/2 && deg_to_rad(angel) < 3 * M_PI/2)
+// // 	{
+// // 		l_rx = (((int)c->map->p_x >> 6) << 6) - 0.0001;
+// // 		l_ry = (c->map->p_x - l_rx) * nTan + c->map->p_y;
+// // 		l_rdx = -64;
+// // 		l_rdy = -l_rdx * nTan;
+// // 	}
+// // 	if (deg_to_rad(angel) < M_PI/2 || deg_to_rad(angel) > 3 * M_PI/2)
+// // 	{
+// // 		l_rx = (((int)c->map->p_x >> 6) << 6) + 64;
+// // 		l_ry = (c->map->p_x - l_rx) * nTan + c->map->p_y;
+// // 		l_rdx = 64;
+// // 		l_rdy = -l_rdx * nTan;
+// // 	}
+// // 	if(deg_to_rad(angel) == M_PI/2 || deg_to_rad(angel) == 3 * M_PI/2)
+// // 	{
+// // 		l_rx = c->map->p_x;
+// // 		l_ry = c->map->p_y;
+// // 		dof = 8;
+// // 	}
+// // 	while (dof < 8)
+// // 	{
+// // 		if (l_rx < 0 || l_rx >= (c->map->map_width * 64)
+// // 			|| l_ry < 0 || l_ry >= (c->map->map_height * 64))
+// // 			break ;
+// // 		if (c->map->map[(int) l_ry / 64][(int) l_rx / 64] == '1')
+// // 			dof = 8;
+// // 		else
+// // 		{
+// // 			//write(1,"helooo\n",8);
+// // 			l_rx += l_rdx;
+// // 			l_ry += l_rdy;
+// // 			dof++;
+// // 		}
+// // 	}
 // 	// ft_putnbr(c->map->angel);
 // 	// write(1, "\n", 1);
 // 	// drawline(c , l_rx, l_ry, line_color);
-
-// 	//virtical
-// 	double nTan = tan(deg_to_rad(angel));
-// 	dof = 0;
-// 	if (deg_to_rad(angel) > M_PI/2 && deg_to_rad(angel) < 3 * M_PI/2)
-// 	{
-// 		l_rx = (((int)c->map->p_x >> 6) << 6) - 0.0001;
-// 		l_ry = (c->map->p_x - l_rx) * nTan + c->map->p_y;
-// 		l_rdx = -64;
-// 		l_rdy = -l_rdx * nTan;
-// 	}
-// 	if (deg_to_rad(angel) < M_PI/2 || deg_to_rad(angel) > 3 * M_PI/2)
-// 	{
-// 		l_rx = (((int)c->map->p_x >> 6) << 6) + 64;
-// 		l_ry = (c->map->p_x - l_rx) * nTan + c->map->p_y;
-// 		l_rdx = 64;
-// 		l_rdy = -l_rdx * nTan;
-// 	}
-// 	if(deg_to_rad(angel) == M_PI/2 || deg_to_rad(angel) == 3 * M_PI/2)
-// 	{
-// 		l_rx = c->map->p_x;
-// 		l_ry = c->map->p_y;
-// 		dof = 8;
-// 	}
-// 	while (dof < 8)
-// 	{
-// 		if (l_rx < 0 || l_rx >= (c->map->map_width * 64)
-// 			|| l_ry < 0 || l_ry >= (c->map->map_height * 64))
-// 			break ;
-// 		if (c->map->map[(int) l_ry / 64][(int) l_rx / 64] == '1')
-// 			dof = 8;
-// 		else
-// 		{
-// 			//write(1,"helooo\n",8);
-// 			l_rx += l_rdx;
-// 			l_ry += l_rdy;
-// 			dof++;
-// 		}
-// 	}
-// 	ft_putnbr(c->map->angel);
-// 	write(1, "\n", 1);
-// 	drawline(c , l_rx, l_ry, line_color);
 // }
 
 
