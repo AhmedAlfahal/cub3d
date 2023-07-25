@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:00 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/17 19:02:33 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:59:03 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	check_errors(t_cub3d *c)
 
 	i = 0;
 	malloc_all(c->map);
+	check_map_at_end(c);
+	i = 0;
 	while (c->map->file[i])
 		check_in_tmp2d(c, c->map->file[i++], &c->map->tmp_text_names);
 	check_file_elements(c);
