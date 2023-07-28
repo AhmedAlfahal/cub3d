@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/07/19 20:04:24 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/07/26 14:23:33 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ SRC		=	cub3d.c						\
 			execution/drawing_utils.c	\
 			execution/deg_red.c			\
 			execution/lines.c			\
-			execution/utils.c
+			execution/utils.c			\
+			execution/3d_draw.c 
+			
 
 SRCS	=	$(SRC:%.c=%.o)
 

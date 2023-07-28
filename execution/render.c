@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/19 17:06:57 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:20:50 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	draw_img(t_cub3d *c)
 	&c->img->line_length, &c->img->endian);
 	c->map->i = 0;
 	c->map->j = 0;
-	draw_map(c);
+	draw_3dmap(c);
 	mlx_put_image_to_window(c->mlx->mlx, c->mlx->win, c->img->img, 0, 0);
 }
 
