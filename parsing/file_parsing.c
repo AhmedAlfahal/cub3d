@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:00 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/25 16:59:03 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/29 02:17:55 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ static void	reading_to2d(t_cub3d *c, char *s, int number_of_lines)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (ft_strlen(line) == 0)
-			free(line);
-		else
+		// if (ft_strlen(line) == 0)
+		// 	free(line);
+		// else
 			c->map->file[i++] = line;
 		line = get_next_line(fd);
 	}
@@ -104,7 +104,7 @@ void	reading_map(char *s, t_cub3d *c)
 	while (line != NULL)
 	{
 		remove_space(line);
-		if (ft_strlen(line) != 0)
+		// if (ft_strlen(line) != 0)
 			number_of_lines++;
 		free(line);
 		line = get_next_line(fd);
