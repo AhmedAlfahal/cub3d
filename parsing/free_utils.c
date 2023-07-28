@@ -6,23 +6,11 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/28 17:42:14 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/29 00:53:36 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-// static void	free_2d_array_s(char **map, int s)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (!map)
-// 		return ;
-// 	while (i < s)
-// 		free(map[i++]);
-// 	free(map);
-// }
 
 void	free_2d_array(char **map)
 {
@@ -73,7 +61,7 @@ void	clean_exit(t_cub3d *c, int msg, int ex)
 	else if (msg == 6)
 		write(1, "GG\n", 4);
 	else if (msg == 7)
-		write(2, "Map must be at the end\n", 24);
+		write(2, "Map must be at the end\nor invalid components\n", 46);
 	free_all(c);
 	exit(ex);
 }
