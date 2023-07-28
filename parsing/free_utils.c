@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/17 14:15:21 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:42:14 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void	clean_exit(t_cub3d *c, int msg, int ex)
 	else if (msg == 5)
 		write(2, "Error\nWrong RGB color\n", 23);
 	else if (msg == 6)
-		write(2, "GG\n", 4);
+		write(1, "GG\n", 4);
+	else if (msg == 7)
+		write(2, "Map must be at the end\n", 24);
 	free_all(c);
 	exit(ex);
 }
