@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/19 17:06:57 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:29:12 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:00 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/17 19:02:33 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:14:44 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	check_errors(t_cub3d *c)
 
 	i = 0;
 	malloc_all(c->map);
+	check_map_at_end(c);
+	i = 0;
 	while (c->map->file[i])
 		check_in_tmp2d(c, c->map->file[i++], &c->map->tmp_text_names);
 	check_file_elements(c);
@@ -72,9 +74,9 @@ static void	reading_to2d(t_cub3d *c, char *s, int number_of_lines)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (ft_strlen(line) == 0)
-			free(line);
-		else
+		// if (ft_strlen(line) == 0)
+		// 	free(line);
+		// else
 			c->map->file[i++] = line;
 		line = get_next_line(fd);
 	}
@@ -94,20 +96,19 @@ void	reading_map(char *s, t_cub3d *c)
 	c->map = malloc(sizeof(t_map) * 1);
 	ft_bzero(c->map, sizeof(t_map) * 1);
 	fd = open(s, O_RDONLY);
-	if (ft_strncmp(s, ".cub", ft_strlen(s) - 4) == 1)
-		closing_and_freeing(fd, NULL, 1);
+	if (ft_filecmp(s, ".cub", ft_strlen(s) - 4) == 1)
+		closing_and_freeing(c->map, fd, NULL, 1);
 	if (fd < 0)
-		closing_and_freeing(fd, NULL, 1);
+		closing_and_freeing(c->map, fd, NULL, 1);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		remove_space(line);
-		if (ft_strlen(line) != 0)
-			number_of_lines++;
+		number_of_lines++;
 		free(line);
 		line = get_next_line(fd);
 	}
-	closing_and_freeing(fd, line, 0);
+	closing_and_freeing(NULL, fd, line, 0);
 	reading_to2d(c, s, number_of_lines);
 	check_errors(c);
 }

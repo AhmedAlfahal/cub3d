@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/19 21:07:09 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:45:21 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ char	*skip_space(char *s);
 
 void	reading_map(char *s, t_cub3d *c);
 void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture);
+void	check_map_at_end(t_cub3d *c);
 void	cutting_text(t_cub3d *c, char *tmp, int i);
 void	check_file_elements(t_cub3d *c);
 void	check_map_element(t_cub3d *c, char **map);
@@ -146,7 +147,7 @@ double	ver_line(t_cub3d *c);
 /******************************Free_utils********************************/
 
 void	clean_exit(t_cub3d *c, int msg, int ex);
-void	closing_and_freeing(int fd, char *line, int ext);
+void	closing_and_freeing(t_map *map, int fd, char *line, int ext);
 void	free_2d_array(char **map);
 
 /******************************Tmp_printers******************************/

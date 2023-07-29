@@ -6,23 +6,11 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/17 14:15:21 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:19:18 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-// static void	free_2d_array_s(char **map, int s)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (!map)
-// 		return ;
-// 	while (i < s)
-// 		free(map[i++]);
-// 	free(map);
-// }
 
 void	free_2d_array(char **map)
 {
@@ -47,13 +35,15 @@ void	free_all(t_cub3d *c)
 	free(c->map);
 }
 
-void	closing_and_freeing(int fd, char *line, int ext)
+void	closing_and_freeing(t_map *map, int fd, char *line, int ext)
 {
-	close(fd);
+	if (fd >= 0)
+		close(fd);
 	free(line);
 	if (ext == 1)
 	{
-		write(2, "Error\n", 7);
+		free(map);
+		write(2, "Error\nInvalid file\n", 20);
 		exit(1);
 	}
 }
@@ -71,7 +61,9 @@ void	clean_exit(t_cub3d *c, int msg, int ex)
 	else if (msg == 5)
 		write(2, "Error\nWrong RGB color\n", 23);
 	else if (msg == 6)
-		write(2, "GG\n", 4);
+		write(1, "GG\n", 4);
+	else if (msg == 7)
+		write(2, "Error\nMap must be at the end\nor invalid components\n", 52);
 	free_all(c);
 	exit(ex);
 }

@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/07/19 20:04:24 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/07/29 18:27:53 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	=	-g3 -Wall -Wextra -Werror -fsanitize=address
+CFLAGS	=	-g3 -Wall -Wextra -Werror
 
-NAME	=	cub3d
+NAME	=	cub3D
 
 LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a mlx/libmlx.a
 
@@ -27,6 +27,7 @@ SRC		=	cub3d.c						\
 			parsing/parsing_utils.c		\
 			parsing/free_utils.c		\
 			parsing/errors.c			\
+			parsing/errors2.c			\
 			parsing/rgb_utils.c			\
 			execution/render.c			\
 			execution/drawing_utils.c	\

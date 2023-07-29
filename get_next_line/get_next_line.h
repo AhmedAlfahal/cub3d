@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 21:41:11 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/01/30 16:40:18 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:56:50 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_next_line(int fd);
 int		len(char *s);
 t_list	*lst_new(char *content);
 char	*join(char *s1, char *s2);
-void	add_front(t_list **lst, t_list *new);
+void	add_front(t_list **lst, t_list *neww);
 void	add_back(t_list **lst, char *content);
 char	*read_lst(t_list **lst);
 char	*cut(char *s, unsigned int start, size_t len);
