@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/30 00:53:02 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/30 01:21:04 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	check_map_element(t_map *m)
 
 	if (m->map[i][j] == 0)
 	{
+		if (j > m->map_width)
+			m->map_width = j;
 		i++;
 		j = 0;
 	}
