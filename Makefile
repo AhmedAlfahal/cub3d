@@ -6,13 +6,13 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/07/30 00:46:26 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/07/30 01:09:42 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	= 	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror
 
 NAME	=	cub3D
 
@@ -29,7 +29,7 @@ SRC		=	cub3d.c						\
 			parsing/errors.c			\
 			parsing/errors2.c			\
 			parsing/rgb_utils.c			\
-#			execution/render.c			\
+			execution/render.c			\
 			execution/drawing_utils.c	\
 			execution/deg_red.c			\
 			execution/lines.c			\
@@ -45,13 +45,13 @@ $(NAME) : $(SRCS)
 	@make all -C ./ft_printf
 	@make all -C ./libft
 	@make all -C ./get_next_line
-#	@make all -C ./mlx
-	$(CC) $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)
+	@make all -C ./mlx
+	$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBS) -o $(NAME)
 clean:
 	@make clean -C ./ft_printf
 	@make clean -C ./libft
 	@make clean -C ./get_next_line
-#	@make clean -C ./mlx
+	@make clean -C ./mlx
 	rm -fr $(SRCS)
 
 fclean: clean
