@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/29 02:36:23 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/30 00:49:04 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	check_line_element(t_map *m, char *l, int msg)
 	if (msg == 0)
 	{
 		if (*l != '0' && *l != '1' && *l != 'N' \
-		&& *l != 'S' && *l != 'E' && *l != 'W')
+		&& *l != 'S' && *l != 'E' && *l != 'W' && *l != ' ')
 		{
 			m->error = 1;
 			return ;
@@ -45,7 +45,7 @@ static void	check_line_element(t_map *m, char *l, int msg)
 			m->counters[p_pos]++;
 	}
 	else if (msg == 1)
-		if (*l != '1')
+		if (*l != '1' && *l != ' ')
 			m->error = 1;
 	return (check_line_element(m, ++l, msg));
 }
@@ -58,10 +58,7 @@ void	check_file_elements(t_cub3d *c)
 	i = 0;
 	j = 0;
 	while (c->map->file[i])
-	{
-		remove_space(c->map->file[i]);
 		check_line_element(c->map, c->map->file[i++], 0);
-	}
 	free_2d_array(c->map->map);
 	c->map->map = malloc(sizeof(char *) * (len_2d_wo0(c->map->file) + 1));
 	if (!c->map->map)
@@ -77,41 +74,53 @@ void	check_file_elements(t_cub3d *c)
 		c->map->map[j++] = ft_strdup(c->map->file[i++]);
 	}
 	c->map->map[j] = NULL;
+	check_line_element(c->map, c->map->map[0], 1);
+	check_line_element(c->map, c->map->map[j - 1], 1);
 }
 
-void	check_map_element(t_cub3d *c, char **map)
+static void	check_space_closed(t_map *m, int i, int j)
 {
-	static int	i;
-
-	if (map[i] == NULL)
+	if (j < 0 || i < 0)
 		return ;
-	if (i == 0 || i == ft_strlen_2d(map) - 1)
-	{
-		check_line_element(c->map, map[i], 1);
-		if (c->map->error > 0)
-			clean_exit(c, 4, 1);
-		if (ft_strlen(map[i]) > c->map->map_width)
-			c->map->map_width = ft_strlen(map[i]);
-	}
-	else
-	{
-		if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
-			clean_exit(c, 4, 1);
-		if (ft_strlen(map[i]) > c->map->map_width)
-			c->map->map_width = ft_strlen(map[i]);
-	}
-	i++;
-	return (check_map_element(c, map));
+	if (m->tmp_map[i] == NULL)
+		return ;
+	if (m->tmp_map[i][j] == 0)
+		return ;
+	if (m->tmp_map[i][j] == 'X' \
+	|| m->tmp_map[i][j] == '1' || i < 0 || m->tmp_map[i] == NULL)
+		return ;
+	if (m->tmp_map[i][j] != '1' && m->tmp_map[i][j] != ' ')
+		m->error++;
+	m->tmp_map[i][j] = 'X';
+	check_space_closed(m, i + 1, j);
+	check_space_closed(m, i - 1, j);
+	check_space_closed(m, i, j + 1);
+	check_space_closed(m, i, j - 1);
 }
 
-void	align_elements(t_cub3d *c)
+void	check_map_element(t_map *m)
 {
 	static int	i;
+	static int	j;
 
-	if (c->map->map[i] == NULL)
+	if (m->map[i][j] == 0)
+	{
+		i++;
+		j = 0;
+	}
+	if (m->map[i] == NULL)
 		return ;
-	c->map->j = 0;
-	mallocing_new(c, i);
-	i++;
-	return (align_elements(c));
+	if (i == 0 && j == 0)
+	{
+		free_2d_array(m->tmp_map);
+		m->tmp_map = ft_2d_dubpper(m->map);
+	}
+	if (m->map[i][j] == ' ')
+	{		
+		check_space_closed(m, i, j);
+		free_2d_array(m->tmp_map);
+		m->tmp_map = ft_2d_dubpper(m->map);
+	}
+	j++;
+	return (check_map_element(m));
 }

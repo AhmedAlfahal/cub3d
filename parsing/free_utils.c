@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/29 18:19:18 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/30 00:24:11 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_2d_array(char **map)
 	i = 0;
 	if (!map)
 		return ;
-	while (map[i])
+	while (map[i] != NULL)
 		free(map[i++]);
 	free(map);
 }
@@ -32,6 +32,7 @@ void	free_all(t_cub3d *c)
 	free(c->map->counters);
 	free(c->map->f_c_rgb);
 	free_2d_array(c->map->map);
+	free_2d_array(c->map->tmp_map);
 	free(c->map);
 }
 

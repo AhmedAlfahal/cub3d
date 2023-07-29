@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/26 18:30:14 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/29 22:25:12 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_map
 	char		*s1;
 	char		**file;
 	char		**map;
+	char		**tmp_map;
 	char		**tmp_text_names;
 	char		**textures;
 	int			*f_c_rgb;
@@ -134,7 +135,7 @@ void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture);
 void	check_map_at_end(t_cub3d *c);
 void	cutting_text(t_cub3d *c, char *tmp, int i);
 void	check_file_elements(t_cub3d *c);
-void	check_map_element(t_cub3d *c, char **map);
+void	check_map_element(t_map *m);
 void	align_elements(t_cub3d *c);
 void	mallocing_new(t_cub3d *c, int i);
 
