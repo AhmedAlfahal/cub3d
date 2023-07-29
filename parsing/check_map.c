@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/30 00:49:04 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/30 00:53:02 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ void	check_file_elements(t_cub3d *c)
 
 static void	check_space_closed(t_map *m, int i, int j)
 {
-	if (j < 0 || i < 0)
+	if (j < 0 || i < 0 || j > ft_strlen(m->tmp_map[i]))
 		return ;
 	if (m->tmp_map[i] == NULL)
 		return ;
 	if (m->tmp_map[i][j] == 0)
 		return ;
-	if (m->tmp_map[i][j] == 'X' \
-	|| m->tmp_map[i][j] == '1' || i < 0 || m->tmp_map[i] == NULL)
+	if (m->tmp_map[i][j] == 'X' || m->tmp_map[i][j] == '1' \
+	|| i < 0 || m->tmp_map[i] == NULL)
 		return ;
 	if (m->tmp_map[i][j] != '1' && m->tmp_map[i][j] != ' ')
 		m->error++;
