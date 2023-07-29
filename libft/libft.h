@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/05/01 17:56:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:13:47 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	remove_space(char *s);
 void	ft_bzero(void *s, size_t n);
 char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_filecmp(const char *s1, const char *s2, int n);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
