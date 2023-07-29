@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:07:19 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/29 02:18:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:28:45 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	check_map_at_end(t_cub3d *c)
 		return ;
 	while (i > 0)
 	{
-		// printf("[%s]\n", c->map->file[i]);
 		r = check_map_end(c, c->map->file[i--], c->map->tmp_text_names);
 		if (rr == -2)
 			rr = r;

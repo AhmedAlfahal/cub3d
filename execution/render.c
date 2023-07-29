@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/23 16:24:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:29:12 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	draw_img(t_cub3d *c)
 
 static void	player_movment(int key_code, t_cub3d *c)
 {
-	ft_printf("%d\n", key_code);
 	if (key_code == 13)
 	{
 		c->map->p_y -= sin(deg_to_rad(c->map->angel)) * 8;
