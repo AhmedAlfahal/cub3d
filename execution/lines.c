@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:03:22 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/07/28 16:33:43 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:37:13 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	draw_lines_ex(t_cub3d *c, int line_color)
 	}
 	else
 	{
-		c->map->dest = c->map->v_len;
+		c->map->dest = c->map->h_len;
 		draw_3dmap_lines(c, 0xFF0000);
-	//	drawline(c, c->map->h_x, c->map->h_y, 0xFF0000);
+		//drawline(c, c->map->h_x, c->map->h_y, 0xFF0000);
 	}
 	//draw_3dmap_lines(c, line_color);
 }

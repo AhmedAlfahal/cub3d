@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/28 14:20:50 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/29 19:25:01 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void	draw_img(t_cub3d *c)
 
 static void	player_movment(int key_code, t_cub3d *c)
 {
+	ft_putnbr(key_code);
+	write(1, "\n",1);
 	if (key_code == 13)
 	{
 		c->map->p_y -= sin(deg_to_rad(c->map->angel)) * 8;
@@ -48,13 +50,13 @@ static void	player_movment(int key_code, t_cub3d *c)
 	}
 	else if (key_code == 0)
 	{
-		c->map->p_y -= cos(deg_to_rad(c->map->angel)) * 8;
-		c->map->p_x -= sin(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_y += cos(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_x += sin(deg_to_rad(c->map->angel)) * 8;
 	}
 	else if (key_code == 2)
 	{
-		c->map->p_y += cos(deg_to_rad(c->map->angel)) * 8;
-		c->map->p_x += sin(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_y -= cos(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_x -= sin(deg_to_rad(c->map->angel)) * 8;
 	}
 }
 
@@ -66,9 +68,9 @@ static int	key(int key_code, t_cub3d *c)
 		destroy_window(c);
 	player_movment(key_code, c);
 	if (key_code == 124)
-		c->map->angel -= 7;
-	else if (key_code == 123)
 		c->map->angel += 7;
+	else if (key_code == 123)
+		c->map->angel -= 7;
 	if (c->map->angel >= 360 || c->map->angel < 0)
 		c->map->angel = (c->map->angel + 360) % 360;
 	if (c->map->map[(int) c->map->p_y / 64][(int) c->map->p_x / 64] == '1')
