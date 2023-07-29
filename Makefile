@@ -6,13 +6,13 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/07/29 18:27:53 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/07/29 18:22:19 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	=	-g3 -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -O
 
 NAME	=	cub3D
 
@@ -33,7 +33,9 @@ SRC		=	cub3d.c						\
 			execution/drawing_utils.c	\
 			execution/deg_red.c			\
 			execution/lines.c			\
-			execution/utils.c
+			execution/utils.c			\
+			execution/3d_draw.c 
+			
 
 SRCS	=	$(SRC:%.c=%.o)
 

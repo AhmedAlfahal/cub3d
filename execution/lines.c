@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:03:22 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/07/20 20:35:00 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:37:13 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,23 @@ static void	ver_extra(t_cub3d *c, t_line *vln)
 			vln->dof++;
 		}
 	}
+}
+
+void	draw_lines_ex(t_cub3d *c, int line_color)
+{
+	if (c->map->v_len < c->map->h_len)
+	{
+		c->map->dest = c->map->v_len;
+		draw_3dmap_lines(c, line_color);
+		//drawline(c, c->map->v_x, c->map->v_y, line_color);
+	}
+	else
+	{
+		c->map->dest = c->map->h_len;
+		draw_3dmap_lines(c, 0xFF0000);
+		//drawline(c, c->map->h_x, c->map->h_y, 0xFF0000);
+	}
+	//draw_3dmap_lines(c, line_color);
 }
 
 double	hor_line(t_cub3d *c)
