@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:47 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/29 00:53:36 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:19:18 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ void	free_all(t_cub3d *c)
 	free(c->map);
 }
 
-void	closing_and_freeing(int fd, char *line, int ext)
+void	closing_and_freeing(t_map *map, int fd, char *line, int ext)
 {
-	close(fd);
+	if (fd >= 0)
+		close(fd);
 	free(line);
 	if (ext == 1)
 	{
-		write(2, "Error\n", 7);
+		free(map);
+		write(2, "Error\nInvalid file\n", 20);
 		exit(1);
 	}
 }
@@ -61,7 +63,7 @@ void	clean_exit(t_cub3d *c, int msg, int ex)
 	else if (msg == 6)
 		write(1, "GG\n", 4);
 	else if (msg == 7)
-		write(2, "Map must be at the end\nor invalid components\n", 46);
+		write(2, "Error\nMap must be at the end\nor invalid components\n", 52);
 	free_all(c);
 	exit(ex);
 }
