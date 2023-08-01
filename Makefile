@@ -6,13 +6,13 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/07/29 18:22:19 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/08/01 18:54:42 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	= -Wall -Wextra -Werror -O
+CFLAGS	= 	-Wall -Wextra -Werror
 
 NAME	=	cub3D
 
@@ -51,6 +51,7 @@ clean:
 	@make clean -C ./ft_printf
 	@make clean -C ./libft
 	@make clean -C ./get_next_line
+	@make clean -C ./mlx
 	rm -fr $(SRCS)
 
 fclean: clean
