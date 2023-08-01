@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/07/29 20:48:10 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/08/01 15:12:28 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ OBJ		= 	ft_strnstr.c	\
 			ft_strdup.c		\
 			ft_split.c		\
 			ft_bzero.c		\
+			ft_strtrim.c	\
+			ft_strchr.c		\
 			ft_substr.c
 			
 OBJS 	= 	$(OBJ:%.c=%.o)

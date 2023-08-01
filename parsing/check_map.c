@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/30 01:21:04 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:51:47 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	check_file_elements(t_cub3d *c)
 	}
 	c->map->map[j] = NULL;
 	check_line_element(c->map, c->map->map[0], 1);
-	check_line_element(c->map, c->map->map[j - 1], 1);
+	if (j > 0)
+		check_line_element(c->map, c->map->map[j - 1], 1);
 }
 
 static void	check_space_closed(t_map *m, int i, int j)
@@ -108,21 +109,21 @@ void	check_map_element(t_map *m)
 		if (j > m->map_width)
 			m->map_width = j;
 		i++;
+		if (m->map[i] == NULL)
+			return ;
+		if (j > ft_strlen(m->map[i]))
+			check_line_element(m, &m->map[i - 1][j - (j - len(m->map[i]))], 1);
+		else if (j < ft_strlen(m->map[i]))
+			check_line_element(m, &m->map[i][j], 1);
 		j = 0;
 	}
-	if (m->map[i] == NULL)
-		return ;
 	if (i == 0 && j == 0)
 	{
 		free_2d_array(m->tmp_map);
 		m->tmp_map = ft_2d_dubpper(m->map);
 	}
 	if (m->map[i][j] == ' ')
-	{		
 		check_space_closed(m, i, j);
-		free_2d_array(m->tmp_map);
-		m->tmp_map = ft_2d_dubpper(m->map);
-	}
 	j++;
 	return (check_map_element(m));
 }

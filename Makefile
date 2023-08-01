@@ -6,13 +6,13 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/07/30 01:13:55 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/08/01 18:54:42 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= 	-Wall -Wextra -Werror
 
 NAME	=	cub3D
 

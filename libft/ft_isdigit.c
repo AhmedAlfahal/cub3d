@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:46:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/05/01 17:19:28 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:59:30 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,41 @@ void	remove_space(char *s)
 	s[i] = 0;
 }
 
+static void	ft_isdigit_cons(t_tmp *t)
+{
+	t->ret = 0;
+	if ((t->new_s[t->i] == '+' || t->new_s[t->i] == '-') \
+		&& t->i == 0 && t->flag != 1 && ft_strlen(t->new_s) > 0)
+			t->i++;
+	if (t->new_s[t->i] >= '0' && t->new_s[t->i] <= '9' && t->flag != 1)
+	{
+		t->flag2 = 1;
+		t->i++;
+		t->ret = 1;
+	}
+}
+
 int	ft_isdigit(char *s)
 {
-	int	i;
+	t_tmp	t;
 
-	i = 0;
+	ft_bzero(&t, sizeof(t_tmp));
 	if (!s || !*s)
 		return (0);
-	remove_space(s);
-	while (s[i])
+	t.new_s = ft_strtrim(s, " ");
+	while (t.new_s[t.i])
 	{
-		if (s[i] == '+' && i == 0)
-			i++;
-		else if (s[i] >= '0' && s[i] <= '9')
-			i++;
-		else
-			return (0);
+		if (t.new_s[t.i] == ' ')
+		{
+			t.flag = 1;
+			if (t.flag2 == 1)
+				return (free(t.new_s), 0);
+		}
+		ft_isdigit_cons(&t);
+		if (t.ret == 0)
+			return (free(t.new_s), 0);
 	}
-	if (i == 0)
-		return (0);
-	return (1);
+	if (t.i == 0)
+		return (free(t.new_s), 0);
+	return (free(t.new_s), 1);
 }
