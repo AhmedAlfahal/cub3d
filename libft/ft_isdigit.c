@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:46:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/01 15:59:30 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/01 22:32:14 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	remove_space(char *s)
 static void	ft_isdigit_cons(t_tmp *t)
 {
 	t->ret = 0;
-	if ((t->new_s[t->i] == '+' || t->new_s[t->i] == '-') \
+	if (t->new_s[t->i] == '+' \
 		&& t->i == 0 && t->flag != 1 && ft_strlen(t->new_s) > 0)
 			t->i++;
 	if (t->new_s[t->i] >= '0' && t->new_s[t->i] <= '9' && t->flag != 1)
