@@ -6,14 +6,14 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/07/29 18:22:19 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/08/04 18:08:36 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	= -Wall -Wextra -Werror -O
-
+CFLAGS	= -Wall -Wextra -Werror -O -g3 -fsanitize=address
+ 
 NAME	=	cub3d
 
 LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a mlx/libmlx.a

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/29 19:25:01 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:57:16 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ static void	draw_img(t_cub3d *c)
 {
 	if (c->img->img != NULL)
 		mlx_destroy_image(c->mlx->mlx, c->img->img);
-	c->img->img = mlx_new_image(c->mlx->mlx, c->map->map_width * 64 \
-	, c->map->map_height * 64);
+	c->img->img = mlx_new_image(c->mlx->mlx, WIDTH, HIGHT);
 	c->img->addr = mlx_get_data_addr(c->img->img, &c->img->bits_per_pixel, \
 	&c->img->line_length, &c->img->endian);
 	c->map->i = 0;
@@ -36,8 +35,6 @@ static void	draw_img(t_cub3d *c)
 
 static void	player_movment(int key_code, t_cub3d *c)
 {
-	ft_putnbr(key_code);
-	write(1, "\n",1);
 	if (key_code == 13)
 	{
 		c->map->p_y -= sin(deg_to_rad(c->map->angel)) * 8;
@@ -88,8 +85,7 @@ void	render(t_cub3d *c)
 	t_img	img;
 
 	m.mlx = mlx_init();
-	m.win = mlx_new_window(m.mlx, \
-	c->map->map_width * 64, c->map->map_height * 64, "cub3d");
+	m.win = mlx_new_window(m.mlx, WIDTH, HIGHT, "cub3d");
 	c->mlx = &m;
 	ft_bzero(&img, sizeof(t_img));
 	c->img = &img;

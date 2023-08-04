@@ -6,12 +6,15 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/26 18:30:14 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:56:25 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# define WIDTH 1152
+# define HIGHT 768
 
 # include"libft/libft.h"
 # include"ft_printf/ft_printf.h"

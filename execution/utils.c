@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 21:37:16 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/19 19:22:44 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:59:01 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	line_loop(t_cub3d *c, t_line *ln, int line_color)
 {
 	while (1)
 	{
-		if (ln->x0 < 0 || ln->x0 >= (c->map->map_width * 64)
-			|| ln->y0 < 0 || ln->y0 >= (c->map->map_height * 64))
+		if (ln->x0 < 0 || ln->x0 >= (WIDTH)
+			|| ln->y0 < 0 || ln->y0 >= (HIGHT))
 			break ;
 		my_mlx_pixel_put(c->img, ln->x0, ln->y0, line_color);
 		if (ln->x0 == ln->x1 && ln->y0 == ln->y1)
