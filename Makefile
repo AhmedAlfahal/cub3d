@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/08/04 18:08:36 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/08/04 23:47:54 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	= -Wall -Wextra -Werror -O -g3 -fsanitize=address
- 
-NAME	=	cub3d
+CFLAGS	= 	-Wall -Wextra -Werror
+
+NAME	=	cub3D
 
 LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a mlx/libmlx.a
 
@@ -24,7 +24,6 @@ SRC		=	cub3d.c						\
 			tmp_printers.c				\
 			parsing/file_parsing.c		\
 			parsing/check_map.c			\
-			parsing/parsing_utils.c		\
 			parsing/free_utils.c		\
 			parsing/errors.c			\
 			parsing/rgb_utils.c			\
@@ -50,6 +49,7 @@ clean:
 	@make clean -C ./ft_printf
 	@make clean -C ./libft
 	@make clean -C ./get_next_line
+	@make clean -C ./mlx
 	rm -fr $(SRCS)
 
 fclean: clean

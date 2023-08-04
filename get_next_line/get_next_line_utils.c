@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 21:41:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/01/02 10:12:23 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:51:36 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	len(char *s)
 	int	i;
 
 	i = 0;
-	if (!s)
+	if (!s || *s == '\0')
 		return (0);
 	while (s[i])
 		i++;
@@ -86,10 +86,10 @@ char	*join(char *s1, char *s2)
 	return (free(s1), free(s2), dup);
 }
 
-void	add_front(t_list **lst, t_list *new)
+void	add_front(t_list **lst, t_list *neww)
 {
-	if (!lst || !new)
+	if (!lst || !neww)
 		return ;
-	new->next = (*lst)->next;
-	*lst = new;
+	neww->next = (*lst)->next;
+	*lst = neww;
 }
