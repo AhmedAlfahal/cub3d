@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:33:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/04 18:07:27 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:25:36 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,18 @@ void	check_map_at_end(t_cub3d *c)
 			clean_exit(c, 7, 1);
 		rr = r;
 	}
+}
+
+void	player_condition(t_map *m, int i)
+{
+	m->p_x = m->j * 64;
+	m->p_y = i * 64;
+	if (m->map[i][m->j] == 'N')
+		m->angel = 90;
+	else if (m->map[i][m->j] == 'E')
+		m->angel = 0;
+	else if (m->map[i][m->j] == 'W')
+		m->angel = 180;
+	else if (m->map[i][m->j] == 'S')
+		m->angel = 270;
 }

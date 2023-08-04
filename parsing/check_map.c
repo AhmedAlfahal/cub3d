@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/01 18:51:47 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:25:27 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,9 @@ void	check_map_element(t_map *m)
 	}
 	if (m->map[i][j] == ' ')
 		check_space_closed(m, i, j);
+	if (m->map[i][j] == 'N' || m->map[i][j] == 'S' \
+	|| m->map[i][j] == 'E' || m->map[i][j] == 'W')
+		player_condition(m, i);
 	j++;
 	return (check_map_element(m));
 }
