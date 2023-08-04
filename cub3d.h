@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/01 22:00:47 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:14:25 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,9 @@ typedef struct s_cub3d
 
 /******************************Free_utils********************************/
 
-int		next_space(char *s);
+
 void	check_text_error(t_cub3d *c);
-char	*skip_space(char *s);
+
 
 /******************************Pars_utils********************************/
 
@@ -136,7 +136,6 @@ void	check_map_at_end(t_cub3d *c);
 void	cutting_text(t_cub3d *c, char *tmp, int i);
 void	check_file_elements(t_cub3d *c);
 void	check_map_element(t_map *m);
-void	mallocing_new(t_cub3d *c, int i);
 
 /******************************Render_utils******************************/
 

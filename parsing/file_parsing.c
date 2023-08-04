@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:18:00 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/29 22:45:07 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/04 21:50:56 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void	reading_map(char *s, t_cub3d *c)
 
 	number_of_lines = 0;
 	c->map = malloc(sizeof(t_map) * 1);
+	if (!c->map)
+		return ;
 	ft_bzero(c->map, sizeof(t_map) * 1);
 	fd = open(s, O_RDONLY);
 	if (ft_filecmp(s, ".cub", ft_strlen(s) - 4) == 1)
