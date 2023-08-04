@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:23:49 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/07/29 19:41:05 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:26:05 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,21 @@ void	draw_3dmap_lines(t_cub3d *c, int line_color)
 	if (nangle > 2 * M_PI)
 		nangle -= 2 * M_PI;
 	c->map->dest = c->map->dest * cos(nangle);
-	l_h = (64 * (c->map->map_height * 64)) / c->map->dest;
-	if (l_h > (c->map->map_height * 64))
-		l_h = c->map->map_height * 64 ;
-	l_o = ((c->map->map_height * 64) / 2) - l_h / 2;
-	// ft_putnbr(l_h);write (1,"\n\n", 2);
+	l_h = (64 * (HIGHT)) / c->map->dest;
+	if (l_h > (HIGHT))
+		l_h = HIGHT ;
+	l_o = ((HIGHT) / 2) - l_h / 2;
 	c->map->x0 = c->map->rray;
 	c->map->y0 = l_o;
-	drawline3d(c, c->map->rray,  l_h + l_o, line_color);
+	drawline3d(c, c->map->rray, l_h + l_o, line_color);
 	c->map->x0 = c->map->rray;
 	c->map->y0 = 0;
-	drawline3d(c, c->map->rray,  l_o, 0xBDBDFF);
+	drawline3d(c, c->map->rray, l_o, rgb_to_int(c->map->f_c_rgb[c_r],
+			c->map->f_c_rgb[c_g], c->map->f_c_rgb[c_b]));
 	c->map->x0 = c->map->rray;
 	c->map->y0 = l_h + l_o;
-	drawline3d(c, c->map->rray,  768, 0x002200);
+	drawline3d(c, c->map->rray, HIGHT, rgb_to_int(c->map->f_c_rgb[f_r],
+			c->map->f_c_rgb[f_g], c->map->f_c_rgb[f_b]));
 }
 
 void	draw_3dmap(t_cub3d *c)
