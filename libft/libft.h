@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/29 18:13:47 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:55:54 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 
 typedef struct s_tmp
 {
-	int	i;
-	int	j;
-	int	x;
+	int		i;
+	int		ret;
+	int		flag;
+	int		flag2;
+	char	*new_s;
 }	t_tmp;
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
@@ -35,6 +37,9 @@ char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_filecmp(const char *s1, const char *s2, int n);
 char	*ft_strdup(const char *s1);
+char	**ft_2d_dubpper(char **s1);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

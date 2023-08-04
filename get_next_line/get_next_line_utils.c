@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 21:41:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/25 16:57:16 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:51:36 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	len(char *s)
 	int	i;
 
 	i = 0;
-	if (!s)
+	if (!s || *s == '\0')
 		return (0);
 	while (s[i])
 		i++;

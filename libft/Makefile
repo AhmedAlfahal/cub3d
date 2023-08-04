@@ -6,15 +6,15 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/28 11:54:34 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/08/01 15:12:28 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libft.a
+NAME	= 	libft.a
 
-CC		= cc
+CC		= 	cc
 
-CFLAGS	= -Wall -Wextra -Werror -g3
+CFLAGS	= 	-Wall -Wextra -Werror
 
 OBJ		= 	ft_strnstr.c	\
 			ft_strlen.c		\
@@ -23,9 +23,11 @@ OBJ		= 	ft_strnstr.c	\
 			ft_strdup.c		\
 			ft_split.c		\
 			ft_bzero.c		\
+			ft_strtrim.c	\
+			ft_strchr.c		\
 			ft_substr.c
 			
-OBJS 	= $(OBJ:%.c=%.o)
+OBJS 	= 	$(OBJ:%.c=%.o)
 
 all: $(NAME)
 

@@ -6,18 +6,18 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/22 17:22:08 by aalfahal          #+#    #+#              #
-#    Updated: 2023/01/23 17:05:28 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/07/29 20:48:29 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 
+CFLAGS	=	-Wall -Wextra -Werror
 
 NAME	=	gnl.a
 
-SRC	=	get_next_line.c			\
-		get_next_line_utils.c
+SRC	=		get_next_line.c			\
+			get_next_line_utils.c
 
 SRCS	=	$(SRC:%.c=%.o)
 

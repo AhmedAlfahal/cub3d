@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 15:55:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/05/01 17:56:05 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/30 00:26:05 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ int	ft_strlen_2d(char **s)
 	i = 0;
 	if (!s || *s == 0)
 		return (0);
-	while (s[i] != NULL)
-	{
+	while (s[i])
 		i++;
-	}
 	return (i);
 }
 

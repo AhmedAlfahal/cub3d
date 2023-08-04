@@ -6,15 +6,15 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/08/04 18:28:09 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/08/01 18:54:42 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 
-CFLAGS	= -Wall -Wextra -Werror -O -g3 -fsanitize=address
- 
-NAME	=	cub3d
+CFLAGS	= 	-Wall -Wextra -Werror
+
+NAME	=	cub3D
 
 LIBS	=	libft/libft.a get_next_line/gnl.a ft_printf/libftprintf.a mlx/libmlx.a
 
@@ -51,6 +51,7 @@ clean:
 	@make clean -C ./ft_printf
 	@make clean -C ./libft
 	@make clean -C ./get_next_line
+	@make clean -C ./mlx
 	rm -fr $(SRCS)
 
 fclean: clean

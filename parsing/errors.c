@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:33:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/29 02:24:23 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/01 22:35:27 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,46 +48,4 @@ void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture)
 	}
 	i++;
 	return (free(c->map->s1), check_in_tmp2d(c, tmp, &text));
-}
-
-static void	player_condition(t_cub3d *c, int i)
-{
-	c->map->p_x = c->map->j * 64;
-	c->map->p_y = i * 64;
-	if (c->map->map[i][c->map->j] == 'N')
-		c->map->angel = 90;
-	else if (c->map->map[i][c->map->j] == 'E')
-		c->map->angel = 0;
-	else if (c->map->map[i][c->map->j] == 'W')
-		c->map->angel = 180;
-	else if (c->map->map[i][c->map->j] == 'S')
-		c->map->angel = 270;
-}
-
-void	mallocing_new(t_cub3d *c, int i)
-{
-	char	*tmp;
-
-	if (c->map->map[i] == NULL)
-		return ;
-	tmp = malloc(sizeof(char) * c->map->map_width + 1);
-	if (!tmp)
-		return ;
-	while (c->map->map[i][c->map->j])
-	{
-		tmp[c->map->j] = c->map->map[i][c->map->j];
-		if (c->map->map[i][c->map->j] == 'N' \
-		|| c->map->map[i][c->map->j] == 'E' \
-		|| c->map->map[i][c->map->j] == 'W' || c->map->map[i][c->map->j] == 'S')
-		{
-			player_condition(c, i);
-			tmp[c->map->j] = 'P';
-		}
-		c->map->j++;
-	}
-	while (c->map->j < c->map->map_width)
-		tmp[c->map->j++] = '1';
-	tmp[c->map->j] = 0;
-	free(c->map->map[i]);
-	c->map->map[i] = tmp;
 }
