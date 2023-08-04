@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
-#    Updated: 2023/08/04 18:08:36 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/08/04 18:28:09 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC		=	cub3d.c						\
 			parsing/parsing_utils.c		\
 			parsing/free_utils.c		\
 			parsing/errors.c			\
+			parsing/errors2.c			\
 			parsing/rgb_utils.c			\
 			execution/render.c			\
 			execution/drawing_utils.c	\
