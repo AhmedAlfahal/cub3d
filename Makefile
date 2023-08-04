@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 05:39:39 by aalfahal          #+#    #+#              #
 #    Updated: 2023/08/01 18:54:42 by aalfahal         ###   ########.fr        #
