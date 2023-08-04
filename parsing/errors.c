@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:33:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/04 23:25:36 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:53:35 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,21 @@ void	check_map_at_end(t_cub3d *c)
 	}
 }
 
-void	player_condition(t_map *m, int i)
+void	player_condition(t_map *m, int i, int j)
 {
-	m->p_x = m->j * 64;
-	m->p_y = i * 64;
-	if (m->map[i][m->j] == 'N')
-		m->angel = 90;
-	else if (m->map[i][m->j] == 'E')
-		m->angel = 0;
-	else if (m->map[i][m->j] == 'W')
-		m->angel = 180;
-	else if (m->map[i][m->j] == 'S')
-		m->angel = 270;
+	if (m->map[i][j] == 'N' || m->map[i][j] == 'S' \
+	|| m->map[i][j] == 'E' || m->map[i][j] == 'W')
+	{
+		m->p_x = j * 64;
+		m->p_y = i * 64;
+		if (m->map[i][j] == 'N')
+			m->angel = 90;
+		else if (m->map[i][j] == 'E')
+			m->angel = 0;
+		else if (m->map[i][j] == 'W')
+			m->angel = 180;
+		else if (m->map[i][j] == 'S')
+			m->angel = 270;
+		m->map[i][j] = 'P';
+	}
 }

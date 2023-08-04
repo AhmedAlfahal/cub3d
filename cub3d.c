@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:52 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/04 22:26:31 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:58:39 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		reading_map(av[1], &c);
-		// printf("[%f]	[%f]\n", c.map->p_x, c.map->p_y);
-		// render(&c);
-		// print_counters(&c);
+		render(&c);
 		clean_exit(&c, 0, 0);
 	}
 	else
