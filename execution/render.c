@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/04 17:57:16 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:41:46 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ static int	key(int key_code, t_cub3d *c)
 		destroy_window(c);
 	player_movment(key_code, c);
 	if (key_code == 124)
-		c->map->angel += 7;
+		c->map->angel += 5;
 	else if (key_code == 123)
-		c->map->angel -= 7;
+		c->map->angel -= 5;
 	if (c->map->angel >= 360 || c->map->angel < 0)
 		c->map->angel = (c->map->angel + 360) % 360;
 	if (c->map->map[(int) c->map->p_y / 64][(int) c->map->p_x / 64] == '1')
