@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/08 19:26:47 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:33:31 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_img
 	void	*ea;
 	void	*img;
 	char	*addr;
+	int		width;
+	int		height;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -79,6 +81,7 @@ typedef struct s_map
 	int			map_height;
 	int			error;
 	int			angel;
+	t_img		no_tx;
 	int			i;
 	int			j;
 	int			x0;
