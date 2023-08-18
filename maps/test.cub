@@ -1,5 +1,5 @@
 NO ./texture/wall.xpm
-SO ./path_to_the_south_texture
+SO ./texture/wall2.xpm
 WE ./path_to_the_west_texture
 EA ./path_to_the_east_texture
 F 5,200, 50
