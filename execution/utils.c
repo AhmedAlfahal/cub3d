@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 21:37:16 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/18 19:20:18 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/21 22:23:26 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,26 @@
 
 static void	line_loop_w(t_cub3d *c, t_line *ln, t_img *txtr)
 {
-	static int	x_w;
-	int			y_w;
+	//double		x_w;
+	double		y_w;
 	int			p_o;
-	int			ss;
-	int			i;
+	double		ss;
 
-	y_w = 0;
-	i = 0;
-	if (x_w == 63)
-		x_w = 0;
-	ss = (ln->y1 - ln->y0) / 64;
-	//ft_putnbr(ss);
+	if((ln->y1 - ln->y0) > HIGHT)
+		y_w = (ln->y1 - ln->y0) - HIGHT;
+	else
+		y_w = 0;
+	// x_w = ln->x1 % 64;
+	//ss = (ln->y1 - ln->y0) / 64;
+	ss = 64.0 / c->map->l_h;
+	// ft_putnbr(ln->y1 - ln->y0);
+	// write(1, "\n",1);
 	while (1)
 	{
-		p_o = y_w * txtr->line_length + x_w * (txtr->bits_per_pixel / 8);
+		p_o = (int)y_w * txtr->line_length + (int)c->map->x_w * (txtr->bits_per_pixel / 8);
 		if (ln->x0 < 0 || ln->x0 >= (WIDTH)
 			|| ln->y0 < 0 || ln->y0 >= (HIGHT))
-			break ;
+			break;
 		my_mlx_pixel_put(c->img, ln->x0, ln->y0, 
 			rgb_to_int((unsigned char)txtr->addr[p_o + 2],
 				(unsigned char)txtr->addr[p_o + 1], (unsigned char)txtr->addr[p_o]));
@@ -48,16 +50,10 @@ static void	line_loop_w(t_cub3d *c, t_line *ln, t_img *txtr)
 			ln->err += ln->dx;
 			ln->y0 += ln->sy;
 		}
-		if (i++ == ss)
-		{
-			y_w += ln->sy;
-			i = 0;
-		}
-			
-		// if (y_w == 63)
-		// 	y_w = 0;
+		if (y_w != 63)
+			y_w += ss;
 	}
-	x_w++;
+	//x_w++;
 }
 
 

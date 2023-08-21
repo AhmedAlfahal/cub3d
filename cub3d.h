@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/18 18:46:08 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/21 22:21:53 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ typedef struct s_map
 	double		dest;
 	double		v_x;
 	double		v_y;
+	double		x_w;
+	double		y_w;
+	double		l_h;
 	double		rray;
 	double		r_angel;
 }			t_map;
