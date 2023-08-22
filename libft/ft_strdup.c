@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:13:07 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/25 03:51:53 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/07/30 00:47:32 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,23 @@ char	*ft_strdup(const char *s1)
 	}
 	dup[i] = '\0';
 	return (dup);
+}
+
+char	**ft_2d_dubpper(char **s1)
+{
+	int		i;
+	char	**tmp;
+
+	i = 0;
+	if (!s1)
+		return (NULL);
+	tmp = malloc(sizeof(char *) * (ft_strlen_2d(s1) + 1));
+	ft_bzero(tmp, sizeof(char *) * (ft_strlen_2d(s1) + 1));
+	while (s1[i])
+	{
+		tmp[i] = ft_strdup(s1[i]);
+		i++;
+	}
+	tmp[i] = NULL;
+	return (tmp);
 }

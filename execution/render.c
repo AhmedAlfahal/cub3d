@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/19 17:06:57 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:57:16 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ static void	draw_img(t_cub3d *c)
 {
 	if (c->img->img != NULL)
 		mlx_destroy_image(c->mlx->mlx, c->img->img);
-	c->img->img = mlx_new_image(c->mlx->mlx, c->map->map_width * 64 \
-	, c->map->map_height * 64);
+	c->img->img = mlx_new_image(c->mlx->mlx, WIDTH, HIGHT);
 	c->img->addr = mlx_get_data_addr(c->img->img, &c->img->bits_per_pixel, \
 	&c->img->line_length, &c->img->endian);
 	c->map->i = 0;
 	c->map->j = 0;
-	draw_map(c);
+	draw_3dmap(c);
 	mlx_put_image_to_window(c->mlx->mlx, c->mlx->win, c->img->img, 0, 0);
 }
 
@@ -48,13 +47,13 @@ static void	player_movment(int key_code, t_cub3d *c)
 	}
 	else if (key_code == 0)
 	{
-		c->map->p_y -= cos(deg_to_rad(c->map->angel)) * 8;
-		c->map->p_x -= sin(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_y += cos(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_x += sin(deg_to_rad(c->map->angel)) * 8;
 	}
 	else if (key_code == 2)
 	{
-		c->map->p_y += cos(deg_to_rad(c->map->angel)) * 8;
-		c->map->p_x += sin(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_y -= cos(deg_to_rad(c->map->angel)) * 8;
+		c->map->p_x -= sin(deg_to_rad(c->map->angel)) * 8;
 	}
 }
 
@@ -66,9 +65,9 @@ static int	key(int key_code, t_cub3d *c)
 		destroy_window(c);
 	player_movment(key_code, c);
 	if (key_code == 124)
-		c->map->angel -= 7;
-	else if (key_code == 123)
 		c->map->angel += 7;
+	else if (key_code == 123)
+		c->map->angel -= 7;
 	if (c->map->angel >= 360 || c->map->angel < 0)
 		c->map->angel = (c->map->angel + 360) % 360;
 	if (c->map->map[(int) c->map->p_y / 64][(int) c->map->p_x / 64] == '1')
@@ -86,8 +85,7 @@ void	render(t_cub3d *c)
 	t_img	img;
 
 	m.mlx = mlx_init();
-	m.win = mlx_new_window(m.mlx, \
-	c->map->map_width * 64, c->map->map_height * 64, "cub3d");
+	m.win = mlx_new_window(m.mlx, WIDTH, HIGHT, "cub3d");
 	c->mlx = &m;
 	ft_bzero(&img, sizeof(t_img));
 	c->img = &img;

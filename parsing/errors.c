@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:33:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/18 15:48:24 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:53:35 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,44 +50,63 @@ void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture)
 	return (free(c->map->s1), check_in_tmp2d(c, tmp, &text));
 }
 
-static void	player_condition(t_cub3d *c, int i)
+static int	check_map_end(t_cub3d *c, char *tmp, char **text)
 {
-	c->map->p_x = c->map->j * 64;
-	c->map->p_y = i * 64;
-	if (c->map->map[i][c->map->j] == 'N')
-		c->map->angel = 90;
-	else if (c->map->map[i][c->map->j] == 'E')
-		c->map->angel = 0;
-	else if (c->map->map[i][c->map->j] == 'W')
-		c->map->angel = 180;
-	else if (c->map->map[i][c->map->j] == 'S')
-		c->map->angel = 270;
+	static int	i;
+
+	c->map->s1 = ft_substr(skip_space(tmp), 0, next_space(skip_space(tmp)));
+	if ((ft_strncmp(c->map->s1, text[i], ft_strlen(text[i])) == 0 \
+	&& ft_strlen(c->map->s1) == ft_strlen(text[i])))
+	{
+		i = 0;
+		return (free(c->map->s1), 1);
+	}
+	else if (text[i] == NULL)
+	{
+		i = 0;
+		return (free(c->map->s1), 2);
+	}
+	i++;
+	return (free(c->map->s1), check_map_end(c, tmp, text));
 }
 
-void	mallocing_new(t_cub3d *c, int i)
+void	check_map_at_end(t_cub3d *c)
 {
-	char	*tmp;
+	int	i;
+	int	r;
+	int	rr;
 
-	if (c->map->map[i] == NULL)
+	i = ft_strlen_2d(c->map->file) - 1;
+	r = -1;
+	rr = -2;
+	if (!c->map->file || !c->map->file[0])
 		return ;
-	tmp = malloc(sizeof(char) * c->map->map_width + 1);
-	if (!tmp)
-		return ;
-	while (c->map->map[i][c->map->j])
+	while (i > 0)
 	{
-		tmp[c->map->j] = c->map->map[i][c->map->j];
-		if (c->map->map[i][c->map->j] == 'N' \
-		|| c->map->map[i][c->map->j] == 'E' \
-		|| c->map->map[i][c->map->j] == 'W' || c->map->map[i][c->map->j] == 'S')
-		{
-			player_condition(c, i);
-			tmp[c->map->j] = 'P';
-		}
-		c->map->j++;
+		r = check_map_end(c, c->map->file[i--], c->map->tmp_text_names);
+		if (rr == -2)
+			rr = r;
+		else if (rr == 1 && r == 2)
+			clean_exit(c, 7, 1);
+		rr = r;
 	}
-	while (c->map->j < c->map->map_width)
-		tmp[c->map->j++] = '1';
-	tmp[c->map->j] = 0;
-	free(c->map->map[i]);
-	c->map->map[i] = tmp;
+}
+
+void	player_condition(t_map *m, int i, int j)
+{
+	if (m->map[i][j] == 'N' || m->map[i][j] == 'S' \
+	|| m->map[i][j] == 'E' || m->map[i][j] == 'W')
+	{
+		m->p_x = j * 64;
+		m->p_y = i * 64;
+		if (m->map[i][j] == 'N')
+			m->angel = 90;
+		else if (m->map[i][j] == 'E')
+			m->angel = 0;
+		else if (m->map[i][j] == 'W')
+			m->angel = 180;
+		else if (m->map[i][j] == 'S')
+			m->angel = 270;
+		m->map[i][j] = 'P';
+	}
 }

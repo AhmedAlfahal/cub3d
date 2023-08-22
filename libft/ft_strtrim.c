@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 02:08:52 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/04 23:58:39 by aalfahal         ###   ########.fr       */
+/*   Created: 2022/10/09 17:06:18 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/02/09 19:22:09 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include"libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	t_cub3d	c;
+	char	*trm;
+	int		i;
 
-	if (ac == 2)
+	if (!s1 || !set)
+		return (NULL);
+	while (*s1 && ft_strchr(set, *s1))
 	{
-		reading_map(av[1], &c);
-		render(&c);
-		clean_exit(&c, 0, 0);
+		s1++;
 	}
-	else
-	{
-		write(2, "Error\nWrong Number of Arguments\n", 33);
-		return (1);
-	}
-	return (0);
+	i = ft_strlen(s1);
+	while (i >= 0 && ft_strchr(set, s1[i]))
+		i--;
+	trm = ft_substr(s1, 0, i + 1);
+	if (!trm)
+		return (NULL);
+	return (trm);
 }
+

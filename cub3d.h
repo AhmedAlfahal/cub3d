@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/19 21:07:09 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:50:22 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# define WIDTH 1152
+# define HIGHT 768
 
 # include"libft/libft.h"
 # include"ft_printf/ft_printf.h"
@@ -67,6 +70,7 @@ typedef struct s_map
 	char		*s1;
 	char		**file;
 	char		**map;
+	char		**tmp_map;
 	char		**tmp_text_names;
 	char		**textures;
 	int			*f_c_rgb;
@@ -77,14 +81,20 @@ typedef struct s_map
 	int			angel;
 	int			i;
 	int			j;
+	int			x0;
+	int			y0;
 	double		p_x;
 	double		pp_x;
 	double		p_y;
 	double		pp_y;
 	double		h_x;
 	double		h_y;
+	double		h_len;
+	double		v_len;
+	double		dest;
 	double		v_x;
 	double		v_y;
+	double		rray;
 	double		r_angel;
 }			t_map;
 
@@ -117,19 +127,17 @@ typedef struct s_cub3d
 
 /******************************Free_utils********************************/
 
-int		next_space(char *s);
 void	check_text_error(t_cub3d *c);
-char	*skip_space(char *s);
 
 /******************************Pars_utils********************************/
 
 void	reading_map(char *s, t_cub3d *c);
+void	player_condition(t_map *m, int i, int j);
 void	*check_in_tmp2d(t_cub3d *c, char *tmp, char ***texture);
+void	check_map_at_end(t_cub3d *c);
 void	cutting_text(t_cub3d *c, char *tmp, int i);
 void	check_file_elements(t_cub3d *c);
-void	check_map_element(t_cub3d *c, char **map);
-void	align_elements(t_cub3d *c);
-void	mallocing_new(t_cub3d *c, int i);
+void	check_map_element(t_map *m);
 
 /******************************Render_utils******************************/
 
@@ -137,16 +145,22 @@ int		rgb_to_int(int red, int green, int blue);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	render(t_cub3d *c);
 void	draw_map(t_cub3d *c);
+void	draw_3dmap(t_cub3d *c);
+void	draw_3dmap_lines(t_cub3d *c, int line_color);
 double	deg_to_rad(double deg);
 double	rad_to_deg(double rad);
 void	line_loop(t_cub3d *c, t_line *ln, int line_color);
 double	hor_line(t_cub3d *c);
 double	ver_line(t_cub3d *c);
+void	draw_lines_ex(t_cub3d *c, int line_color);
+void	drawline(t_cub3d *c, int x1, int y1, int line_color);
+void	draw_lines(t_cub3d *c, int line_color);
+void	drawline3d(t_cub3d *c, int x1, int y1, int line_color);
 
 /******************************Free_utils********************************/
 
 void	clean_exit(t_cub3d *c, int msg, int ex);
-void	closing_and_freeing(int fd, char *line, int ext);
+void	closing_and_freeing(t_map *map, int fd, char *line, int ext);
 void	free_2d_array(char **map);
 
 /******************************Tmp_printers******************************/
