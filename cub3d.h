@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/22 18:03:17 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/22 22:13:53 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,10 @@ typedef struct s_map
 	t_img		so_tx;
 	t_img		ea_tx;
 	t_img		we_tx;
-	int			i;
-	int			j;
 	int			x0;
 	int			y0;
 	double		p_x;
-	double		pp_x;
 	double		p_y;
-	double		pp_y;
 	double		h_x;
 	double		h_y;
 	double		h_len;
@@ -139,10 +135,6 @@ typedef struct s_cub3d
 	struct s_map		*map;
 }						t_cub3d;
 
-/******************************Free_utils********************************/
-
-void	check_text_error(t_cub3d *c);
-
 /******************************Pars_utils********************************/
 
 void	reading_map(char *s, t_cub3d *c);
@@ -158,17 +150,14 @@ void	check_map_element(t_map *m);
 int		rgb_to_int(int red, int green, int blue);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	render(t_cub3d *c);
-void	draw_map(t_cub3d *c);
 void	draw_3dmap(t_cub3d *c);
 void	draw_3dmap_lines(t_cub3d *c, t_img *txtr);
 double	deg_to_rad(double deg);
-double	rad_to_deg(double rad);
 void	line_loop(t_cub3d *c, t_line *ln, int line_color);
 double	hor_line(t_cub3d *c);
 double	ver_line(t_cub3d *c);
 void	draw_lines_ex(t_cub3d *c, int line_color);
 void	drawline(t_cub3d *c, int x1, int y1, int line_color);
-void	draw_lines(t_cub3d *c, int line_color);
 void	drawline3d(t_cub3d *c, int x1, int y1, int line_color);
 void	drawline3d_w(t_cub3d *c, int x1, int y1, t_img *txtr);
 
@@ -177,10 +166,6 @@ void	drawline3d_w(t_cub3d *c, int x1, int y1, t_img *txtr);
 void	clean_exit(t_cub3d *c, int msg, int ex);
 void	closing_and_freeing(t_map *map, int fd, char *line, int ext);
 void	free_2d_array(char **map);
-
-/******************************Tmp_printers******************************/
-
-void	print_2d_array(char **d);
-void	print_counters(t_cub3d *c);
+void	check_text_error(t_cub3d *c);
 
 #endif
