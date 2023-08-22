@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 12:06:26 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/04 18:04:27 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:04:19 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	val(t_cub3d *c, char **rgb, const char *va, int n)
 	while (va[n] != '\0' && va[n] >= '0' && va[n] <= '9')
 	{
 		res = (res * 10) + (va[n] - '0');
-			n++;
+		n++;
 		if (res > 255 || res < 0)
 		{
 			free_2d_array(rgb);
@@ -50,8 +50,8 @@ static int	ft_ai(t_cub3d *c, char **rgb, const char *str)
 			&& (str[i + 1] == '-' || str[i + 1] == '+'))
 			return (0);
 		else if (str[i] == '-')
-				sgn = -1;
-			i++;
+			sgn = -1;
+		i++;
 	}
 	res = val (c, rgb, str, i);
 	return (res * sgn);

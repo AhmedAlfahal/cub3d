@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/22 16:21:53 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:03:17 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # define WIDTH 1500
 # define HIGHT 900
 
-# include"libft/libft.h"
-# include"ft_printf/ft_printf.h"
-# include"get_next_line/get_next_line.h"
-# include"mlx/mlx.h"
-# include<math.h>
-# include<fcntl.h>
-# include<stdio.h>
+# include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
+# include "get_next_line/get_next_line.h"
+# include "mlx/mlx.h"
+# include <math.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 typedef enum color_type
 {
@@ -83,6 +83,8 @@ typedef struct s_map
 	int			angel;
 	t_img		no_tx;
 	t_img		so_tx;
+	t_img		ea_tx;
+	t_img		we_tx;
 	int			i;
 	int			j;
 	int			x0;

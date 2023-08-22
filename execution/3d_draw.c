@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:23:49 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/08/22 15:52:54 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:01:55 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,29 @@
 
 static void	texture(t_cub3d *c)
 {
-	//printf("%s\n", c->map->textures[no] + 2);
-	c->map->no_tx.img = mlx_xpm_file_to_image(c->mlx->mlx,  c->map->textures[no], &c->map->no_tx.width, &c->map->no_tx.height);
-	c->map->so_tx.img = mlx_xpm_file_to_image(c->mlx->mlx,  c->map->textures[so], &c->map->so_tx.width, &c->map->so_tx.height);
-	if (c->map->no_tx.img == NULL || !c->map->so_tx.img) 
+	c->map->no_tx.img = mlx_xpm_file_to_image(c->mlx->mlx,
+			c->map->textures[no], &c->map->no_tx.width, &c->map->no_tx.height);
+	c->map->so_tx.img = mlx_xpm_file_to_image(c->mlx->mlx,
+			c->map->textures[so], &c->map->so_tx.width, &c->map->so_tx.height);
+	c->map->we_tx.img = mlx_xpm_file_to_image(c->mlx->mlx,
+			c->map->textures[we], &c->map->we_tx.width, &c->map->we_tx.height);
+	c->map->ea_tx.img = mlx_xpm_file_to_image(c->mlx->mlx,
+			c->map->textures[ea], &c->map->ea_tx.width, &c->map->ea_tx.height);
+	if (c->map->no_tx.img == NULL || !c->map->so_tx.img 
+		|| !c->map->we_tx.img || !c->map->ea_tx.img) 
 	{
-		write(1, "ERRRRRRRRor\n", 13);
+		write(2, "ERRRRRRRRor\n", 13);
 		return ;
 	}
-	c->map->no_tx.addr = mlx_get_data_addr(c->map->no_tx.img, &c->map->no_tx.bits_per_pixel, \
-	&c->map->no_tx.line_length, &c->map->no_tx.endian);
-	c->map->so_tx.addr = mlx_get_data_addr(c->map->so_tx.img, &c->map->so_tx.bits_per_pixel, \
-	&c->map->so_tx.line_length, &c->map->so_tx.endian);
+	c->map->no_tx.addr = mlx_get_data_addr(c->map->no_tx.img,
+			&c->map->no_tx.bits_per_pixel,
+			&c->map->no_tx.line_length, &c->map->no_tx.endian);
+	c->map->so_tx.addr = mlx_get_data_addr(c->map->so_tx.img,
+			&c->map->so_tx.bits_per_pixel,
+			&c->map->so_tx.line_length, &c->map->so_tx.endian);
+	c->map->we_tx.addr = mlx_get_data_addr(c->map->we_tx.img,
+			&c->map->we_tx.bits_per_pixel,
+			&c->map->we_tx.line_length, &c->map->we_tx.endian);
 }
 
 void	drawline3d(t_cub3d *c, int x1, int y1, int line_color)
@@ -85,5 +96,8 @@ void	draw_3dmap(t_cub3d *c)
 	c->map->l_h = 0;
 	c->map->l_rh = 0;
 	texture(c);
+	c->map->ea_tx.addr = mlx_get_data_addr(c->map->ea_tx.img,
+			&c->map->ea_tx.bits_per_pixel,
+			&c->map->ea_tx.line_length, &c->map->ea_tx.endian);
 	draw_lines(c, rgb_to_int(128, 0, 128));
 }
