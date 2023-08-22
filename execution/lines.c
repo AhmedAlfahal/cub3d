@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:03:22 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/08/04 18:14:28 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:59:11 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,25 @@ static void	ver_extra(t_cub3d *c, t_line *vln)
 
 void	draw_lines_ex(t_cub3d *c, int line_color)
 {
+	(void)line_color;
 	if (c->map->v_len < c->map->h_len)
 	{
+		c->map->x_w = (int)c->map->v_y % 64;
 		c->map->dest = c->map->v_len;
-		draw_3dmap_lines(c, line_color);
-		//drawline(c, c->map->v_x, c->map->v_y, line_color);
+		if ((c->map->r_angel < 3 * (M_PI / 2) && c->map->r_angel > M_PI / 2))
+			draw_3dmap_lines(c, &c->map->ea_tx);
+		else
+			draw_3dmap_lines(c, &c->map->we_tx);
 	}
 	else
 	{
+		c->map->x_w = (int)c->map->h_x % 64;
 		c->map->dest = c->map->h_len;
-		draw_3dmap_lines(c, 0xFF0000);
-		//drawline(c, c->map->h_x, c->map->h_y, 0xFF0000);
+		if (c->map->r_angel > 0 && c->map->r_angel < M_PI)
+			draw_3dmap_lines(c, &c->map->no_tx);
+		else
+			draw_3dmap_lines(c, &c->map->so_tx);
 	}
-	//draw_3dmap_lines(c, line_color);
 }
 
 double	hor_line(t_cub3d *c)
