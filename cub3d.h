@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/21 22:21:53 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:21:53 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_map
 	double		x_w;
 	double		y_w;
 	double		l_h;
+	double		l_rh;
 	double		rray;
 	double		r_angel;
 }			t_map;
@@ -122,6 +123,10 @@ typedef struct s_line
 	double	ntan;
 	double	l_rdx;
 	double	l_rdy;
+	double	lof;
+	double	y_w;
+	int		p_o;
+	double	ss;
 
 }			t_line;
 

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:23:49 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/08/21 22:21:37 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:52:54 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	draw_3dmap_lines(t_cub3d *c, t_img *txtr)
 		nangle -= 2 * M_PI;
 	c->map->dest = c->map->dest * cos(nangle);
 	c->map->l_h = (64 * (HIGHT)) / c->map->dest;
+	c->map->l_rh = c->map->l_h;
 	if (c->map->l_h > (HIGHT))
 		c->map->l_h = HIGHT ;
 	l_o = ((HIGHT) / 2) - c->map->l_h / 2;
@@ -82,6 +83,7 @@ void	draw_3dmap(t_cub3d *c)
 {
 	c->map->x_w = 0;
 	c->map->l_h = 0;
+	c->map->l_rh = 0;
 	texture(c);
 	draw_lines(c, rgb_to_int(128, 0, 128));
 }

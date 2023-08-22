@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 21:37:16 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/21 22:23:26 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:29:11 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,17 @@
 
 static void	line_loop_w(t_cub3d *c, t_line *ln, t_img *txtr)
 {
-	//double		x_w;
-	double		y_w;
-	int			p_o;
-	double		ss;
-
-	if((ln->y1 - ln->y0) > HIGHT)
-		y_w = (ln->y1 - ln->y0) - HIGHT;
-	else
-		y_w = 0;
-	// x_w = ln->x1 % 64;
-	//ss = (ln->y1 - ln->y0) / 64;
-	ss = 64.0 / c->map->l_h;
-	// ft_putnbr(ln->y1 - ln->y0);
-	// write(1, "\n",1);
 	while (1)
 	{
-		p_o = (int)y_w * txtr->line_length + (int)c->map->x_w * (txtr->bits_per_pixel / 8);
-		if (ln->x0 < 0 || ln->x0 >= (WIDTH)
-			|| ln->y0 < 0 || ln->y0 >= (HIGHT))
-			break;
-		my_mlx_pixel_put(c->img, ln->x0, ln->y0, 
-			rgb_to_int((unsigned char)txtr->addr[p_o + 2],
-				(unsigned char)txtr->addr[p_o + 1], (unsigned char)txtr->addr[p_o]));
-		if (ln->x0 == ln->x1 && ln->y0 == ln->y1)
+		ln->p_o = (int)ln->y_w * txtr->line_length 
+			+ (int)c->map->x_w * (txtr->bits_per_pixel / 8);
+		if (ln->x0 < 0 || ln->x0 >= (WIDTH) || ln->y0 < 0 || ln->y0 >= (HIGHT)
+			|| (ln->x0 == ln->x1 && ln->y0 == ln->y1))
 			break ;
+		my_mlx_pixel_put(c->img, ln->x0, ln->y0, 
+			rgb_to_int((unsigned char)txtr->addr[ln->p_o + 2],
+				(unsigned char)txtr->addr[ln->p_o + 1],
+				(unsigned char)txtr->addr[ln->p_o]));
 		ln->e2 = 2 * ln->err;
 		if (ln->e2 > -ln->dy)
 		{
@@ -50,12 +36,10 @@ static void	line_loop_w(t_cub3d *c, t_line *ln, t_img *txtr)
 			ln->err += ln->dx;
 			ln->y0 += ln->sy;
 		}
-		if (y_w != 63)
-			y_w += ss;
+		if (ln->y_w != 63)
+			ln->y_w += ln->ss;
 	}
-	//x_w++;
 }
-
 
 int	rgb_to_int(int red, int green, int blue)
 {
@@ -111,5 +95,10 @@ void	drawline3d_w(t_cub3d *c, int x1, int y1, t_img *txtr)
 	ln.err = ln.dx - ln.dy;
 	ln.x1 = x1;
 	ln.y1 = y1;
+	ln.lof = 0;
+	if (c->map->l_rh > HIGHT)
+		ln.lof = (c->map->l_rh - HIGHT) / 2;
+	ln.ss = 64.0 / c->map->l_rh;
+	ln.y_w = ln.lof * ln.ss;
 	line_loop_w(c, &ln, txtr);
 }
