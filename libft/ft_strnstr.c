@@ -1,57 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/08 15:55:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/22 21:37:00 by hmohamed         ###   ########.fr       */
+/*   Created: 2022/08/16 22:14:22 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/08/22 21:37:04 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *s)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
+	char	*tmp;	
 
 	i = 0;
-	if (!s || *s == '\0')
-		return (0);
-	while (s[i] != '\0')
+	tmp = (char *)haystack;
+	if (!haystack && len == 0)
+		return (NULL);
+	if (needle[i] == '\0')
+		return (tmp);
+	while (tmp[i] != '\0')
 	{
-		i++;
-	}
-	return (i);
-}
-
-int	ft_strlen_2d(char **s)
-{
-	int	i;
-
-	i = 0;
-	if (!s || *s == 0)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
-}
-
-int	ft_commalen(char *s)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (!s || *s == '\0')
-		return (0);
-	while (s[i] != '\0')
-	{
-		if (s[i] == ',')
+		j = 0;
+		while (tmp[i + j] != '\0' && tmp[i + j] == needle[j] && i + j < len)
+		{
+			if (needle[j + 1] == '\0')
+				return (&tmp[i]);
 			j++;
+		}
 		i++;
 	}
-	return (j);
+	return (NULL);
 }

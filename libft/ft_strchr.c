@@ -6,11 +6,11 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:21 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/23 02:15:33 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:15:47 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 char	*skip_space(char *s)
 {
