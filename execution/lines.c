@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:03:22 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/08/04 18:14:28 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:14:44 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ static void	hor_extra(t_cub3d *c, t_line *hln)
 	{
 		c->map->h_x = c->map->p_x;
 		c->map->h_y = c->map->p_y;
-		hln->dof = 20;
+		hln->dof = 100;
 	}
-	while (hln->dof < 20)
+	while (hln->dof != 100)
 	{
 		if (c->map->h_x < 0 || c->map->h_x >= (c->map->map_width * 64)
 			|| c->map->h_y < 0 || c->map->h_y >= (c->map->map_height * 64))
 			break ;
 		if (c->map->map[(int) c->map->h_y / 64][(int) c->map->h_x / 64] == '1')
-			hln->dof = 20;
+			break ;
 		else
 		{
 			c->map->h_x += hln->l_rdx;
@@ -43,15 +43,15 @@ static void	ver_extra(t_cub3d *c, t_line *vln)
 	{
 		c->map->v_x = c->map->p_x;
 		c->map->v_y = c->map->p_y;
-		vln->dof = 25;
+		vln->dof = 100;
 	}
-	while (vln->dof < 25)
+	while (vln->dof != 100)
 	{
 		if (c->map->v_x < 0 || c->map->v_x >= (c->map->map_width * 64)
 			|| c->map->v_y < 0 || c->map->v_y >= (c->map->map_height * 64))
 			break ;
 		if (c->map->map[(int) c->map->v_y / 64][(int) c->map->v_x / 64] == '1')
-			vln->dof = 25;
+			break ;
 		else
 		{
 			c->map->v_x += vln->l_rdx;
@@ -63,19 +63,25 @@ static void	ver_extra(t_cub3d *c, t_line *vln)
 
 void	draw_lines_ex(t_cub3d *c, int line_color)
 {
+	(void)line_color;
 	if (c->map->v_len < c->map->h_len)
 	{
+		c->map->x_w = (int)c->map->v_y % 64;
 		c->map->dest = c->map->v_len;
-		draw_3dmap_lines(c, line_color);
-		//drawline(c, c->map->v_x, c->map->v_y, line_color);
+		if ((c->map->r_angel < 3 * (M_PI / 2) && c->map->r_angel > M_PI / 2))
+			draw_3dmap_lines(c, &c->map->ea_tx);
+		else
+			draw_3dmap_lines(c, &c->map->we_tx);
 	}
 	else
 	{
+		c->map->x_w = (int)c->map->h_x % 64;
 		c->map->dest = c->map->h_len;
-		draw_3dmap_lines(c, 0xFF0000);
-		//drawline(c, c->map->h_x, c->map->h_y, 0xFF0000);
+		if (c->map->r_angel > 0 && c->map->r_angel < M_PI)
+			draw_3dmap_lines(c, &c->map->no_tx);
+		else
+			draw_3dmap_lines(c, &c->map->so_tx);
 	}
-	//draw_3dmap_lines(c, line_color);
 }
 
 double	hor_line(t_cub3d *c)

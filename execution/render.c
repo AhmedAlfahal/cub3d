@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:11:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/04 17:57:16 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:43:00 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ static void	draw_img(t_cub3d *c)
 	c->img->img = mlx_new_image(c->mlx->mlx, WIDTH, HIGHT);
 	c->img->addr = mlx_get_data_addr(c->img->img, &c->img->bits_per_pixel, \
 	&c->img->line_length, &c->img->endian);
-	c->map->i = 0;
-	c->map->j = 0;
 	draw_3dmap(c);
 	mlx_put_image_to_window(c->mlx->mlx, c->mlx->win, c->img->img, 0, 0);
 }
@@ -59,21 +57,24 @@ static void	player_movment(int key_code, t_cub3d *c)
 
 static int	key(int key_code, t_cub3d *c)
 {
-	c->map->pp_x = c->map->p_x;
-	c->map->pp_y = c->map->p_y;
+	int	pp_x;
+	int	pp_y;
+
+	pp_x = c->map->p_x;
+	pp_y = c->map->p_y;
 	if (key_code == 53)
 		destroy_window(c);
 	player_movment(key_code, c);
 	if (key_code == 124)
-		c->map->angel += 7;
+		c->map->angel += 5;
 	else if (key_code == 123)
-		c->map->angel -= 7;
+		c->map->angel -= 5;
 	if (c->map->angel >= 360 || c->map->angel < 0)
 		c->map->angel = (c->map->angel + 360) % 360;
 	if (c->map->map[(int) c->map->p_y / 64][(int) c->map->p_x / 64] == '1')
 	{
-		c->map->p_x = c->map->pp_x;
-		c->map->p_y = c->map->pp_y;
+		c->map->p_x = pp_x;
+		c->map->p_y = pp_y;
 	}
 	draw_img(c);
 	return (0);

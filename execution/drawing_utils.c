@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:17:29 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/07/29 18:35:58 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:16:36 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_lines(t_cub3d *c, int line_color)
 	c->map->rray = 0;
 	fov = deg_to_rad(c->map->angel + 30);
 	c->map->r_angel = deg_to_rad(c->map->angel - 30);
-	while (c->map->r_angel < fov)
+	while (c->map->rray < WIDTH)
 	{
 		if (c->map->r_angel > 2 * M_PI)
 		{
@@ -76,7 +76,7 @@ void	draw_lines(t_cub3d *c, int line_color)
 		c->map->v_len = ver_line(c);
 		c->map->h_len = hor_line(c);
 		draw_lines_ex(c, line_color);
-		c->map->r_angel += 0.000273;
+		c->map->r_angel += 0.000173;
 		c->map->rray += 0.3;
 	}
 }

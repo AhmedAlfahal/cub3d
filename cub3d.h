@@ -6,23 +6,23 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/04 23:50:22 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:17:15 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIDTH 1152
-# define HIGHT 768
+# define WIDTH 1500
+# define HIGHT 900
 
-# include"libft/libft.h"
-# include"ft_printf/ft_printf.h"
-# include"get_next_line/get_next_line.h"
-# include"mlx/mlx.h"
-# include<math.h>
-# include<fcntl.h>
-# include<stdio.h>
+# include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
+# include "get_next_line/get_next_line.h"
+# include "mlx/mlx.h"
+# include <math.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 typedef enum color_type
 {
@@ -60,6 +60,8 @@ typedef struct s_img
 	void	*ea;
 	void	*img;
 	char	*addr;
+	int		width;
+	int		height;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -79,14 +81,16 @@ typedef struct s_map
 	int			map_height;
 	int			error;
 	int			angel;
+	t_img		no_tx;
+	t_img		so_tx;
+	t_img		ea_tx;
+	t_img		we_tx;
 	int			i;
 	int			j;
 	int			x0;
 	int			y0;
 	double		p_x;
-	double		pp_x;
 	double		p_y;
-	double		pp_y;
 	double		h_x;
 	double		h_y;
 	double		h_len;
@@ -94,6 +98,10 @@ typedef struct s_map
 	double		dest;
 	double		v_x;
 	double		v_y;
+	double		x_w;
+	double		y_w;
+	double		l_h;
+	double		l_rh;
 	double		rray;
 	double		r_angel;
 }			t_map;
@@ -115,6 +123,10 @@ typedef struct s_line
 	double	ntan;
 	double	l_rdx;
 	double	l_rdy;
+	double	lof;
+	double	y_w;
+	int		p_o;
+	double	ss;
 
 }			t_line;
 
@@ -124,10 +136,6 @@ typedef struct s_cub3d
 	struct s_img		*img;
 	struct s_map		*map;
 }						t_cub3d;
-
-/******************************Free_utils********************************/
-
-void	check_text_error(t_cub3d *c);
 
 /******************************Pars_utils********************************/
 
@@ -144,28 +152,22 @@ void	check_map_element(t_map *m);
 int		rgb_to_int(int red, int green, int blue);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	render(t_cub3d *c);
-void	draw_map(t_cub3d *c);
 void	draw_3dmap(t_cub3d *c);
-void	draw_3dmap_lines(t_cub3d *c, int line_color);
+void	draw_3dmap_lines(t_cub3d *c, t_img *txtr);
 double	deg_to_rad(double deg);
-double	rad_to_deg(double rad);
 void	line_loop(t_cub3d *c, t_line *ln, int line_color);
 double	hor_line(t_cub3d *c);
 double	ver_line(t_cub3d *c);
 void	draw_lines_ex(t_cub3d *c, int line_color);
 void	drawline(t_cub3d *c, int x1, int y1, int line_color);
-void	draw_lines(t_cub3d *c, int line_color);
 void	drawline3d(t_cub3d *c, int x1, int y1, int line_color);
+void	drawline3d_w(t_cub3d *c, int x1, int y1, t_img *txtr);
 
 /******************************Free_utils********************************/
 
 void	clean_exit(t_cub3d *c, int msg, int ex);
 void	closing_and_freeing(t_map *map, int fd, char *line, int ext);
 void	free_2d_array(char **map);
-
-/******************************Tmp_printers******************************/
-
-void	print_2d_array(char **d);
-void	print_counters(t_cub3d *c);
+void	check_text_error(t_cub3d *c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 20:07:21 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/06/20 12:20:55 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/22 20:54:37 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,4 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 double	deg_to_rad(double deg)
 {
 	return (deg * (M_PI / 180));
-}
-
-double	rad_to_deg(double rad)
-{
-	return (rad * (M_PI / 0x3F));
 }
