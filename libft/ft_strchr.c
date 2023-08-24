@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:21 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/04 18:14:15 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:36:55 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 char	*skip_space(char *s)
 {
