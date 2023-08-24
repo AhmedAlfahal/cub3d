@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/23 02:43:00 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:17:15 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ typedef struct s_map
 	t_img		so_tx;
 	t_img		ea_tx;
 	t_img		we_tx;
+	int			i;
+	int			j;
 	int			x0;
 	int			y0;
 	double		p_x;
