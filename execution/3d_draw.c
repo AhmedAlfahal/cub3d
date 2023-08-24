@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:23:49 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/08/22 22:12:00 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/23 02:45:38 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	draw_lines(t_cub3d *c, int line_color)
 		c->map->v_len = ver_line(c);
 		c->map->h_len = hor_line(c);
 		draw_lines_ex(c, line_color);
-		c->map->r_angel += 0.000173;
+		c->map->r_angel += 60 / WIDTH;
 		c->map->rray += 0.3;
 	}
 }

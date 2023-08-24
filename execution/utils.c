@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 21:37:16 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/22 20:45:50 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:10:15 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ static void	line_loop_w(t_cub3d *c, t_line *ln, t_img *txtr)
 			|| (ln->x0 == ln->x1 && ln->y0 == ln->y1))
 			break ;
 		my_mlx_pixel_put(c->img, ln->x0, ln->y0,
-			rgb_to_int((unsigned char)txtr->addr[ln->p_o + 2],
-				(unsigned char)txtr->addr[ln->p_o + 1],
-				(unsigned char)txtr->addr[ln->p_o]));
+			rgb_to_int(0, 255, 255));
 		ln->e2 = 2 * ln->err;
 		if (ln->e2 > -ln->dy)
 		{
