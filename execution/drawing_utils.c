@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:17:29 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/23 19:16:36 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:16:36 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
