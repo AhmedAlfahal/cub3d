@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 21:37:16 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/22 16:29:11 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:05:39 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,41 +38,6 @@ static void	line_loop_w(t_cub3d *c, t_line *ln, t_img *txtr)
 		}
 		if (ln->y_w != 63)
 			ln->y_w += ln->ss;
-	}
-}
-
-int	rgb_to_int(int red, int green, int blue)
-{
-	int	color;
-
-	color = 0;
-	color |= (int)(red) << 16;
-	color |= (int)(green) << 8;
-	color |= (int)(blue);
-	return (color);
-}
-
-void	line_loop(t_cub3d *c, t_line *ln, int line_color)
-{
-	while (1)
-	{
-		if (ln->x0 < 0 || ln->x0 >= (WIDTH)
-			|| ln->y0 < 0 || ln->y0 >= (HIGHT))
-			break ;
-		my_mlx_pixel_put(c->img, ln->x0, ln->y0, line_color);
-		if (ln->x0 == ln->x1 && ln->y0 == ln->y1)
-			break ;
-		ln->e2 = 2 * ln->err;
-		if (ln->e2 > -ln->dy)
-		{
-			ln->err -= ln->dy;
-			ln->x0 += ln->sx;
-		}
-		if (ln->e2 < ln->dx)
-		{
-			ln->err += ln->dx;
-			ln->y0 += ln->sy;
-		}
 	}
 }
 
