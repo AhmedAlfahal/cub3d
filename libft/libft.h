@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/22 21:37:13 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/25 21:23:34 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_strlen(const char *s);
 int		ft_strlen_2d(char **s);
 int		ft_commalen(char *s);
+int		len_2d_wo0(char **tmp);
 int		ft_isdigit(char *s);
 void	remove_space(char *s);
 void	ft_bzero(void *s, size_t n);

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/24 18:03:23 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/25 21:27:09 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # define HIGHT 900
 
 # include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
 # include "get_next_line/get_next_line.h"
 # include "mlx/mlx.h"
 # include <math.h>

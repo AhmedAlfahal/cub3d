@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:23:49 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/08/24 18:07:08 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/25 21:35:31 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	texture(t_cub3d *c)
 			c->map->textures[we], &c->map->we_tx.width, &c->map->we_tx.height);
 	c->map->ea_tx.img = mlx_xpm_file_to_image(c->mlx->mlx,
 			c->map->textures[ea], &c->map->ea_tx.width, &c->map->ea_tx.height);
-	if (!c->map->no_tx.img|| !c->map->so_tx.img 
-		|| !c->map->we_tx.img || !c->map->ea_tx.img) 
+	if (!c->map->no_tx.img || !c->map->so_tx.img
+		|| !c->map->we_tx.img || !c->map->ea_tx.img)
 		clean_exit(c, 3, 1);
 	c->map->no_tx.addr = mlx_get_data_addr(c->map->no_tx.img,
 			&c->map->no_tx.bits_per_pixel,
