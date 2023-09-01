@@ -6,11 +6,13 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/25 21:25:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/09/01 19:00:29 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+#include <stdio.h>
+#include <unistd.h>
 
 static void	check_line_element(t_map *m, char *l, int msg)
 {
@@ -84,13 +86,19 @@ static void	check_space_closed(t_map *m, int i, int j)
 
 static void	check_map_element_helper(t_map *m, int i, int j)
 {
+	char	*tmp;
+
+	tmp = remove_space_1(m->map[i]);
+	if (tmp[0] != '1' || tmp[len(tmp) - 1] != '1')
+		m->error++;
+	free(tmp);
 	if (m->map[i][j] == 0)
 	{
 		if (j > m->map_width)
 			m->map_width = j;
 		if (j > ft_strlen(m->map[i]))
 			check_line_element(m, &m->map[i - 1][j - (j - len(m->map[i]))], 1);
-		else if (j < ft_strlen(m->map[i]))
+		if (j < ft_strlen(m->map[i]))
 			check_line_element(m, &m->map[i][j], 1);
 	}
 }
