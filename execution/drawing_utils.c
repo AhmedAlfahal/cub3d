@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:17:29 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/23 19:16:36 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:04:12 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-static void	draw_object(t_cub3d *c, int pix_y, int color)
-{
-	static int	pix_x;
-
-	if (pix_x == (c->map->j * 64) + 63 && pix_y == (c->map->i * 64) + 63)
-	{
-		pix_x = 0;
-		return ;
-	}
-	if (pix_x == 0 || pix_x == (c->map->j * 64) + 63)
-	{
-		pix_x = (c->map->j * 64);
-		pix_y++;
-	}
-	my_mlx_pixel_put(c->img, pix_x++, pix_y, color);
-	draw_object(c, pix_y, color);
-}
 
 void	drawline(t_cub3d *c, int x1, int y1, int line_color)
 {
@@ -81,52 +63,26 @@ void	draw_lines(t_cub3d *c, int line_color)
 	}
 }
 
-static void	draw_player(t_cub3d *c, int color, int line_color)
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
-	static double	p_rx;
-	static double	p_ry;
+	char	*dst;
 
-	if ((int) p_rx == (int) c->map->p_x + 5 \
-	&& (int) p_ry == (int) c->map->p_y + 5)
-	{
-		p_rx = 0;
-		p_ry = 0;
-		draw_lines(c, line_color);
-		return ;
-	}
-	if (p_rx == 0 && p_rx == 0)
-	{
-		p_rx = c->map->p_x;
-		p_ry = c->map->p_y;
-	}
-	if (p_rx == c->map->p_x + 5)
-	{
-		p_rx = c->map->p_x;
-		p_ry++;
-	}
-	my_mlx_pixel_put(c->img, p_rx++, p_ry, color);
-	draw_player(c, color, line_color);
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
-void	draw_map(t_cub3d *c)
+double	deg_to_rad(double deg)
 {
-	if (c->map->map[c->map->i][c->map->j] == 0)
-	{
-		c->map->j = 0;
-		c->map->i++;
-	}
-	if (c->map->map[c->map->i] == NULL)
-	{
-		draw_player(c, rgb_to_int(255, 0, 0), rgb_to_int(128, 0, 128));
-		return ;
-	}
-	if (c->map->map[c->map->i][c->map->j] == '1')
-		draw_object(c, c->map->i * 64, rgb_to_int(c->map->f_c_rgb[c_r], \
-		c->map->f_c_rgb[c_g], c->map->f_c_rgb[c_b]));
-	else if (c->map->map[c->map->i][c->map->j] == '0' \
-	|| c->map->map[c->map->i][c->map->j] == 'P')
-		draw_object(c, c->map->i * 64, rgb_to_int(c->map->f_c_rgb[f_r], \
-		c->map->f_c_rgb[f_g], c->map->f_c_rgb[f_b]));
-	c->map->j++;
-	draw_map(c);
+	return (deg * (M_PI / 180));
+}
+
+int	rgb_to_int(int red, int green, int blue)
+{
+	int	color;
+
+	color = 0;
+	color |= (int)(red) << 16;
+	color |= (int)(green) << 8;
+	color |= (int)(blue);
+	return (color);
 }

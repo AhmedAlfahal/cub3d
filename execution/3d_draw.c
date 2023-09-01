@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3d_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:23:49 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/08/24 16:10:11 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/25 21:35:31 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,9 @@ static void	texture(t_cub3d *c)
 			c->map->textures[we], &c->map->we_tx.width, &c->map->we_tx.height);
 	c->map->ea_tx.img = mlx_xpm_file_to_image(c->mlx->mlx,
 			c->map->textures[ea], &c->map->ea_tx.width, &c->map->ea_tx.height);
-	if (c->map->no_tx.img == NULL || !c->map->so_tx.img 
-		|| !c->map->we_tx.img || !c->map->ea_tx.img) 
-	{
-		write(2, "ERRRRRRRRor\n", 13);
-		return ;
-	}
+	if (!c->map->no_tx.img || !c->map->so_tx.img
+		|| !c->map->we_tx.img || !c->map->ea_tx.img)
+		clean_exit(c, 3, 1);
 	c->map->no_tx.addr = mlx_get_data_addr(c->map->no_tx.img,
 			&c->map->no_tx.bits_per_pixel,
 			&c->map->no_tx.line_length, &c->map->no_tx.endian);
@@ -100,4 +97,28 @@ void	draw_3dmap(t_cub3d *c)
 			&c->map->ea_tx.bits_per_pixel,
 			&c->map->ea_tx.line_length, &c->map->ea_tx.endian);
 	draw_lines(c, rgb_to_int(128, 0, 128));
+}
+
+void	line_loop(t_cub3d *c, t_line *ln, int line_color)
+{
+	while (1)
+	{
+		if (ln->x0 < 0 || ln->x0 >= (WIDTH)
+			|| ln->y0 < 0 || ln->y0 >= (HIGHT))
+			break ;
+		my_mlx_pixel_put(c->img, ln->x0, ln->y0, line_color);
+		if (ln->x0 == ln->x1 && ln->y0 == ln->y1)
+			break ;
+		ln->e2 = 2 * ln->err;
+		if (ln->e2 > -ln->dy)
+		{
+			ln->err -= ln->dy;
+			ln->x0 += ln->sx;
+		}
+		if (ln->e2 < ln->dx)
+		{
+			ln->err += ln->dx;
+			ln->y0 += ln->sy;
+		}
+	}
 }

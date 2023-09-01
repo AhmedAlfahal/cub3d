@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 15:55:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/22 21:37:00 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/25 21:23:26 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,21 @@ int	ft_commalen(char *s)
 		i++;
 	}
 	return (j);
+}
+
+int	len_2d_wo0(char **tmp)
+{
+	static int	i;
+	static int	j;
+
+	if (tmp[j] == NULL)
+		return (i);
+	if (tmp[j][0] == 0)
+		j++;
+	else
+	{
+		j++;
+		i++;
+	}
+	return (len_2d_wo0(tmp));
 }

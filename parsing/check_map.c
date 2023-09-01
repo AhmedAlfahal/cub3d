@@ -6,28 +6,11 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/04 23:54:00 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/08/25 21:25:09 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-static int	len_2d_wo0(char **tmp)
-{
-	static int	i;
-	static int	j;
-
-	if (tmp[j] == NULL)
-		return (i);
-	if (tmp[j][0] == 0)
-		j++;
-	else
-	{
-		j++;
-		i++;
-	}
-	return (len_2d_wo0(tmp));
-}
 
 static void	check_line_element(t_map *m, char *l, int msg)
 {
@@ -99,31 +82,39 @@ static void	check_space_closed(t_map *m, int i, int j)
 	check_space_closed(m, i, j - 1);
 }
 
-void	check_map_element(t_map *m)
+static void	check_map_element_helper(t_map *m, int i, int j)
 {
-	static int	i;
-	static int	j;
-
 	if (m->map[i][j] == 0)
 	{
 		if (j > m->map_width)
 			m->map_width = j;
-		i++;
-		if (m->map[i] == NULL)
-			return ;
 		if (j > ft_strlen(m->map[i]))
 			check_line_element(m, &m->map[i - 1][j - (j - len(m->map[i]))], 1);
 		else if (j < ft_strlen(m->map[i]))
 			check_line_element(m, &m->map[i][j], 1);
-		j = 0;
 	}
-	if (i == 0 && j == 0)
+}
+
+void	check_map_element(t_map *m)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	free_2d_array(m->tmp_map);
+	m->tmp_map = ft_2d_dubpper(m->map);
+	while (m->map[i])
 	{
-		free_2d_array(m->tmp_map);
-		m->tmp_map = ft_2d_dubpper(m->map);
+		j = 0;
+		while (m->map[i][j])
+		{
+			player_condition(m, i, j);
+			if (m->map[i][j] == ' ')
+				check_space_closed(m, i, j);
+			j++;
+		}
+		check_map_element_helper(m, i, j);
+		i++;
 	}
-	if (m->map[i][j] == ' ')
-		check_space_closed(m, i, j);
-	player_condition(m, i, j++);
-	return (check_map_element(m));
 }
