@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 21:37:16 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/22 16:29:11 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/09/01 15:13:54 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	line_loop_w(t_cub3d *c, t_line *ln, t_img *txtr)
 			ln->err += ln->dx;
 			ln->y0 += ln->sy;
 		}
-		if (ln->y_w != 63)
+		if (ln->y_w != 127)
 			ln->y_w += ln->ss;
 	}
 }
@@ -98,7 +98,7 @@ void	drawline3d_w(t_cub3d *c, int x1, int y1, t_img *txtr)
 	ln.lof = 0;
 	if (c->map->l_rh > HIGHT)
 		ln.lof = (c->map->l_rh - HIGHT) / 2;
-	ln.ss = 64.0 / c->map->l_rh;
+	ln.ss = 128.0 / c->map->l_rh;
 	ln.y_w = ln.lof * ln.ss;
 	line_loop_w(c, &ln, txtr);
 }
