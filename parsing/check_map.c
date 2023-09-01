@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:27:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/09/01 19:00:29 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/09/02 00:27:22 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,14 @@ static void	check_map_element_helper(t_map *m, int i, int j)
 	{
 		if (j > m->map_width)
 			m->map_width = j;
-		if (j > ft_strlen(m->map[i]))
-			check_line_element(m, &m->map[i - 1][j - (j - len(m->map[i]))], 1);
-		if (j < ft_strlen(m->map[i]))
-			check_line_element(m, &m->map[i][j], 1);
+		if (i < ft_strlen_2d(m->map) - 1)
+		{
+			if (j > ft_strlen(m->map[i + 1]))
+				check_line_element(m, &m->map[i] \
+				[j - (j - len(m->map[i + 1]))], 1);
+			else if (j < ft_strlen(m->map[i + 1]))
+				check_line_element(m, &m->map[i + 1][j], 1);
+		}
 	}
 }
 
