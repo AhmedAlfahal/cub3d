@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/22 18:03:17 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/08/25 21:27:09 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # define HIGHT 900
 
 # include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
 # include "get_next_line/get_next_line.h"
 # include "mlx/mlx.h"
 # include <math.h>
@@ -139,10 +138,6 @@ typedef struct s_cub3d
 	struct s_map		*map;
 }						t_cub3d;
 
-/******************************Free_utils********************************/
-
-void	check_text_error(t_cub3d *c);
-
 /******************************Pars_utils********************************/
 
 void	reading_map(char *s, t_cub3d *c);
@@ -158,7 +153,6 @@ void	check_map_element(t_map *m);
 int		rgb_to_int(int red, int green, int blue);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	render(t_cub3d *c);
-void	draw_map(t_cub3d *c);
 void	draw_3dmap(t_cub3d *c);
 void	draw_3dmap_lines(t_cub3d *c, t_img *txtr);
 double	deg_to_rad(double deg);
@@ -177,10 +171,6 @@ void	drawline3d_w(t_cub3d *c, int x1, int y1, t_img *txtr);
 void	clean_exit(t_cub3d *c, int msg, int ex);
 void	closing_and_freeing(t_map *map, int fd, char *line, int ext);
 void	free_2d_array(char **map);
-
-/******************************Tmp_printers******************************/
-
-void	print_2d_array(char **d);
-void	print_counters(t_cub3d *c);
+void	check_text_error(t_cub3d *c);
 
 #endif

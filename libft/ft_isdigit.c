@@ -3,32 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:46:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/22 21:37:34 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:55:37 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-void	remove_space(char *s)
+char	*remove_space_1(char *s)
 {
 	int		i;
 	int		j;
+	char	*tmp;
 
 	i = 0;
 	j = 0;
-	while (s[j])
+	if (!s || !*s)
+		return (NULL);
+	tmp = ft_strdup(s);
+	while (tmp[j])
 	{
-		while (s[j] == ' ' && s[j] != '\0')
+		while (tmp[j] == ' ' && tmp[j] != '\0')
 			j++;
-		if (s[j] == '\0')
+		if (tmp[j] == '\0')
 			continue ;
-		s[i++] = s[j++];
+		tmp[i++] = tmp[j++];
 	}
-	s[i] = 0;
+	tmp[i] = 0;
+	return (tmp);
 }
 
 static void	ft_isdigit_cons(t_tmp *t)
@@ -68,4 +73,24 @@ int	ft_isdigit(char *s)
 	if (t.i == 0)
 		return (free(t.new_s), 0);
 	return (free(t.new_s), 1);
+}
+
+void	remove_space(char *s)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!s || !*s)
+		return ;
+	while (s[j])
+	{
+		while (s[j] == ' ' && s[j] != '\0')
+			j++;
+		if (s[j] == '\0')
+			continue ;
+		s[i++] = s[j++];
+	}
+	s[i] = 0;
 }
