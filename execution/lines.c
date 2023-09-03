@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lines.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:03:22 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/09/01 16:25:59 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/09/03 22:10:27 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,23 @@ static void	ver_extra(t_cub3d *c, t_line *vln)
 	}
 }
 
-void	draw_lines_ex(t_cub3d *c, int line_color)
+void	draw_lines_ex(t_cub3d *c)
 {
-	(void)line_color;
 	if (c->map->v_len < c->map->h_len)
 	{
-		c->map->x_w = (int)c->map->v_y % 64;
 		c->map->dest = c->map->v_len;
 		if ((c->map->r_angel < 3 * (M_PI / 2) && c->map->r_angel > M_PI / 2))
-			draw_3dmap_lines(c, &c->map->ea_tx);
+			draw_3dmap_lines(c, &c->map->ea_tx, c->map->v_y);
 		else
-			draw_3dmap_lines(c, &c->map->we_tx);
+			draw_3dmap_lines(c, &c->map->we_tx, c->map->v_y);
 	}
 	else
 	{
-		c->map->x_w = (int)c->map->h_x % 64;
 		c->map->dest = c->map->h_len;
 		if (c->map->r_angel > 0 && c->map->r_angel < M_PI)
-			draw_3dmap_lines(c, &c->map->no_tx);
+			draw_3dmap_lines(c, &c->map->no_tx, c->map->h_x);
 		else
-			draw_3dmap_lines(c, &c->map->so_tx);
+			draw_3dmap_lines(c, &c->map->so_tx, c->map->h_x);
 	}
 }
 

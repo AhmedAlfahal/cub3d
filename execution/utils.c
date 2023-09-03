@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 21:37:16 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/09/01 16:13:04 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/09/03 21:58:07 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	drawline3d_w(t_cub3d *c, int x1, int y1, t_img *txtr)
 	ln.lof = 0;
 	if (c->map->l_rh > HIGHT)
 		ln.lof = (c->map->l_rh - HIGHT) / 2;
-	ln.ss = 128.0 / c->map->l_rh;
+	ln.ss = (double)txtr->height / c->map->l_rh;
 	ln.y_w = ln.lof * ln.ss;
 	line_loop_w(c, &ln, txtr);
 }
