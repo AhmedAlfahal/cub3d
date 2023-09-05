@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/09/03 21:55:40 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:43:44 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ void	drawline(t_cub3d *c, int x1, int y1, int line_color);
 void	draw_lines(t_cub3d *c);
 void	drawline3d(t_cub3d *c, int x1, int y1, int line_color);
 void	drawline3d_w(t_cub3d *c, int x1, int y1, t_img *txtr);
+void	draw_3dmap_lines_ex(t_cub3d *c, t_img *txtr);
 
 /******************************Free_utils********************************/
 

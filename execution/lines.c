@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:03:22 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/09/03 22:10:27 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:38:55 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	hor_extra(t_cub3d *c, t_line *hln)
 		{
 			c->map->h_x += hln->l_rdx;
 			c->map->h_y += hln->l_rdy;
-			hln->dof++;
 		}
 	}
 }
@@ -56,7 +55,6 @@ static void	ver_extra(t_cub3d *c, t_line *vln)
 		{
 			c->map->v_x += vln->l_rdx;
 			c->map->v_y += vln->l_rdy;
-			vln->dof++;
 		}
 	}
 }

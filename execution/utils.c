@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 21:37:16 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/09/03 21:58:07 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:43:50 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,22 @@ void	drawline3d_w(t_cub3d *c, int x1, int y1, t_img *txtr)
 	ln.ss = (double)txtr->height / c->map->l_rh;
 	ln.y_w = ln.lof * ln.ss;
 	line_loop_w(c, &ln, txtr);
+}
+
+void	draw_3dmap_lines_ex(t_cub3d *c, t_img *txtr)
+{
+	double	l_o;
+
+	l_o = ((HIGHT) / 2) - c->map->l_h / 2;
+	c->map->x0 = c->map->rray;
+	c->map->y0 = l_o;
+	drawline3d_w(c, c->map->rray, c->map->l_h + l_o, txtr);
+	c->map->x0 = c->map->rray;
+	c->map->y0 = 0;
+	drawline3d(c, c->map->rray, l_o, rgb_to_int(c->map->f_c_rgb[c_r],
+			c->map->f_c_rgb[c_g], c->map->f_c_rgb[c_b]));
+	c->map->x0 = c->map->rray;
+	c->map->y0 = c->map->l_h + l_o;
+	drawline3d(c, c->map->rray, HIGHT, rgb_to_int(c->map->f_c_rgb[f_r],
+			c->map->f_c_rgb[f_g], c->map->f_c_rgb[f_b]));
 }
