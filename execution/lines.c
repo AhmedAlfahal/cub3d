@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:03:22 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/09/05 16:38:55 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:51:49 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ void	draw_lines_ex(t_cub3d *c)
 		if ((c->map->r_angel < 3 * (M_PI / 2) && c->map->r_angel > M_PI / 2))
 			draw_3dmap_lines(c, &c->map->ea_tx, c->map->v_y);
 		else
-			draw_3dmap_lines(c, &c->map->we_tx, c->map->v_y);
+			draw_3dmap_lines(c, &c->map->we_tx, (-1 * c->map->v_y));
 	}
 	else
 	{
 		c->map->dest = c->map->h_len;
 		if (c->map->r_angel > 0 && c->map->r_angel < M_PI)
-			draw_3dmap_lines(c, &c->map->no_tx, c->map->h_x);
+			draw_3dmap_lines(c, &c->map->no_tx, (-1 * c->map->h_x));
 		else
 			draw_3dmap_lines(c, &c->map->so_tx, c->map->h_x);
 	}
