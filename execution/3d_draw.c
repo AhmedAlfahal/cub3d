@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3d_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:23:49 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/08/25 21:35:31 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:44:44 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void	drawline3d(t_cub3d *c, int x1, int y1, int line_color)
 	line_loop(c, &ln, line_color);
 }
 
-void	draw_3dmap_lines(t_cub3d *c, t_img *txtr)
+void	draw_3dmap_lines(t_cub3d *c, t_img *txtr, double pow)
 {
-	double	l_o;
 	double	nangle;
 
+	c->map->x_stp = (double)txtr->width / 64;
+	c->map->x_w = (((int)pow % 64) * (int)c->map->x_stp) % txtr->width;
 	nangle = deg_to_rad(c->map->angel) - c->map->r_angel;
 	if (nangle < 0)
 		nangle += 2 * M_PI;
@@ -72,19 +73,8 @@ void	draw_3dmap_lines(t_cub3d *c, t_img *txtr)
 	c->map->l_h = (64 * (HIGHT)) / c->map->dest;
 	c->map->l_rh = c->map->l_h;
 	if (c->map->l_h > (HIGHT))
-		c->map->l_h = HIGHT ;
-	l_o = ((HIGHT) / 2) - c->map->l_h / 2;
-	c->map->x0 = c->map->rray;
-	c->map->y0 = l_o;
-	drawline3d_w(c, c->map->rray, c->map->l_h + l_o, txtr);
-	c->map->x0 = c->map->rray;
-	c->map->y0 = 0;
-	drawline3d(c, c->map->rray, l_o, rgb_to_int(c->map->f_c_rgb[c_r],
-			c->map->f_c_rgb[c_g], c->map->f_c_rgb[c_b]));
-	c->map->x0 = c->map->rray;
-	c->map->y0 = c->map->l_h + l_o;
-	drawline3d(c, c->map->rray, HIGHT, rgb_to_int(c->map->f_c_rgb[f_r],
-			c->map->f_c_rgb[f_g], c->map->f_c_rgb[f_b]));
+		c->map->l_h = HIGHT;
+	draw_3dmap_lines_ex(c, txtr);
 }
 
 void	draw_3dmap(t_cub3d *c)
@@ -92,11 +82,12 @@ void	draw_3dmap(t_cub3d *c)
 	c->map->x_w = 0;
 	c->map->l_h = 0;
 	c->map->l_rh = 0;
+	c->map->x_stp = 0;
 	texture(c);
 	c->map->ea_tx.addr = mlx_get_data_addr(c->map->ea_tx.img,
 			&c->map->ea_tx.bits_per_pixel,
 			&c->map->ea_tx.line_length, &c->map->ea_tx.endian);
-	draw_lines(c, rgb_to_int(128, 0, 128));
+	draw_lines(c);
 }
 
 void	line_loop(t_cub3d *c, t_line *ln, int line_color)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:08:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/08/25 21:27:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:43:44 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_map
 	double		v_y;
 	double		x_w;
 	double		y_w;
+	double		x_stp;
 	double		l_h;
 	double		l_rh;
 	double		rray;
@@ -154,17 +155,18 @@ int		rgb_to_int(int red, int green, int blue);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	render(t_cub3d *c);
 void	draw_3dmap(t_cub3d *c);
-void	draw_3dmap_lines(t_cub3d *c, t_img *txtr);
+void	draw_3dmap_lines(t_cub3d *c, t_img *txtr, double pow);
 double	deg_to_rad(double deg);
 double	rad_to_deg(double rad);
 void	line_loop(t_cub3d *c, t_line *ln, int line_color);
 double	hor_line(t_cub3d *c);
 double	ver_line(t_cub3d *c);
-void	draw_lines_ex(t_cub3d *c, int line_color);
+void	draw_lines_ex(t_cub3d *c);
 void	drawline(t_cub3d *c, int x1, int y1, int line_color);
-void	draw_lines(t_cub3d *c, int line_color);
+void	draw_lines(t_cub3d *c);
 void	drawline3d(t_cub3d *c, int x1, int y1, int line_color);
 void	drawline3d_w(t_cub3d *c, int x1, int y1, t_img *txtr);
+void	draw_3dmap_lines_ex(t_cub3d *c, t_img *txtr);
 
 /******************************Free_utils********************************/
 
