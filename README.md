@@ -1,4 +1,4 @@
-# so_long
+# cub3d
 This is a 3D game designed in C using minilibX provided in 42curses. \
 To play this game u have to be in a macOS use the following commands. \
 `make` then `./cub3d maps/test.cub` Enjoy :) \
